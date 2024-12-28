@@ -4,7 +4,7 @@ in
 {
   work = {
     hostname = "ceris";
-    dir = "default";
+    dir = "laptop-nixos-work";
     arch = "x86_64-linux";
     user = users.work;
   };

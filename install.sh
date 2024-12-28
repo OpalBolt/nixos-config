@@ -1,0 +1,7 @@
+src="$HOME/nix-dots"
+dst="/etc/nixos"
+sudo ln -sfn "$src/flake.nix" "$dst/flake.nix"
+sudo ln -sfn "$src/flake.lock" "$dst/flake.lock"
+sudo ln -sfn "$src/hosts" "$dst/hosts"
+sudo ln -sfn "$src/config" "$dst/config"
+echo "generated soft links to $dst"
