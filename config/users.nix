@@ -1,0 +1,4 @@
+{
+  default = "Hexamo";
+  work = "mads";
+}
