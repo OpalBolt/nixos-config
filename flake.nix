@@ -28,7 +28,9 @@
           system = host.arch;
           modules = [
             #/home/mads/git/personal/nixos-config.git/hosts/${host.dir}/configuration.nix
-            .hosts/${host.dir}/configuration.nix
+            #.hosts/${host.dir}/configuration.nix
+	    #.hosts/laptop-nixos-work/configuration.nix
+	    ./configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
