@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # User enviroment manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
@@ -19,9 +19,10 @@
   };
 
   outputs = inputs @ {
+  #outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
+    #nixpkgs-untable,
     nixvim,
     home-manager
   }:
@@ -38,6 +39,7 @@
          locale = "en_DK.UTF-8";
          timezone = "Europe/Copenhagen";
          kbdLayout = "dk-latin1";
+         system = "x86_64-linux";
 
        };
        system = "x86_64-linux";
@@ -47,14 +49,15 @@
     nixosConfigurations = {
       ceris = lib.nixosSystem {
         inherit system;
-        specialArgs = ( inputs vars );
+        #specialArgs = ( inputs vars );
         modules = [
-          ./hosts/ceris/configuration.nix
+          ./hosts/configuration.nix
           nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
           }
         ];
       };
