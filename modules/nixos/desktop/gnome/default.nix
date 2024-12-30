@@ -1,22 +1,20 @@
-{config, lib, ... }:
-
-with lib;
+{config, lib, vars, ... }:
 
 {
   options = {
-    gnome = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-      };
-    };
+    gnome.enable = 
+      lib.mkEnableOption "Enables Gnome desktop enviroment";
   };
 
-  config = mkIf (config.gnome.enable) {
+  config = lib.mkIf config.gnome.enable {
     services = {
       xserver = {
         displayManager.gdm.enable = true;
 	desktopManager.gnome.enable = true;
+        xkb = {
+          layout = vars.kbdLayout;
+          variant = "";
+        };
       };
     };
   };

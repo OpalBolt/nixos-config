@@ -8,7 +8,6 @@
 
   imports = [
     ./../modules/nixos/system/networking
-    ./../modules/nixos/desktop
   ];
 
   # Bootloader.
@@ -32,19 +31,6 @@
     LC_PAPER = vars.extraLocale;
     LC_TELEPHONE = vars.extraLocale;
     LC_TIME = vars.extraLocale;
-  };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "dk";
-    variant = "";
   };
 
   # Configure console keymap

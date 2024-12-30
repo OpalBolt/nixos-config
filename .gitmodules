@@ -1,0 +1,3 @@
+[submodule "modules/home-manager/editors/nixvim"]
+	path = modules/home-manager/editors/nixvim
+	url = git@github.com:Hexamo/nixvim-configuration.git

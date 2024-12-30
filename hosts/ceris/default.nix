@@ -4,6 +4,7 @@
 
   imports = [ 
     ./hardware-configuration.nix # Handles Hardware configurations for this machine
+    ./../../modules/nixos/desktop
   ];
 
   
