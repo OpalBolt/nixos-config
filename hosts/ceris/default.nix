@@ -2,8 +2,12 @@
 
 {
 
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ 
+    ./hardware-configuration.nix # Handles Hardware configurations for this machine
+  ];
 
-  boot.initrd.luks.devices."luks-a34dc261-c8a7-49ee-ac4e-6f10c3a84abe".device = "/dev/disk/by-uuid/a34dc261-c8a7-49ee-ac4e-6f10c3a84abe";
+  
+
+  
 
 }

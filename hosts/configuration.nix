@@ -8,48 +8,38 @@
 
   imports = [
     ./../modules/nixos/system/networking
+    ./../modules/nixos/desktop
   ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  #networking.hostName = vars.hostname; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
   nix.settings.experimental-features = [ "nix-command" "flakes"];
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = vars.timezone;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
-
+  i18n.defaultLocale = vars.locale;
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "da_DK.UTF-8";
-    LC_IDENTIFICATION = "da_DK.UTF-8";
-    LC_MEASUREMENT = "da_DK.UTF-8";
-    LC_MONETARY = "da_DK.UTF-8";
-    LC_NAME = "da_DK.UTF-8";
-    LC_NUMERIC = "da_DK.UTF-8";
-    LC_PAPER = "da_DK.UTF-8";
-    LC_TELEPHONE = "da_DK.UTF-8";
-    LC_TIME = "da_DK.UTF-8";
+    LC_ADDRESS = vars.extraLocale;
+    LC_IDENTIFICATION = vars.extraLocale;
+    LC_MEASUREMENT = vars.extraLocale;
+    LC_MONETARY = vars.extraLocale;
+    LC_NAME = vars.extraLocale;
+    LC_NUMERIC = vars.extraLocale;
+    LC_PAPER = vars.extraLocale;
+    LC_TELEPHONE = vars.extraLocale;
+    LC_TIME = vars.extraLocale;
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -113,6 +103,7 @@
   kitty
   git
   tree
+  util-linux
   #keepassxc
   #nextcloud-client
   #home-manager

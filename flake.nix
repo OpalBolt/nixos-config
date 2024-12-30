@@ -37,6 +37,7 @@
          # System Configuraiton
          hostname = "ceris";
          locale = "en_DK.UTF-8";
+         extraLocale = "da_DK.UTF-8";
          timezone = "Europe/Copenhagen";
          kbdLayout = "dk-latin1";
          system = "x86_64-linux";
