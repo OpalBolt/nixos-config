@@ -34,7 +34,7 @@
   };
 
   # Configure console keymap
-  console.keyMap = "dk-latin1";
+  console.keyMap = vars.consoleKbdKeymap;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -54,6 +54,18 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "Iosevka" ]; })
+    ];
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Iosevka NFM:style=Regular" ];
+      };
+    };
+  };
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
