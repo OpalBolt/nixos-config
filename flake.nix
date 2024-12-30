@@ -11,7 +11,7 @@
     
     # Neovim
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -54,12 +54,12 @@
         modules = [
           ./hosts/configuration.nix
           ./hosts/ceris
-          nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
+            home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
           }
         ];
       };

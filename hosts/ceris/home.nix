@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
+{ config, pkgs, inputs, nixvim, ... }:
 
 {
+  imports = [
+    ./../../modules/home-manager/editors
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "mads";
@@ -101,4 +105,5 @@
     enableBashIntegration = true;
   };
 
+  programs.nixvim.enable = true;
 }
