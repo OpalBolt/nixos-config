@@ -54,12 +54,12 @@
           ./hosts/configuration.nix
           ./hosts/ceris
           nixvim.nixosModules.nixvim
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
-          }
+          #home-manager.nixosModules.home-manager
+          #{
+            #home-manager.useGlobalPkgs = true;
+            #home-manager.useUserPackages = true;
+            #home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
+          #}
         ];
       };
     };  
