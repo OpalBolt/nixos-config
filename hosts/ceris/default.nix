@@ -1,13 +1,9 @@
-{pkgs, inputs, vars, ...}: 
+{pkgs, inputs, vars, home-manager, ...}: 
 
 {
 
   imports = [ ./hardware-configuration.nix ];
 
-  home-manager.nixosModules.home-manager = 
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
-            };
+  boot.initrd.luks.devices."luks-a34dc261-c8a7-49ee-ac4e-6f10c3a84abe".device = "/dev/disk/by-uuid/a34dc261-c8a7-49ee-ac4e-6f10c3a84abe";
+
 }

@@ -5,18 +5,16 @@
 { config, pkgs, inputs, vars, ... }:
 
 {
-  #imports =
-    #[ # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-      #inputs.home-manager.nixosModules.default
-   # ];
+
+  imports = [
+    ./../modules/nixos/system/networking
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-a34dc261-c8a7-49ee-ac4e-6f10c3a84abe".device = "/dev/disk/by-uuid/a34dc261-c8a7-49ee-ac4e-6f10c3a84abe";
-  networking.hostName = vars.hostname; # Define your hostname.
+  #networking.hostName = vars.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes"];
@@ -26,10 +24,10 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
+  time.timeZone = vars.timezone;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_DK.UTF-8";
