@@ -1,10 +1,5 @@
 {pkgs, ...}:
 
 {
-  imports = [
-    .hardware-configuration.nix
-    ] ++
-
-  hyprland.enable = true;
+  imports = [ ./hardware-configuration.nix ];
 }
-

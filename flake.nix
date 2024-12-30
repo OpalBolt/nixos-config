@@ -49,9 +49,10 @@
     nixosConfigurations = {
       ceris = lib.nixosSystem {
         inherit system;
-        #specialArgs = ( inputs vars );
+        specialArgs = { inherit inputs vars; };
         modules = [
           ./hosts/configuration.nix
+          ./hosts/ceris
           nixvim.nixosModules.nixvim
           home-manager.nixosModules.home-manager
           {
