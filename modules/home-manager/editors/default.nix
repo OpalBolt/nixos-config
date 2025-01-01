@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./nixvim
+    ./neovim
   ];
 
-  nixvim.enable = true;
+  neovim.enable = true;
 }

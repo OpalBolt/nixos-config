@@ -9,22 +9,13 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    # Neovim
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-
   };
 
   outputs = inputs @ {
-  #outputs = {
     self,
     nixpkgs,
     #nixpkgs-untable,
-    nixvim,
-    home-manager
+    home-manager,
   }:
      let
        vars = {
@@ -60,7 +51,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
-            home-manager.sharedModules = [ nixvim.homeManagerModules.nixvim ];
           }
         ];
       };
