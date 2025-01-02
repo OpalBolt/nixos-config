@@ -1,4 +1,4 @@
-{config, lib, ... }:
+{pkgs, config, lib, ... }:
 
 {
   options = {
@@ -10,6 +10,7 @@
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
+      settings = pkgs.lib.importTOML ./starship.toml;
     };
   };
 }

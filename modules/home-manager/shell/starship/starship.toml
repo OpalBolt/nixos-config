@@ -1,0 +1,44 @@
+add_newline = false
+format = """$directory$character"""
+right_format = """$all"""
+command_timeout = 1000
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[✗](bold red)'
+
+# Shows kubernetes context and namespace
+# [kubernetes]
+# format = 'via [󱃾 $context\($namespace\)](bold purple) '
+# disabled = false
+
+[directory]
+truncation_symbol = '…/'
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '[⇣$\($count\)](red)'
+modified = '[!\($count\)](yellow)'
+untracked = '[?\($count\)](blue)'
+staged = '[+](green)'
+format = '([$conflicted$stashed$deleted$renamed$modified$typechanged$untracked$ahead_behind$staged]($style) )'
+
+[git_branch]
+format = '[$symbol$branch (:$remote_branch)]($style)'
+
+[aws]
+format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
+disabled = false
+style = 'bold blue'
+symbol = " "
+
+[golang]
+format = '[ ](bold cyan)'
+
+[kubernetes]
+symbol = '☸ '
+disabled = true
+
+[terraform]
+format = '[🍥 $version $workspace]($style) '
