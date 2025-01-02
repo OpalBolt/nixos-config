@@ -105,6 +105,7 @@
   #keepassxc
   #nextcloud-client
   #home-manager
+  inputs.nixvim-config.packages.${system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -114,6 +115,13 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 5";
+    flake = "/home/mads/nixos-config";
+  };
 
   # List services that you want to enable:
 

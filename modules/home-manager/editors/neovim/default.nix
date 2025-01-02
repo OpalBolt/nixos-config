@@ -5,11 +5,12 @@
   };
 
   config = lib.mkIf config.neovim.enable {
-    home-manager.users.${vars.username} = {
-      programs.neovim = {
-        enable = true;
-      };
+    programs.neovim = {
+      enable = true;
+      #packages = pkgs.neovim
+      vimAlias = true;
+      vimdiffAlias = true;
+      withNodeJs = true;
     };
   };
-
 }

@@ -1,8 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{ self, config, pkgs, inputs, vars, ... }:
 
 {
 
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ./../../modules/home-manager/editors
   ];
   # Home Manager needs a bit of information about you and the paths it should

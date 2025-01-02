@@ -8,7 +8,13 @@
     # User enviroment manager
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    
+
+    nixvim-config.url = "github:Hexamo/nixvim-config2/main";
+
+    nixvim = {
+      url = "github:Hexamo/nixvim-config/flaketest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -16,6 +22,7 @@
     nixpkgs,
     #nixpkgs-untable,
     home-manager,
+    ...
   }:
      let
        vars = {
@@ -50,6 +57,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs vars; };
             home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
           }
         ];
