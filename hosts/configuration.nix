@@ -102,10 +102,6 @@
   git
   tree
   util-linux
-  #keepassxc
-  #nextcloud-client
-  #home-manager
-  inputs.nixvim-config.packages.${system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
