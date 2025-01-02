@@ -14,7 +14,10 @@
         name = "IosevkaTerm Nerd Font Mono";
         size = 12;
       };
-      #shellIntegration.enableZshIntegration = true;
+      keybindings = {
+        "alt+shift++" = "send_key alt+?";
+      };
+      shellIntegration.enableZshIntegration = true;
       settings = {
         background_opacity = 0.9;
         cursor_trail = 1;
