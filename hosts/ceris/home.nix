@@ -5,6 +5,8 @@
   imports = [
     ./../../modules/home-manager/editors
     ./../../modules/home-manager/shell
+    ./../../modules/home-manager/term
+    ./../../modules/home-manager/cli
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
