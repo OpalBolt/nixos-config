@@ -9,13 +9,13 @@
   config = lib.mkIf config.zsh.enable {
     programs.zsh = {
       enable = true;
-      autosuggestions.enable = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       enableCompletion = true;
-      histSize = 100000;
       history = {
         ignoreSpace = true;
-        ignoreDubs = true;
+        ignoreDups = true;
+        size = 1000000;
       };
       oh-my-zsh = {
         enable = true;
