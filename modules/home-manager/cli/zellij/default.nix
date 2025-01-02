@@ -6,10 +6,10 @@
       lib.mkEnableOption "Enables Zellij";
   };
   config = lib.mkIf config.zellij.enable {
-    xdg.configFile.".config/zellij/config.kdl".source = ./config.kdl;
+    xdg.configFile."zellij/config.kdl".source = ./config.kdl;
     programs.zellij = {
       enable = true;
-      enableZshIntegration = true;
+      #enableZshIntegration = true;
     };
   };
 }

@@ -256,7 +256,7 @@ themes{
     }
 }
 
-default_layout "compact"
+// default_layout "compact"
 pane_frames false
 
 // copy_command "xclip -selection clipboard" // x11
