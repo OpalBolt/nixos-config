@@ -71,10 +71,11 @@
   services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.mads = {
+  users.users.${vars.username} = {
     isNormalUser = true;
-    description = "Mads";
+    description = vars.username;
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -118,6 +119,8 @@
     clean.extraArgs = "--keep-since 7d --keep 5";
     flake = "/home/mads/nixos-config";
   };
+
+  programs.zsh.enable = true;
 
   # List services that you want to enable:
 
