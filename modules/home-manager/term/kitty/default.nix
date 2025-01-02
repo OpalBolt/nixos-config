@@ -17,7 +17,10 @@
       keybindings = {
         "alt+shift++" = "send_key alt+?";
       };
-      shellIntegration.enableZshIntegration = true;
+      shellIntegration = {
+        enableZshIntegration = true;
+        mode = "enabled";
+      };
       settings = {
         background_opacity = 0.9;
         cursor_trail = 1;
