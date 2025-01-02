@@ -4,5 +4,5 @@
   imports = [
     ./zellij
   ];
-  zellij.enable = false;
+  zellij.enable = true;
 }
