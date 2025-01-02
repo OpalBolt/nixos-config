@@ -5,9 +5,9 @@
     ./neovim
     ./nixvim
   ];
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
-  #neovim.enable = true;
-  #nixvim.enable = true;
+   home.sessionVariables = {
+     EDITOR = "nvim";
+   };
+  neovim.enable = false;
+  nixvim.enable = true;
 }

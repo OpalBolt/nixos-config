@@ -10,17 +10,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim-config.url = "github:Hexamo/nixvim-config2/main";
+    nixvim-config.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim = {
-      url = "github:Hexamo/nixvim-config/flaketest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
-    #nixpkgs-untable,
     home-manager,
     ...
   }:
