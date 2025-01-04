@@ -41,8 +41,15 @@
         consoleKbdKeymap = "dk-latin1";
         system = "x86_64-linux";
       };
+
+      # Specifies system version.
+      # TODO: Find a better way to handle this
       system = "x86_64-linux";
+
+      # lessens some boilerplate writing
       lib = nixpkgs.lib;
+
+      # enables us to use unstable packages in our system
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
@@ -54,13 +61,20 @@
         inherit system;
         specialArgs = { inherit inputs vars pkgs-unstable; };
         modules = [
+
+          # Enables nix-vscode-extensions overlay that allows us to 
+          # install vscode extensions from other locations
           {
             nixpkgs.overlays = [
               inputs.nix-vscode-extensions.overlays.default
             ];
           }
+
+          # Imports configuration and the host defaults
           ./hosts/configuration.nix
           ./hosts/ceris
+
+          # Imports home-manager configuration
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
