@@ -17,6 +17,7 @@
     homeDirectory = "/home/${vars.username}";
     stateVersion = "24.11"; # Please read the comment before changing.
   };
+  systemd.user.startServices = "sd-switch";
 
   home.packages = [
     pkgs.hello
@@ -24,6 +25,7 @@
     pkgs.git-crypt
     pkgs.keepassxc
     pkgs.nextcloud-client
+    pkgs.notify
 
   ];
 
@@ -117,6 +119,10 @@
     enable = true;
     userEmail = "mads@plikki.com";
     userName = "Hexamo";
+  };
+
+  programs.lazygit = {
+    enable = true;
   };
 
   programs.vscode = {
