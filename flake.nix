@@ -12,34 +12,38 @@
     nixvim-config.url = "github:Hexamo/nixvim-config2/main";
     nixvim-config.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
+
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     home-manager,
+    nix-vscode-extensions,
     ...
   }:
      let
        vars = {
-         # User Configuration
-         username = "mads";
-         terminal = "kitty";
-         wallpaper = "default";
-         editor = "nvim";
+        # User Configuration
+        username = "mads";
+        terminal = "kitty";
+        wallpaper = "default";
+        editor = "nvim";
 
-         # System Configuraiton
-         hostname = "ceris";
-         locale = "en_DK.UTF-8";
-         extraLocale = "da_DK.UTF-8";
-         timezone = "Europe/Copenhagen";
-         kbdLayout = "dk";
-         consoleKbdKeymap = "dk-latin1";
-         system = "x86_64-linux";
-
-       };
-       system = "x86_64-linux";
-       lib = nixpkgs.lib;
+        # System Configuraiton
+        hostname = "ceris";
+        locale = "en_DK.UTF-8";
+        extraLocale = "da_DK.UTF-8";
+        timezone = "Europe/Copenhagen";
+        kbdLayout = "dk";
+        consoleKbdKeymap = "dk-latin1";
+        system = "x86_64-linux";
+      };
+      system = "x86_64-linux";
+      lib = nixpkgs.lib;
+      overlays = import ./overlays {inherit inputs;};
      in
   {
     nixosConfigurations = {
@@ -49,6 +53,7 @@
         modules = [
           ./hosts/configuration.nix
           ./hosts/ceris
+          { nixpkgs.overlays = [ nix-vscode-extensions.overlays.default ]; }
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
