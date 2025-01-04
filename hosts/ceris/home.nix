@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, vars, ... }:
+{ pkgs, vars, pkgs-unstable, ... }:
 
 {
 
@@ -9,23 +9,6 @@
     ./../../modules/home-manager/cli
     ./../../modules/home-manager/desktop
   ];
-
-  nixpkgs = {
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      # outputs.overlays.stable-packages
-      # outputs.overlays.master-packages
-      inputs.nix-vscode-extensions.overlays.default
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -138,42 +121,41 @@
 
   programs.vscode = {
     enable = true;
-    mutableExtensionsDir = false;
+    package = pkgs-unstable.vscode-fhs;
+    mutableExtensionsDir = true;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
-    extentions = with pkgs.vscode-marketplace; [
-
-      inputs.nix-vscode-extensions.packages.${vars.system}.extensions
+    extensions = with pkgs; [
 
       # General plugins
-      mikestead.dotenv
-      pflannery.vscode-versionlens
+      open-vsx.mikestead.dotenv
+      open-vsx.pflannery.vscode-versionlens
 
 
 
       # Nix related
-      github.copilot
-      github.copilot-chat
-      jnoortheen.nix-ide
+      # vscode-marketplace.github.copilot
+      # vscode-marketplace.github.copilot-chat
+      open-vsx.jnoortheen.nix-ide
       #alvarosannas.nix
 
       # Bash
-      timonwong.shellcheck
-      mads-hartmann.bash-ide-vscode
-      mkhl.shfmt
+      open-vsx.timonwong.shellcheck
+      open-vsx.mads-hartmann.bash-ide-vscode
+      open-vsx.mkhl.shfmt
 
       # Python
-      ms-python.python
+      open-vsx.ms-python.python
 
       # Formatting
-      esbenp.prettier-vscode
+      open-vsx.esbenp.prettier-vscode
 
       # YAML
-      redhat.vscode-yaml
+      open-vsx.redhat.vscode-yaml
 
       # Markdown
-      yzhang.markdown-all-in-one
-      davidanson.vscode-markdownlint
+      open-vsx.yzhang.markdown-all-in-one
+      open-vsx.davidanson.vscode-markdownlint
     ];
   };
 
