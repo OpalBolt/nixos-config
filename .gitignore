@@ -1,0 +1,6 @@
+.github
+.github/*
+result
+result-*
+[Bb]ackup
+[Bb]ackup/*
