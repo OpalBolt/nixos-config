@@ -21,7 +21,7 @@
         enable = true;
         plugins = [
           "colored-man-pages"
-          "command-not-found"
+          #"command-not-found"
           "git" 
           "aws" 
           "docker" 

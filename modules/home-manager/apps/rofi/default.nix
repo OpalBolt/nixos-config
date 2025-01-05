@@ -1,6 +1,6 @@
 # This config has been stolen wholesale from: https://github.com/GGORG0/nix-config/blob/master/homeModules/hyprland/rofi.nix i do not have the skill nor time to try to figure out how to both configure nix AND rofi...
 
-{nixpkgs, config, lib, ... }:
+{inputs, pkgs, config, lib, ... }:
 
 {
   options = {
@@ -11,11 +11,12 @@
   config = lib.mkIf config.rofi.enable {
   programs.rofi = {
       enable = true;
-      package = nixpkgs.rofi-wayland;
-      plugins = with nixpkgs; [rofi-calc rofi-power-menu];
+      #package = inputs.nixpkgs.rofi-wayland;
+      plugins = [pkgs.rofi-calc pkgs.rofi-power-menu];
+      font = "IosevkaTerm Nerd Font Mono 20";
 
       extraConfig = {
-        show-icons = true;
+        show-icons = false;
         drun-display-format = "{icon} {name}";
         disable-history = false;
         hide-scrollbar = false;
@@ -31,7 +32,7 @@
           "run"
           "drun"
 
-          "power-menu:${lib.getExe nixpkgs.rofi-power-menu}"
+          "power-menu:${lib.getExe pkgs.rofi-power-menu}"
         ];
       };
       theme = let
@@ -47,7 +48,7 @@
           fg-col2 = mkLiteral "#f38ba8";
           grey = mkLiteral "#6c7086";
 
-          width = 600;
+          width = 1200;
         };
 
         "element-text, element-icon , mode-switcher" = {
@@ -56,7 +57,7 @@
         };
 
         window = {
-          height = mkLiteral "360px";
+          height = mkLiteral "720px";
           border = mkLiteral "3px";
           border-color = mkLiteral "@border-col";
           border-radius = mkLiteral "20px";
