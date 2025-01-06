@@ -4,11 +4,11 @@
 
 {
   options = {
-    rofi.enable = 
+    hm.apps.rofi.enable = 
       lib.mkEnableOption "Enables rofi";
   };
 
-  config = lib.mkIf config.rofi.enable {
+  config = lib.mkIf config.hm.apps.rofi.enable {
   programs.rofi = {
       enable = true;
       #package = inputs.nixpkgs.rofi-wayland;

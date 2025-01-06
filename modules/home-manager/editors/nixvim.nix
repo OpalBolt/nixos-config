@@ -1,9 +1,9 @@
-{lib, config, inputs, pkgs, vars, ... }:
+{lib, config, inputs, vars, ... }:
 
 {
   options = {
     hm.editors.nixvim.enable = 
-      lib.mkEnableOption "Enables nixvim"; // {default = true;};
+      lib.mkEnableOption "Enables nixvim" // {default = true;};
   };
 
   config = lib.mkIf config.hm.editors.nixvim.enable {

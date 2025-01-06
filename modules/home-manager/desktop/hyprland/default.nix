@@ -15,7 +15,7 @@
     # hm.desktop.hyprland = {
     #   hyprlock.enable = true;
     # };
-    rofi.enable = true;
+    hm.apps.rofi.enable = true;
     hm.apps.dunst.enable = true;
   };
 }

@@ -3,13 +3,15 @@
 {
 
   imports = [
-    ./../../modules/home-manager/editors
-    ./../../modules/home-manager/shell
-    ./../../modules/home-manager/term
-    ./../../modules/home-manager/cli
-    #./../../modules/home-manager/desktop
-    ./../../modules/desktop.nix
+    ./../../modules/home-manager/default.nix
   ];
+
+  hm = {
+    desktop.hyprland.enable = true;
+    cli = {
+      starship.enable = true;
+    };
+  };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

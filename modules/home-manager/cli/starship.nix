@@ -2,11 +2,11 @@
 
 {
   options = {
-    starship.enable = 
-      lib.mkEnableOption "Enables starship";
+    hm.cli.starship.enable = 
+      lib.mkEnableOption "Enables starship" // {default = true;};
   };
 
-  config = lib.mkIf config.zsh.enable {
+  config = lib.mkIf config.hm.cli.starship.enable {
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
