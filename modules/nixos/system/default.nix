@@ -1,7 +1,7 @@
 {...}:
 
 {
-  import = [
+  imports = [
     ./networking.nix
     ./displayManager
   ];

@@ -2,8 +2,6 @@
 
 {
  imports = [
-    ./kitty
+    ./kitty.nix
   ];
-
-  kitty.enable = true;
 }

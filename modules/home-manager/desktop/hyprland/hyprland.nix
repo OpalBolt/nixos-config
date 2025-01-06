@@ -1,4 +1,4 @@
-{ config, lib, pkgs, vars, ... }:
+{ config, lib, pkgs, ... }:
 {
   # options = {                                                                                                                    
   #   hm.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland window manager";

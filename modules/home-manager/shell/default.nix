@@ -1,11 +1,7 @@
-{ pkgs, lib, ... }:
+{...}:
 
 {
  imports = [
-    ./zsh
+    ./zsh.nix
   ];
-
-  # Define what shell is to be used
-  zsh.enable = true;
-
 }

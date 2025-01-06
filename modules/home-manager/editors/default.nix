@@ -1,13 +1,10 @@
-{ pkgs, lib, vars, ... }:
+{...}:
 
 {
   imports = [
-    ./neovim
-    ./nixvim
+    ./nixvim.nix
   ];
    home.sessionVariables = {
      EDITOR = "nvim";
    };
-  neovim.enable = false;
-  nixvim.enable = true;
 }

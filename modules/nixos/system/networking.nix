@@ -9,7 +9,7 @@
     };
   };
 
-  config = lib.mkIf config.nos.syste.networking.enable {
+  config = lib.mkIf config.nos.system.networking.enable {
     networking.networkmanager = {
       enable = true;
       wifi = {
@@ -25,7 +25,7 @@
         "8.8.8.8"
       ];
     };
-    networking.firewall.enable = config.nos.syste.networking.firewall.enable;
+    networking.firewall.enable = config.nos.system.networking.firewall.enable;
   
     services.openssh.enable = config.nos.system.networking.ssh.enable;
   };
