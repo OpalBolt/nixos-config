@@ -1,9 +1,7 @@
-{ pkgs, lib, ... }:
+{ ... }:
 
 {
- imports = [
-    ./gnome
+  imports = [
+    ./gnome.nix
   ];
-
-  gnome.enable = true;
 }

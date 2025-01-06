@@ -1,18 +1,13 @@
-let
-  collectionTemplate = ./../templates/collectionTemplate.nix;
-  modulesDict = {
-    gnome = ./nixos/desktop/gnome;
-    hyprland = ./home-manager/desktop/hyprland;
-  };
-  desktop = collectionTemplate {
-    modulesDict = modulesDict;
-    systemName = "desktop";
-  };
-in
-  {
-  imports = [ desktop ];
-  
-  desktop.enableGnome = true;
-  desktop.enableHyprland = false;
-}
+{vars, lib, config, nixpkgs, ... }:
 
+{
+  imports = [
+    #./nixos/desktop/gnome
+    ./home-manager/desktop/hyprland
+  ];
+  
+  config = {
+    hm.desktop.hyprland.enable = true;
+    #desktop.enableGnome = false;
+  };
+}

@@ -1,0 +1,9 @@
+{...}:
+
+{
+  import = [
+    ./networking.nix
+    ./displayManager
+  ];
+}
+
