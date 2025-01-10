@@ -26,6 +26,9 @@
       tree
       wl-clipboard
       vim
+      ripgrep
+      jq
+      yq
 
       # System tools
       pciutils
