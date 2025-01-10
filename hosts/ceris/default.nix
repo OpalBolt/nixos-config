@@ -1,8 +1,14 @@
-{pkgs, inputs, vars, home-manager, ...}: 
+{
+  pkgs,
+  inputs,
+  vars,
+  home-manager,
+  ...
+}:
 
 {
 
-  imports = [ 
+  imports = [
     ./hardware-configuration.nix # Handles Hardware configurations for this machine
     ./../../modules/nixos
   ];
@@ -16,7 +22,5 @@
     #desktop.gnome.enable = true;
 
   };
-
-  
 
 }

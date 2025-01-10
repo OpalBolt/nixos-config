@@ -2,7 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, vars, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  vars,
+  ...
+}:
 
 {
 
@@ -14,7 +20,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Set your time zone.
   time.timeZone = vars.timezone;
@@ -67,7 +76,6 @@
     };
   };
 
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
@@ -75,19 +83,22 @@
   users.users.${vars.username} = {
     isNormalUser = true;
     description = vars.username;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
-#  home-manager = {
-#	extraSpecialArgs = { inherit inputs; };
-#	users = {
-#		mads = import ./home.nix;
-#	};
-#  };
+  #  home-manager = {
+  #	extraSpecialArgs = { inherit inputs; };
+  #	users = {
+  #		mads = import ./home.nix;
+  #	};
+  #  };
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -98,13 +109,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  wget
-  kitty
-  git
-  tree
-  util-linux
-  nixfmt-rfc-style
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    kitty
+    git
+    tree
+    util-linux
+    nixfmt-rfc-style
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

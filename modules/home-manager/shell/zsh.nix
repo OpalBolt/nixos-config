@@ -1,9 +1,10 @@
-{config, lib, ... }:
+{ config, lib, ... }:
 
 {
   options = {
-    hm.shell.zsh.enable = 
-      lib.mkEnableOption "Enables zsh shell" // {default = true;};
+    hm.shell.zsh.enable = lib.mkEnableOption "Enables zsh shell" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.hm.shell.zsh.enable {
@@ -22,9 +23,9 @@
         plugins = [
           "colored-man-pages"
           #"command-not-found"
-          "git" 
-          "aws" 
-          "docker" 
+          "git"
+          "aws"
+          "docker"
           "docker-compose"
           "kubectl"
           "opentofu"

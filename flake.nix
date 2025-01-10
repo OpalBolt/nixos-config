@@ -19,15 +19,16 @@
 
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    nixpkgs-unstable,
-    ...
-  }:
-     let
-       vars = {
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      nixpkgs-unstable,
+      ...
+    }:
+    let
+      vars = {
         # User Configuration
         username = "mads";
         terminal = "kitty";
@@ -56,36 +57,36 @@
         inherit system;
         config.allowUnfree = true;
       };
-     in
-  {
-    nixosConfigurations = {
-      ceris = lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs vars pkgs-unstable; };
-        modules = [
+    in
+    {
+      nixosConfigurations = {
+        ceris = lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs vars pkgs-unstable; };
+          modules = [
 
-          # Enables nix-vscode-extensions overlay that allows us to 
-          # install vscode extensions from other locations
-          {
-            nixpkgs.overlays = [
-              inputs.nix-vscode-extensions.overlays.default
-            ];
-          }
+            # Enables nix-vscode-extensions overlay that allows us to
+            # install vscode extensions from other locations
+            {
+              nixpkgs.overlays = [
+                inputs.nix-vscode-extensions.overlays.default
+              ];
+            }
 
-          # Imports configuration and the host defaults
-          ./hosts/configuration.nix
-          ./hosts/ceris
+            # Imports configuration and the host defaults
+            ./hosts/configuration.nix
+            ./hosts/ceris
 
-          # Imports home-manager configuration
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs vars pkgs-unstable; };
-            home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
-          }
-        ];
+            # Imports home-manager configuration
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs vars pkgs-unstable; };
+              home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
+            }
+          ];
+        };
       };
-    };  
-  };
+    };
 }

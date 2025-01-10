@@ -1,9 +1,15 @@
-{config, lib, vars, ... }:
+{
+  config,
+  lib,
+  vars,
+  ...
+}:
 
 {
   options = {
-    hm.shell.kitty.enable =
-      lib.mkEnableOption "Enables the terminal Kitty" // {default = true;};
+    hm.shell.kitty.enable = lib.mkEnableOption "Enables the terminal Kitty" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.hm.shell.kitty.enable {

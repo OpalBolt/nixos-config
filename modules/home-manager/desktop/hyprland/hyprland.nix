@@ -1,6 +1,11 @@
-{ config, lib, pkgs, ... }:
 {
-  # options = {                                                                                                                    
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  # options = {
   #   hm.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland window manager";
   # };
 
@@ -41,11 +46,10 @@
           key_press_enables_dpms = true;
         };
         "$mod" = "mod4";
-        bind =
-        [
+        bind = [
           # Power/logout
           "$mod, O, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
-          
+
           # app shortcut"
           "$mod, return, exec, ${lib.getExe pkgs.kitty} --single-instance"
           "$mod, B, exec, ${lib.getExe pkgs.firefox}"
@@ -90,7 +94,7 @@
           # The special workspace (overlay/scratchpad)
           "$mod, grave, togglespecialworkspace,"
           "$mod SHIFT, grave, movetoworkspace, special"
-          
+
         ];
         # Move/resize windows with mod + LMB/RMB and dragging
         bindm = [
@@ -119,10 +123,10 @@
         ];
       };
     };
-  # Fix for Electron apps
-  home.sessionVariables."NIXOS_OZONE_WL" = "1";
+    # Fix for Electron apps
+    home.sessionVariables."NIXOS_OZONE_WL" = "1";
 
-  # Fix for Qt5 apps on wayland
-  home.packages = [pkgs.qt5.qtwayland];
+    # Fix for Qt5 apps on wayland
+    home.packages = [ pkgs.qt5.qtwayland ];
   };
 }

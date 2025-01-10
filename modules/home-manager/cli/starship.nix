@@ -1,9 +1,15 @@
-{pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   options = {
-    hm.cli.starship.enable = 
-      lib.mkEnableOption "Enables starship" // {default = true;};
+    hm.cli.starship.enable = lib.mkEnableOption "Enables starship" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.hm.cli.starship.enable {

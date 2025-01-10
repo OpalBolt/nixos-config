@@ -1,7 +1,7 @@
-{...}:
+{ ... }:
 
 {
- imports = [
+  imports = [
     ./rofi.nix
     ./dunst.nix
   ];

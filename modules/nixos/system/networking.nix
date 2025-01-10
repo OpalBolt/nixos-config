@@ -1,10 +1,14 @@
-{config, lib, ...}:
+{ config, lib, ... }:
 
 {
   options = {
     nos.system.networking = {
-      enable = lib.mkEnableOption "NetworkManager" // {default = true;};
-      firewall.enable = lib.mkEnableOption "Enables System firewall" // {default = true;};
+      enable = lib.mkEnableOption "NetworkManager" // {
+        default = true;
+      };
+      firewall.enable = lib.mkEnableOption "Enables System firewall" // {
+        default = true;
+      };
       ssh.enable = lib.mkEnableOption "Enables incomming SSH connections";
     };
   };
@@ -26,7 +30,7 @@
       ];
     };
     networking.firewall.enable = config.nos.system.networking.firewall.enable;
-  
+
     services.openssh.enable = config.nos.system.networking.ssh.enable;
   };
 }

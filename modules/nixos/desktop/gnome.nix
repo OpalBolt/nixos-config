@@ -1,4 +1,9 @@
-{ config, vars, lib, ... }:
+{
+  config,
+  vars,
+  lib,
+  ...
+}:
 
 {
   options = {
@@ -10,7 +15,7 @@
       #displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       xkb = {
-        layout = vars.kbdLayout or "dk";  # Default to "us" if the layout is not specified
+        layout = vars.kbdLayout or "dk"; # Default to "us" if the layout is not specified
         variant = "";
       };
     };

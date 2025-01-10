@@ -1,9 +1,13 @@
-{config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   options = {
-    hm.apps.dunst.enable = 
-      lib.mkEnableOption "Enables dunst";
+    hm.apps.dunst.enable = lib.mkEnableOption "Enables dunst";
   };
 
   config = lib.mkIf config.hm.apps.dunst.enable {
@@ -66,6 +70,6 @@
         };
       };
     };
-    home.packages = [pkgs.libnotify];
+    home.packages = [ pkgs.libnotify ];
   };
 }

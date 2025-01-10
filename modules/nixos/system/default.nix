@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 
 {
   imports = [
@@ -6,4 +6,3 @@
     ./displayManager
   ];
 }
-

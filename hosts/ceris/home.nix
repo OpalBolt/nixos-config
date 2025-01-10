@@ -1,4 +1,9 @@
-{ pkgs, vars, pkgs-unstable, ... }:
+{
+  pkgs,
+  vars,
+  pkgs-unstable,
+  ...
+}:
 
 {
 
@@ -143,8 +148,6 @@
       open-vsx.mikestead.dotenv
       open-vsx.pflannery.vscode-versionlens
 
-
-
       # Nix related
       # vscode-marketplace.github.copilot
       # vscode-marketplace.github.copilot-chat
@@ -170,6 +173,5 @@
       open-vsx.davidanson.vscode-markdownlint
     ];
   };
-
 
 }

@@ -1,8 +1,14 @@
-{lib, config, pkgs, ...}:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  options.nos.common-pkgs.enable = 
-    lib.mkEnableOption "Enables common packages" // {default = true;};
+  options.nos.common-pkgs.enable = lib.mkEnableOption "Enables common packages" // {
+    default = true;
+  };
 
   config = lib.mkIf config.nos.common-pkgs.enable {
     environment.systemPackages = with pkgs; [

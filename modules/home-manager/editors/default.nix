@@ -1,10 +1,10 @@
-{...}:
+{ ... }:
 
 {
   imports = [
     ./nixvim.nix
   ];
-   home.sessionVariables = {
-     EDITOR = "nvim";
-   };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }

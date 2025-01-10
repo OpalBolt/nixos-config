@@ -1,8 +1,16 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   options = {
-    nos.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland environment" // {default = true;};
+    nos.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland environment" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.nos.desktop.hyprland.enable {
