@@ -15,6 +15,8 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
   };
 
   outputs = inputs @ {
