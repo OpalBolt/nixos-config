@@ -122,6 +122,9 @@
     enable = true;
     userEmail = "mads@plikki.com";
     userName = "Hexamo";
+    extraConfig = {
+      pull.rebase = true;
+    };
   };
 
   programs.lazygit = {
