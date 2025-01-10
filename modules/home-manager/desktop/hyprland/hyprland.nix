@@ -9,9 +9,7 @@
       enable = true;
       xwayland.enable = true; # This enables X11 application to run in a small X11 enviroment
       systemd.enable = true; # Enables some envorment variables to be imported to systemd before the system is started
-      settings = let
-        mod = "SUPER";
-      in {
+      settings = {
         input = {
           kb_layout = "dk";
           follow_mouse = 1;
@@ -20,8 +18,8 @@
           gaps_in = 2;
           gaps_out = 2;
           border_size = 2;
-          "col.active_border" = "rgb(E6C384)";
-          "col.inactive_border" = "rgba(54546D)";
+          #"col.active_border" = "rgb(E6C384)";
+          #"col.inactive_border" = "rgba(54546D)";
           layout = "master";
         };
         decoration = {
@@ -42,18 +40,19 @@
           mouse_move_enables_dpms = true;
           key_press_enables_dpms = true;
         };
+        "$mod" = "mod4";
         bind =
         [
           # Power/logout
-          "${mod}, O, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
+          "$mod, O, exec, ${lib.getExe' pkgs.systemd "loginctl"} lock-session"
           
           # app shortcut"
-          "${mod}, return, exec, ${lib.getExe pkgs.kitty} --single-instance"
-          "${mod}, B, exec, ${lib.getExe pkgs.firefox}"
+          "$mod, return, exec, ${lib.getExe pkgs.kitty} --single-instance"
+          "$mod, B, exec, ${lib.getExe pkgs.firefox}"
 
           # Rofi
-          "${mod}, R, exec, ${lib.getExe config.programs.rofi.finalPackage} -show drun"
-          "${mod}, escape, exec, ${lib.getExe config.programs.rofi.finalPackage} -show power-menu"
+          "$mod, D, exec, ${lib.getExe config.programs.rofi.finalPackage} -show drun"
+          "$mod, escape, exec, ${lib.getExe config.programs.rofi.finalPackage} -show power-menu"
 
           # Screenshots
           ", Print, exec, ${lib.getExe pkgs.grimblast} --notify --freeze copysave area"
@@ -62,41 +61,41 @@
           "ALT, Print, exec, ${lib.getExe pkgs.grimblast} --notify copysave active"
 
           # Window actions (Dispatcher)
-          "${mod}, Q, killactive,"
-          "${mod}, F, togglefloating,"
-          "${mod}, T, togglesplit," # toggle split direction
-          "${mod}, M, fullscreen, 1" # maximize but keep panel and gaps
-          "${mod} SHIFT, M, fullscreen, 0" # fullscreen (no panel or gaps)
+          "$mod, Q, killactive,"
+          "$mod, F, togglefloating,"
+          "$mod, T, togglesplit," # toggle split direction
+          "$mod, M, fullscreen, 1" # maximize but keep panel and gaps
+          "$mod SHIFT, M, fullscreen, 0" # fullscreen (no panel or gaps)
 
           # Move focus with mod + vim keys
-          "${mod}, H, movefocus, l"
-          "${mod}, J, movefocus, d"
-          "${mod}, K, movefocus, u"
-          "${mod}, L, movefocus, r"
+          "$mod, H, movefocus, l"
+          "$mod, J, movefocus, d"
+          "$mod, K, movefocus, u"
+          "$mod, L, movefocus, r"
 
           # Move windows with mod + SHIFT + vim keys
-          "${mod} SHIFT, H, movewindow, l"
-          "${mod} SHIFT, J, movewindow, d"
-          "${mod} SHIFT, K, movewindow, u"
-          "${mod} SHIFT, L, movewindow, r"
+          "$mod SHIFT, H, movewindow, l"
+          "$mod SHIFT, J, movewindow, d"
+          "$mod SHIFT, K, movewindow, u"
+          "$mod SHIFT, L, movewindow, r"
 
           # Scroll through workspaces with mod + scroll
-          "${mod}, mouse_down, workspace, +1"
-          "${mod}, mouse_up, workspace, -1"
+          "$mod, mouse_down, workspace, +1"
+          "$mod, mouse_up, workspace, -1"
 
           # Scroll through workspaces with mod + ALT + h/l
-          "${mod} ALT, L, workspace, +1"
-          "${mod} ALT, H, workspace, -1"
+          "$mod ALT, L, workspace, +1"
+          "$mod ALT, H, workspace, -1"
 
           # The special workspace (overlay/scratchpad)
-          "${mod}, grave, togglespecialworkspace,"
-          "${mod} SHIFT, grave, movetoworkspace, special"
+          "$mod, grave, togglespecialworkspace,"
+          "$mod SHIFT, grave, movetoworkspace, special"
           
         ];
         # Move/resize windows with mod + LMB/RMB and dragging
         bindm = [
-          "${mod}, mouse:272, movewindow"
-          "${mod}, mouse:273, resizewindow"
+          "$mod, mouse:272, movewindow"
+          "$mod, mouse:273, resizewindow"
         ];
         # Brightness and volume keys
         bindel = [
@@ -116,7 +115,7 @@
           ", XF86AudioNext, exec, ${lib.getExe pkgs.playerctl} next"
           ", XF86AudioPrev, exec, ${lib.getExe pkgs.playerctl} previous"
 
-          "${mod} CTRL, escape, exec, ${lib.getExe' pkgs.systemd "systemctl"} suspend"
+          "$mod CTRL, escape, exec, ${lib.getExe' pkgs.systemd "systemctl"} suspend"
         ];
       };
     };
