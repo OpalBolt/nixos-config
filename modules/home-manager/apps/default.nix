@@ -2,7 +2,7 @@
 
 {
  imports = [
-    ./rofi
-    ./dunst
+    ./rofi.nix
+    ./dunst.nix
   ];
 }

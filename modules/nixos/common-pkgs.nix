@@ -25,6 +25,10 @@
       pciutils
       usbutils
 
+      # Wayland tools
+      nwg-look
+      nwg-displays
+
     ];
   };
 }

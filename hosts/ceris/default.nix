@@ -12,7 +12,9 @@
     system = {
       networking.enable = true;
     };
+    work-pkgs.enable = true;
     #desktop.gnome.enable = true;
+
   };
 
   

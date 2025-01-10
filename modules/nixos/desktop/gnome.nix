@@ -1,22 +1,3 @@
-# { vars, ...}:
-#
-# let 
-#   moduleTemplate = import ../../../../templates/moduleTemplate.nix;
-# in
-#   moduleTemplate {
-#     name = "gnome";
-#     enableDescription = "enables the Gnome desktop enviroment";
-#     configContent = {
-#       services.xserver = {
-#         displayManager.gdm.enable = true;
-#         desktopManager.gnome.enable = true;
-#         xkb = {
-#           layout = vars.kbdLayout;
-#           variant = "";
-#         };
-#       };
-#     };
-#   }
 { config, vars, lib, ... }:
 
 {
