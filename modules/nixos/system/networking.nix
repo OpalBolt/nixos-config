@@ -2,7 +2,7 @@
 
 {
   options = {
-    nos.system.networking = {
+    feature.networking = {
       enable = lib.mkEnableOption "NetworkManager" // {
         default = true;
       };
@@ -13,7 +13,7 @@
     };
   };
 
-  config = lib.mkIf config.nos.system.networking.enable {
+  config = lib.mkIf config.feature.networking.enable {
     networking.networkmanager = {
       enable = true;
       wifi = {
@@ -29,8 +29,8 @@
         "8.8.8.8"
       ];
     };
-    networking.firewall.enable = config.nos.system.networking.firewall.enable;
+    networking.firewall.enable = config.feature.networking.firewall.enable;
 
-    services.openssh.enable = config.nos.system.networking.ssh.enable;
+    services.openssh.enable = config.feature.networking.ssh.enable;
   };
 }

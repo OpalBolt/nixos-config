@@ -1,8 +1,5 @@
 {
-  pkgs,
-  inputs,
   vars,
-  home-manager,
   ...
 }:
 
@@ -14,13 +11,19 @@
   ];
   networking.hostName = vars.hostname;
 
-  nos = {
-    system = {
-      networking.enable = true;
-    };
+  feature = {
+    networking.enable = true;
+    networking.firewall.enable = true;
     work-pkgs.enable = true;
-    #desktop.gnome.enable = true;
-
   };
+
+  # nos = {
+  #   system = {
+  #     networking.enable = true;
+  #   };
+  #   work-pkgs.enable = true;
+  #   #desktop.gnome.enable = true;
+  #
+  # };
 
 }

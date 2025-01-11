@@ -7,12 +7,12 @@
 
 {
   options = {
-    hm.shell.kitty.enable = lib.mkEnableOption "Enables the terminal Kitty" // {
+    feature.term.kitty.enable = lib.mkEnableOption "Enables the terminal Kitty" // {
       default = true;
     };
   };
 
-  config = lib.mkIf config.hm.shell.kitty.enable {
+  config = lib.mkIf config.feature.term.kitty.enable {
     programs.kitty = {
       enable = true;
       themeFile = "kanagawa";

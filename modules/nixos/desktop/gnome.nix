@@ -7,10 +7,10 @@
 
 {
   options = {
-    nos.desktop.gnome.enable = lib.mkEnableOption "Enables the Gnome desktop environment";
+    feature.desktop.gnome.enable = lib.mkEnableOption "Enables the Gnome desktop environment";
   };
 
-  config = lib.mkIf config.nos.desktop.gnome.enable {
+  config = lib.mkIf config.feature.desktop.gnome.enable {
     services.xserver = {
       #displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;

@@ -13,7 +13,7 @@
   ];
 
   config = {
-    hm.desktop.hyprland.enable = true;
+    feature.desktop.hyprland.enable = true;
     #desktop.enableGnome = false;
   };
 }

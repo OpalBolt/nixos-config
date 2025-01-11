@@ -6,11 +6,11 @@
 }:
 
 {
-  options.nos.common-pkgs.enable = lib.mkEnableOption "Enables common packages" // {
+  options.feature.common-pkgs.enable = lib.mkEnableOption "Enables common packages" // {
     default = true;
   };
 
-  config = lib.mkIf config.nos.common-pkgs.enable {
+  config = lib.mkIf config.feature.common-pkgs.enable {
     environment.systemPackages = with pkgs; [
       # Archive managers
       zip

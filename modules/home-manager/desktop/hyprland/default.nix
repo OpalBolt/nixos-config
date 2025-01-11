@@ -8,14 +8,11 @@
   ];
 
   options = {
-    hm.desktop.hyprland.enable = lib.mkEnableOption "Enable Hyprland and all required apps";
+    feature.desktop.hyprland.enable = lib.mkEnableOption "Enable Hyprland and all required apps";
   };
 
-  config = lib.mkIf config.hm.desktop.hyprland.enable {
-    # hm.desktop.hyprland = {
-    #   hyprlock.enable = true;
-    # };
-    hm.apps.rofi.enable = true;
-    hm.apps.dunst.enable = true;
+  config = lib.mkIf config.feature.desktop.hyprland.enable {
+    feature.apps.rofi.enable = true;
+    feature.apps.dunst.enable = true;
   };
 }

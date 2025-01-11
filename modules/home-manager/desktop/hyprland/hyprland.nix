@@ -6,10 +6,10 @@
 }:
 {
   # options = {
-  #   hm.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland window manager";
+  #   feature.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland window manager";
   # };
 
-  config = lib.mkIf config.hm.desktop.hyprland.enable {
+  config = lib.mkIf config.feature.desktop.hyprland.enable {
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true; # This enables X11 application to run in a small X11 enviroment

@@ -7,10 +7,10 @@
 
 {
   options = {
-    hm.apps.dunst.enable = lib.mkEnableOption "Enables dunst";
+    feature.apps.dunst.enable = lib.mkEnableOption "Enables dunst";
   };
 
-  config = lib.mkIf config.hm.apps.dunst.enable {
+  config = lib.mkIf config.feature.apps.dunst.enable {
     services.dunst = {
       enable = true;
       settings = {

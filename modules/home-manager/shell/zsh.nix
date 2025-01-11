@@ -2,12 +2,12 @@
 
 {
   options = {
-    hm.shell.zsh.enable = lib.mkEnableOption "Enables zsh shell" // {
+    feature.shell.zsh.enable = lib.mkEnableOption "Enables zsh shell" // {
       default = true;
     };
   };
 
-  config = lib.mkIf config.hm.shell.zsh.enable {
+  config = lib.mkIf config.feature.shell.zsh.enable {
     programs.zsh = {
       enable = true;
       autosuggestion.enable = true;
