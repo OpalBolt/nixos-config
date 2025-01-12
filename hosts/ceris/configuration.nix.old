@@ -127,6 +127,7 @@
     kitty
     git
     tree
+    waybar
     #keepassxc
     #nextcloud-client
     #home-manager
