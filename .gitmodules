@@ -1,0 +1,3 @@
+[submodule "modules/home-manager/editors/configfiles/neovim-config"]
+	path = modules/home-manager/editors/configfiles/neovim-config
+	url = git@github.com:Hexamo/neovim-config.git
