@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -13,9 +13,16 @@
 
   config = lib.mkIf config.feature.desktop.river.enable {
     feature.apps.rofi.enable = true;
-    feature.apps.dunst.enable = true;
+    #feature.apps.dunst.enable = true;
     feature.apps.waybar.enable = true;
     feature.apps.waybar.systemdTarget = "river-session.target";
+    environment.systemPackages = with pkgs; [
+      slurp
+      grim
+      swappy
+      mako
+    ];
+
 
     wayland.windowManager.river = {
       enable = true;
@@ -30,12 +37,12 @@
         #             bar = "baz";
         #             qux = "quux";
         #           };
-        # becomes: 
+        # becomes:
         # riverctl foo bar baz
         # riverctl foo qux quux
 
         # The settings are documented
-        # river(1) riverctl(1) rivertile(1) 
+        # river(1) riverctl(1) rivertile(1)
 
         ###############
         #   Actions   #
@@ -65,8 +72,170 @@
         # Hides the cursor when typing. - when-typing enabled|disabled
         hide-cursor = "when-typing enabled";
 
-        # 
+        # Sets how fast keyboard repeats keystrokes in ms. - rate delay
+        # Default is 25 600
+        set-repeat = 25 600;
 
+        # Sets colors for background and border
+        background-color = "0x1F1F28";
+        border-color-focused = "0x98BB6C";
+        border-color-unfocused = "0x54546D";
+        border-color-urgent = "0xFF5D62";
+
+        ###########
+        #  Rules  #
+        ###########
+
+        rule-add = "ssd";
+
+        ##############
+        #  Mappings  #
+        ##############
+
+        map = {
+          normal = {
+            Super = {
+              # Spawn Terminal
+              Return = "spawn ${lib.getExe pkgs.kitty} --single-instance";
+
+              # Spawn Browser
+              B = "spawn ${lib.getExe pkgs.firefox}";
+
+              # Spawn app launcher
+              D = "spawn ${lib.getExe config.programs.rofi.finalPackage} -show drun";
+
+              # Super+J and Super+K to focus the next/previous view in the layout stack
+              J = "focus-view next";
+              K = "focus-view previous";
+
+              # Super+Period and Super+Comma to focus the next/previous output
+              # output == monitor
+              Period = "focus-output next";
+              Comma = "focus-output previous";
+
+              # Super+F to toggle fullscreen
+              F = "toggle-fullscreen";
+
+              # wideriver
+              up = "send-layout-cmd wideriver \"--layout monocle\"";
+              down = "send-layout-cmd wideriver \"--layout wide --stack diminish --count 1 --ratio 0.4\"";
+              left = "send-layout-cmd wideriver \"--layout left\"";
+              right = "send-layout-cmd wideriver \"--layout right\"";
+
+              Space = "send-layout-cmd wideriver \"--layout-toggle\"";
+
+              plus = "send-layout-cmd wideriver \"--ratio +0.025\"";
+              equal = "send-layout-cmd wideriver \"--ratio 0.35\"";
+              minus = "send-layout-cmd wideriver \"--ratio -0.025\"";
+            };
+            "Super+Shift" = {
+              # Close focused window
+              Q = "close";
+
+              # Move window up and down
+              J = "swap next";
+              K = "swap previous";
+
+              # Send the focused window to the different output
+              Period = "send-to-output -current-tags next";
+              Comma = "send-to-output -current-tags previous";
+            };
+            "Super+Shift+Control" = {
+              S = "spawn ${lib.getExe pkgs.grim} -g \"${lib.getExe pkgs.slurp}\" - | ${lib.getExe pkgs.swappy} -f -"
+            };
+            # lock the screen with swaylock
+            "Super+Shift esc" = "spawn \"swaylock --color 000000\"";
+
+            # Super+Shift+E to exit river
+            "Super+Shift+Control+Alt Q" = "exit";
+
+            None = {
+              # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
+              XF86AudioRaiseVolume = "spawn 'pamixer -i 5'";
+              XF86AudioLowerVolume = "spawn 'pamixer -d 5'";
+              XF86AudioMute = "spawn 'pamixer --toggle-mute'";
+              XF86AudioMicMute = "spawn 'pamixer --default-source --toggle-mute'";
+
+              # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
+              XF86AudioMedia = "spawn 'playerctl play-pause'";
+              XF86AudioPlay = "spawn 'playerctl play-pause'";
+              XF86AudioPrev = "spawn 'playerctl previous'";
+              XF86AudioNext = "spawn 'playerctl next'";
+
+              # Control screen backlight brightness with light (https://github.com/haikarainen/light)
+              XF86MonBrightnessUp = "spawn 'brightnessctl set +5%'";
+              XF86MonBrightnessDown = "spawn 'brightnessctl set 5%-'";
+            };
+          };
+        };
+        # mouse bindings
+        map-pointer = {
+          normal = {
+            Super = {
+              # Super + Left Mouse Button to move views
+              BTN_LEFT = "move-view";
+
+              # Super + Right Mouse Button to resize views
+              BTN_RIGHT = "resize-view";
+
+              # Super + Middle Mouse Button to toggle float
+              BTN_MIDDLE = "toggle-float";
+            };
+          };
+        };
+        spawn = {
+          "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
+          "nm-applet";
+          "mako";
+        };
+        extraConfig = ''
+          # Super+0 to focus all tags
+          # Super+Shift+0 to tag focused view with all tags
+          all_tags=$(((1 << 32) - 1))
+          riverctl map normal Super 0 set-focused-tags $all_tags
+          riverctl map normal Super+Shift 0 set-view-tags $all_tags
+
+
+          # TODO: figure out how to do this in nix
+          for i in $(seq 1 9); do
+            tags=$((1 << (i - 1)))
+
+            # Super+[1-9] to focus tag [0-8]
+            riverctl map normal Super "$i" set-focused-tags $tags
+
+            # Super+Shift+[1-9] to tag focused view with tag [0-8]
+            riverctl map normal Super+Shift "$i" set-view-tags $tags
+
+            # Super+Control+[1-9] to toggle focus of tag [0-8]
+            riverctl map normal Super+Control "$i" toggle-focused-tags $tags
+
+            # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
+            riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
+          done
+
+          # ===== start rivertile =====
+
+          # start wideriver
+          wideriver \
+            --layout left \
+            --layout-alt monocle \
+            --stack even \
+            --count-master 1 \
+            --ratio-master 0.50 \
+            --count-wide-left 0 \
+            --ratio-wide 0.35 \
+            --smart-gaps \
+            --inner-gaps 5 \
+            --outer-gaps 5 \
+            --border-width 1 \
+            --border-width-monocle 0 \
+            --border-width-smart-gaps 0 \
+            --border-color-focused "0x61afef" \
+            --border-color-focused-monocle "0x5c6370" \
+            --border-color-unfocused "0x5c6370" \
+            --log-threshold info \
+            >"/tmp/wideriver.log" 2>&1 &
+        "";
       };
     };
   };
