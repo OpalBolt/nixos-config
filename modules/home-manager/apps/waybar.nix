@@ -18,9 +18,6 @@
   };
 
   config = lib.mkIf config.feature.apps.waybar.enable {
-    environment.systemPackages = with pkgs; [
-      pavucontrol
-    ];
     programs.waybar = {
       enable = true;
       systemd.enable = true;
