@@ -141,7 +141,7 @@
               Comma = "send-to-output -current-tags previous";
             };
             "Super+Shift+Control" = {
-              S = "spawn ${lib.getExe pkgs.grim} -g \"${lib.getExe pkgs.slurp}\" - | ${lib.getExe pkgs.swappy} -f -"
+              S = "spawn ${lib.getExe pkgs.grim} -g \"${lib.getExe pkgs.slurp}\" - | ${lib.getExe pkgs.swappy} -f -";
             };
             # lock the screen with swaylock
             "Super+Shift esc" = "spawn \"swaylock --color 000000\"";
@@ -183,11 +183,11 @@
             };
           };
         };
-        spawn = {
+        spawn = [
           "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
-          "nm-applet";
-          "mako";
-        };
+          "nm-applet"
+          "mako"
+        ];
         extraConfig = ''
           # Super+0 to focus all tags
           # Super+Shift+0 to tag focused view with all tags
@@ -240,3 +240,4 @@
     };
   };
 }
+
