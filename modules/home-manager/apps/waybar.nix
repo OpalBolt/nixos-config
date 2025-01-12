@@ -24,7 +24,7 @@
         enable = true;
         systemd.enable = true;
         systemd.target = config.feature.apps.waybar.systemdTarget;
-        package = pkgs-unstable.waybar;
+      #package = pkgs-unstable.waybar;
       };
   };
 }
