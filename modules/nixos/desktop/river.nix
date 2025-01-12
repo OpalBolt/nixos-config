@@ -15,7 +15,7 @@
 
       # notification manager
       mako
-      libnotifier
+      libnotify
 
       # Window manager
       wideriver

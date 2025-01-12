@@ -9,7 +9,6 @@
   imports = [
     ./../apps/rofi.nix
     ./../apps/waybar.nix
-    ./../../nixos/desktop/river.nix
   ];
 
   options = {
@@ -72,7 +71,7 @@
 
         # Sets how fast keyboard repeats keystrokes in ms. - rate delay
         # Default is 25 600
-        set-repeat = 25 600;
+        set-repeat = "25 600";
 
         # Sets colors for background and border
         background-color = "0x1F1F28";
