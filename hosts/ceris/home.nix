@@ -12,7 +12,8 @@
   ];
 
   feature = {
-    desktop.hyprland.enable = true;
+    desktop.hyprland.enable = false;
+    desktop.river.enable = true;
   };
 
   # Home Manager needs a bit of information about you and the paths it should

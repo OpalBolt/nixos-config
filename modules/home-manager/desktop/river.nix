@@ -1,10 +1,15 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
-    ./../../apps/rofi.nix
-    ./../../apps/dunst.nix
-    ./../../apps/waybar.nix
+    ./../apps/rofi.nix
+    ./../apps/waybar.nix
+    ./../../nixos/desktop/river.nix
   ];
 
   options = {
@@ -16,13 +21,6 @@
     #feature.apps.dunst.enable = true;
     feature.apps.waybar.enable = true;
     feature.apps.waybar.systemdTarget = "river-session.target";
-    environment.systemPackages = with pkgs; [
-      slurp
-      grim
-      swappy
-      mako
-    ];
-
 
     wayland.windowManager.river = {
       enable = true;
@@ -128,6 +126,7 @@
               equal = "send-layout-cmd wideriver \"--ratio 0.35\"";
               minus = "send-layout-cmd wideriver \"--ratio -0.025\"";
             };
+
             "Super+Shift" = {
               # Close focused window
               Q = "close";
@@ -140,9 +139,11 @@
               Period = "send-to-output -current-tags next";
               Comma = "send-to-output -current-tags previous";
             };
+
             "Super+Shift+Control" = {
               S = "spawn ${lib.getExe pkgs.grim} -g \"${lib.getExe pkgs.slurp}\" - | ${lib.getExe pkgs.swappy} -f -";
             };
+
             # lock the screen with swaylock
             "Super+Shift esc" = "spawn \"swaylock --color 000000\"";
 
@@ -168,6 +169,7 @@
             };
           };
         };
+
         # mouse bindings
         map-pointer = {
           normal = {
@@ -183,61 +185,67 @@
             };
           };
         };
+
         spawn = [
           "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
           "nm-applet"
           "mako"
         ];
-        extraConfig = ''
-          # Super+0 to focus all tags
-          # Super+Shift+0 to tag focused view with all tags
-          all_tags=$(((1 << 32) - 1))
-          riverctl map normal Super 0 set-focused-tags $all_tags
-          riverctl map normal Super+Shift 0 set-view-tags $all_tags
-
-
-          # TODO: figure out how to do this in nix
-          for i in $(seq 1 9); do
-            tags=$((1 << (i - 1)))
-
-            # Super+[1-9] to focus tag [0-8]
-            riverctl map normal Super "$i" set-focused-tags $tags
-
-            # Super+Shift+[1-9] to tag focused view with tag [0-8]
-            riverctl map normal Super+Shift "$i" set-view-tags $tags
-
-            # Super+Control+[1-9] to toggle focus of tag [0-8]
-            riverctl map normal Super+Control "$i" toggle-focused-tags $tags
-
-            # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
-            riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
-          done
-
-          # ===== start rivertile =====
-
-          # start wideriver
-          wideriver \
-            --layout left \
-            --layout-alt monocle \
-            --stack even \
-            --count-master 1 \
-            --ratio-master 0.50 \
-            --count-wide-left 0 \
-            --ratio-wide 0.35 \
-            --smart-gaps \
-            --inner-gaps 5 \
-            --outer-gaps 5 \
-            --border-width 1 \
-            --border-width-monocle 0 \
-            --border-width-smart-gaps 0 \
-            --border-color-focused "0x61afef" \
-            --border-color-focused-monocle "0x5c6370" \
-            --border-color-unfocused "0x5c6370" \
-            --log-threshold info \
-            >"/tmp/wideriver.log" 2>&1 &
-        "";
       };
-    };
-  };
-}
 
+      extraConfig = ''
+
+        # Super+0 to focus all tags
+        # Super+Shift+0 to tag focused view with all tags
+        all_tags=$(((1 << 32) - 1))
+        riverctl map normal Super 0 set-focused-tags $all_tags
+        riverctl map normal Super+Shift 0 set-view-tags $all_tags
+
+
+        # TODO: figure out how to do this in nix
+        for i in $(seq 1 9); do
+          tags=$((1 << (i - 1)))
+
+          # Super+[1-9] to focus tag [0-8]
+          riverctl map normal Super "$i" set-focused-tags $tags
+
+          # Super+Shift+[1-9] to tag focused view with tag [0-8]
+          riverctl map normal Super+Shift "$i" set-view-tags $tags
+
+          # Super+Control+[1-9] to toggle focus of tag [0-8]
+          riverctl map normal Super+Control "$i" toggle-focused-tags $tags
+
+          # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
+          riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
+        done
+
+        # ===== start rivertile =====
+
+        # start wideriver
+        wideriver \
+          --layout left \
+          --layout-alt monocle \
+          --stack even \
+          --count-master 1 \
+          --ratio-master 0.50 \
+          --count-wide-left 0 \
+          --ratio-wide 0.35 \
+          --smart-gaps \
+          --inner-gaps 5 \
+          --outer-gaps 5 \
+          --border-width 1 \
+          --border-width-monocle 0 \
+          --border-width-smart-gaps 0 \
+          --border-color-focused "0x61afef" \
+          --border-color-focused-monocle "0x5c6370" \
+          --border-color-unfocused "0x5c6370" \
+          --log-threshold info \
+          >"/tmp/wideriver.log" 2>&1 &
+
+      '';
+
+    };
+
+  };
+
+}
