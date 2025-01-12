@@ -29,6 +29,7 @@
       ripgrep
       jq
       yq
+      bottom
 
       # System tools
       pciutils
