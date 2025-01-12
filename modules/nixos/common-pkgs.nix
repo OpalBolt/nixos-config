@@ -30,6 +30,9 @@
       jq
       yq
       bottom
+      gcc
+      fzf
+      go-task
 
       # System tools
       pciutils
