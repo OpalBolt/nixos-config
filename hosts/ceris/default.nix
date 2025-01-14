@@ -17,6 +17,11 @@
     work-pkgs.enable = true;
   };
 
+  feature = {
+    desktop.river.enable = true;
+    desktop.hyprland.enable = false;
+  };
+
   # nos = {
   #   system = {
   #     networking.enable = true;

@@ -9,7 +9,7 @@
 {
   options = {
     feature.desktop.hyprland.enable = lib.mkEnableOption "Enables the hyprland environment" // {
-      default = true;
+      default = false;
     };
   };
 
