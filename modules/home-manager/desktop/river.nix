@@ -7,16 +7,17 @@
 
 {
   imports = [
-    ./../apps/rofi.nix
+    #./../apps/rofi.nix
     ./../apps/waybar.nix
   ];
 
   options = {
     feature.desktop.river.enable = lib.mkEnableOption "Enable river and all required apps";
+    default = true;
   };
 
   config = lib.mkIf config.feature.desktop.river.enable {
-    feature.apps.rofi.enable = true;
+    #feature.apps.rofi.enable = true;
     #feature.apps.dunst.enable = true;
     feature.apps.waybar.enable = true;
     feature.apps.waybar.systemdTarget = "river-session.target";
@@ -85,6 +86,12 @@
 
         rule-add = "ssd";
 
+        ##########################
+        #  Input configurations  #
+        ##########################
+
+        keyboard-layout = "dk";
+
         ##############
         #  Mappings  #
         ##############
@@ -93,13 +100,16 @@
           normal = {
             Super = {
               # Spawn Terminal
-              Return = "spawn ${lib.getExe pkgs.kitty} --single-instance";
+              Return = "spawn ${lib.getExe pkgs.kitty}";
+              print = "notify-send \"test\"";
 
               # Spawn Browser
               B = "spawn ${lib.getExe pkgs.firefox}";
 
               # Spawn app launcher
-              D = "spawn ${lib.getExe config.programs.rofi.finalPackage} -show drun";
+              #D = "spawn ${lib.getExe config.programs.rofi.finalPackage} -show drun";
+              #D = "spawn rofi -show drun";
+              D = "spawn fuzzel";
 
               # Super+J and Super+K to focus the next/previous view in the layout stack
               J = "focus-view next";
@@ -134,13 +144,12 @@
               J = "swap next";
               K = "swap previous";
 
+              # Toggle Floating
+              S = "toggle-float";
+
               # Send the focused window to the different output
               Period = "send-to-output -current-tags next";
               Comma = "send-to-output -current-tags previous";
-            };
-
-            "Super+Shift+Control" = {
-              S = "spawn ${lib.getExe pkgs.grim} -g \"${lib.getExe pkgs.slurp}\" - | ${lib.getExe pkgs.swappy} -f -";
             };
 
             # lock the screen with swaylock
@@ -189,10 +198,15 @@
           "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
           "nm-applet"
           "mako"
+          "waybar"
         ];
       };
 
       extraConfig = ''
+
+        # ===== keymaps =====
+
+        riverctl map normal Super+Shift D spawn "grim -g \"\$(slurp)\" - | swappy -f -"
 
         # Super+0 to focus all tags
         # Super+Shift+0 to tag focused view with all tags
