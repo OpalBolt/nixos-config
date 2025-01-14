@@ -68,6 +68,7 @@
   fonts = {
     packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Iosevka" ]; })
+      (nerdfonts.override { fonts = [ "FantasqueSansM" ]; })
     ];
     fontconfig = {
       defaultFonts = {
@@ -101,7 +102,7 @@
   #  };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  #programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
