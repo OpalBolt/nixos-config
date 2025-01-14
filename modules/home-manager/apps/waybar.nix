@@ -11,7 +11,8 @@
       enable = lib.mkEnableOption "Enables waybar";
       systemdTarget = lib.mkOption {
         type = lib.types.str;
-        default = "graphical-session.target";
+        #default = "graphical-session.target";
+        default = "river-session.target";
         description = "The systemd target to start waybar";
       };
     };
@@ -20,8 +21,9 @@
   config = lib.mkIf config.feature.apps.waybar.enable {
     programs.waybar = {
       enable = true;
-      systemd.enable = true;
-      systemd.target = config.feature.apps.waybar.systemdTarget;
+      #systemd.enable = true;
+      #systemd.target = config.feature.apps.waybar.systemdTarget;
+      #systemd.target = "river-session.target";
       #package = pkgs-unstable.waybar;
       style = builtins.readFile ./waybar/style.css;
       settings = {
