@@ -67,6 +67,7 @@
       wlr-randr # Information about monitor position
       networkmanagerapplet # App for controlling networks
       fuzzel # Replacemnet for Rofi
+      swaybg # Background handler
     ];
   };
 

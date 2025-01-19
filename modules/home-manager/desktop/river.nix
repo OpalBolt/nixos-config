@@ -199,6 +199,7 @@
           "nm-applet"
           "mako"
           "waybar"
+          "swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill"
         ];
       };
 
