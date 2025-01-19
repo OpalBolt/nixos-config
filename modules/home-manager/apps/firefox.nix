@@ -6,6 +6,8 @@
   pkgs,
   inputs,
   lib,
+  nur,
+  vars,
   ...
 }:
 {
@@ -39,20 +41,56 @@
     profiles = {
       default = {
         id = 0;
-        name = "mads";
+        name = vars.name;
         isDefault = true;
 
-        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        containers.personal = {
+          id = 0;
+          name = "personal";
+          color = "blue";
+          icon = "vacation";
+        };
+        containers.work = {
+          id = 1;
+          name = "work";
+          color = "yellow";
+          icon = "fence";
+        };
+        containers.cust1 = {
+          id = 2;
+          name = "cust1";
+          color = "red";
+          icon = "dollar";
+        };
+        containers.cust2 = {
+          id = 3;
+          name = "cust2";
+          color = "green";
+          icon = "dollar";
+        };
+
+        extensions = with inputs.nur.legacyPackages."${vars.system}".repos.rycee.firefox-addons; [
           ublock-origin
           display-_anchors
           reddit-enhancement-suite
-          save-webp-as-png-or-jpeg
+          #save-webp-as-png-or-jpeg
           vimium
           sidebery
           i-dont-care-about-cookies
           adaptive-tab-bar-colour
           keepassxc-browser
         ];
+        # extensions = with nur.repos.rycee.firefox-addons; [
+        #   "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/istilldontcareaboutcookies/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/display-_anchors/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/reddit-enhancement-suite/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/save-webp-as-png-or-jpeg/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/keepassxc-browser/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/vimium/latest.xpi"
+        #   "https://addons.mozilla.org/firefox/downloads/latest/adaptive-tab-bar-colour/latest.xpi"
+        # ];
 
         # http://kb.mozillazine.org/Category:Preferences
         settings = {
@@ -91,6 +129,7 @@
           "browser.urlbar.suggest.addons" = false;
           "browser.urlbar.suggest.pocket" = false;
           "browser.urlbar.suggest.topsites" = false;
+          "extensions.autoDisableScopes" = 0;
           "browser.newtabpage.pinned" = [
             {
               title = "youtube";
@@ -119,8 +158,8 @@
           ];
         };
 
-        userChrome = (builtins.readFile ./userChrome.css);
-        userContent = (builtins.readFile ./userContent.css);
+        userChrome = (builtins.readFile ./../../../dotfiles/firefox/userChrome.css);
+        userContent = (builtins.readFile ./../../../dotfiles/firefox/userContent.css);
 
       };
 
