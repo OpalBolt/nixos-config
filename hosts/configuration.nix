@@ -67,8 +67,13 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Iosevka" ]; })
-      (nerdfonts.override { fonts = [ "FantasqueSansM" ]; })
+      (nerdfonts.override {
+        fonts = [
+          "Iosevka"
+          "FantasqueSansMono"
+          "Mononoki"
+        ];
+      })
     ];
     fontconfig = {
       defaultFonts = {

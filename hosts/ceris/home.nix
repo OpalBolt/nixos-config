@@ -33,7 +33,14 @@
     pkgs.nextcloud-client
     pkgs.notify
 
-    (pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; })
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "Iosevka"
+        "FantasqueSansMono"
+        "Mononoki"
+        "Meslo"
+      ];
+    })
 
   ];
 
