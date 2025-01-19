@@ -47,31 +47,6 @@
         name = vars.username;
         isDefault = true;
 
-        containers.personal = {
-          id = 0;
-          name = "personal";
-          color = "blue";
-          icon = "vacation";
-        };
-        containers.work = {
-          id = 1;
-          name = "work";
-          color = "yellow";
-          icon = "fence";
-        };
-        containers.cust1 = {
-          id = 2;
-          name = "cust1";
-          color = "red";
-          icon = "dollar";
-        };
-        containers.cust2 = {
-          id = 3;
-          name = "cust2";
-          color = "green";
-          icon = "dollar";
-        };
-
         extensions = with inputs.nur.legacyPackages."${vars.system}".repos.rycee.firefox-addons; [
           ublock-origin
           display-_anchors
