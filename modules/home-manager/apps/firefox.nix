@@ -1,6 +1,9 @@
 # this configuration has been stolen directly from:
 # https://github.com/scientiac/scifox
 # Archive: https://archivebox.local.skumnet.dk/archive/1736885954.677672/index.html
+#
+# Implementation in nix from: https://gitlab.com/scientiac/einstein.nixos/-/blob/main/home/graphical/firefox/userContent.css?ref_type=heads
+# archive:
 
 {
   pkgs,
@@ -41,7 +44,7 @@
     profiles = {
       default = {
         id = 0;
-        name = vars.name;
+        name = vars.username;
         isDefault = true;
 
         containers.personal = {
