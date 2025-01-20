@@ -3,10 +3,9 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {
-  config,
   pkgs,
-  inputs,
   vars,
+  lib,
   ...
 }:
 
@@ -64,6 +63,9 @@
     #media-session.enable = true;
     #wireplumber.enable = true;
   };
+
+  # Remove packages that are not needed
+  environment.defaultPackages = lib.mkForce [ ];
 
   fonts = {
     packages = with pkgs; [
