@@ -33,6 +33,7 @@
       gcc
       fzf
       go-task
+      nix-tree # Browse packages
 
       # System tools
       pciutils
