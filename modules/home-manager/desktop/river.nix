@@ -153,10 +153,14 @@
             };
 
             # lock the screen with swaylock
-            "Super+Shift esc" = "spawn \"swaylock --color 000000\"";
+            "Super+Shift" = {
+              l = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
+            };
 
             # Super+Shift+E to exit river
-            "Super+Shift+Control+Alt Q" = "exit";
+            "Super+Shift+Control+Alt" = {
+              Q = "exit";
+            };
 
             None = {
               # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
@@ -199,7 +203,7 @@
           "nm-applet"
           "mako"
           "waybar"
-          "swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill"
+          "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
         ];
       };
 
