@@ -3,7 +3,7 @@
 # Archive: https://archivebox.local.skumnet.dk/archive/1736885954.677672/index.html
 #
 # Implementation in nix from: https://gitlab.com/scientiac/einstein.nixos/-/blob/main/home/graphical/firefox/userContent.css?ref_type=heads
-# archive:
+# archive: https://archivebox.local.skumnet.dk/archive/1737319363.746278/index.html
 
 {
   pkgs,
