@@ -7,5 +7,6 @@
     ./waybar.nix
     ./firefox.nix
     ./theme.nix
+    ./swaylock.nix
   ];
 }
