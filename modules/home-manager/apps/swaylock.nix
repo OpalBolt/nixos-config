@@ -19,7 +19,6 @@
         ignore-empty-password = true;
         font-size = 14;
         disable-caps-lock-text = true;
-        ignore-empty-password = true;
         indicator = true;
         indicator-caps-lock = true;
         indicator-radius = 50;
