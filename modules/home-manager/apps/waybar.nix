@@ -21,9 +21,9 @@
   config = lib.mkIf config.feature.apps.waybar.enable {
     programs.waybar = {
       enable = true;
-      #systemd.enable = true;
+      systemd.enable = true;
       #systemd.target = config.feature.apps.waybar.systemdTarget;
-      #systemd.target = "river-session.target";
+      systemd.target = "river-session.target";
       #package = pkgs-unstable.waybar;
       style = builtins.readFile ./waybar/style.css;
       settings = {
