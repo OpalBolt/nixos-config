@@ -202,7 +202,7 @@
           "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
           "nm-applet"
           "mako"
-          "waybar"
+          #"waybar"
           "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
         ];
       };
