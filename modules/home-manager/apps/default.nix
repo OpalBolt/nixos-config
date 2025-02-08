@@ -9,5 +9,6 @@
     ./theme.nix
     ./swaylock.nix
     ./git.nix
+    ./defaultapps.nix
   ];
 }
