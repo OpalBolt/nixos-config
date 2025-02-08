@@ -19,6 +19,7 @@
     nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
