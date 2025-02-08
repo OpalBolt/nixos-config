@@ -3,7 +3,7 @@
   programs.lazygit.enable = true;
   programs.git = {
     enable = true;
-    userName = "Hexamo";
+    userName = "OpalBolt";
     userEmail = "git@skumnet.dk";
 
     #signing = {
