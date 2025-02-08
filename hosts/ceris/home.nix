@@ -130,19 +130,6 @@
   };
   services.ssh-agent.enable = true;
 
-  programs.git = {
-    enable = true;
-    userEmail = "mads@plikki.com";
-    userName = "Hexamo";
-    extraConfig = {
-      pull.rebase = true;
-    };
-  };
-
-  programs.lazygit = {
-    enable = true;
-  };
-
   programs.vscode = {
     enable = true;
     package = pkgs-unstable.vscode-fhs;
