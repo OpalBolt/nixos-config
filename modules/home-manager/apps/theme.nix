@@ -15,13 +15,12 @@
     };
 
     cursorTheme = {
-      name = "Capitaine-Cursors";
-      package = pkgs.capitaine-cursors;
-      # size = ?
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
     };
     iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      name = "tela-circle-icon-theme";
+      package = pkgs.tela-circle-icon-theme;
     };
     theme = {
       name = "Arc-Dark";
