@@ -34,6 +34,8 @@
       fzf
       go-task
       nix-tree # Browse packages
+      xdg-utils
+      xdg-launch
 
       # System tools
       pciutils
