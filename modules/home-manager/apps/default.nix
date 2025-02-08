@@ -8,5 +8,6 @@
     ./firefox.nix
     ./theme.nix
     ./swaylock.nix
+    ./git.nix
   ];
 }
