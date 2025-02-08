@@ -36,6 +36,10 @@
       nix-tree # Browse packages
       xdg-utils
       xdg-launch
+      ungoogled-chromium
+
+      # Communication tools
+      weechat
 
       # System tools
       pciutils
