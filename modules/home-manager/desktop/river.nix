@@ -203,7 +203,8 @@
           "\"swayidle -w timeout 600 'swaylock -f -c 000000' before-sleep 'swaylock -f -c 000000'\"" # lock screen
           "nm-applet"
           "mako"
-          "waybar"
+          #"waybar"
+          "systemctl --user restart waybar.service"
           "nextcloud"
           "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
         ];
