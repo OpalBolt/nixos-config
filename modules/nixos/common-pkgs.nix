@@ -37,6 +37,9 @@
       xdg-utils
       xdg-launch
       ungoogled-chromium
+      zoxide
+      eza
+      bat
 
       # Communication tools
       weechat
