@@ -205,7 +205,7 @@
           "mako"
           #"waybar"
           "systemctl --user restart waybar.service"
-          "nextcloud"
+          #"nextcloud"
           "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
         ];
       };
