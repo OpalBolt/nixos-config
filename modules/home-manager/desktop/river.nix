@@ -200,9 +200,11 @@
 
         spawn = [
           "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
+          "\"swayidle -w timeout 600 'swaylock -f -c 000000' before-sleep 'swaylock -f -c 000000'\"" # lock screen
           "nm-applet"
           "mako"
           "waybar"
+          "nextcloud"
           "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
         ];
       };
