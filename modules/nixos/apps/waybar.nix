@@ -10,5 +10,11 @@
       pavucontrol
     ];
     programs.waybar.enable = true;
+    systemd.user.services.waybar = {
+      Unit = {
+        After = pkgs.lib.mkForce "graphical-session.target";
+      };
+    };
+
   };
 }
