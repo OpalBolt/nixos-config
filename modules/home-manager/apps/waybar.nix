@@ -39,15 +39,14 @@
             "river/layout"
           ];
 
-          modules-center = [ ];
+          modules-center = [ "clock" ];
 
           modules-right = [
-            "clock"
             "pulseaudio"
             "network"
             "backlight"
             "battery#bat0"
-            "battery#bat1"
+            #"battery#bat1"
             "idle_inhibitor"
             "custom/kernel"
             "tray"
@@ -80,7 +79,7 @@
 
           clock = {
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format = "{:%H:%M 󰥔  %d/%m ~ %B %Y }";
+            format = "{:%H:%M 󰥔 }";
           };
 
           backlight = {
@@ -117,24 +116,24 @@
             ];
           };
 
-          "battery#bat1" = {
-            bat = "BAT1";
-            states = {
-              warning = 30;
-              critical = 15;
-            };
-            format = "BAT0:{capacity}% {icon}";
-            format-charging = "BAT0:{capacity}% 󱐋";
-            format-plugged = "BAT0:{capacity}% ";
-            format-alt = "BAT0:{time} {icon}";
-            format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
-            ];
-          };
+          # "battery#bat1" = {
+          #   bat = "BAT1";
+          #   states = {
+          #     warning = 30;
+          #     critical = 15;
+          #   };
+          #   format = "BAT0:{capacity}% {icon}";
+          #   format-charging = "BAT0:{capacity}% 󱐋";
+          #   format-plugged = "BAT0:{capacity}% ";
+          #   format-alt = "BAT0:{time} {icon}";
+          #   format-icons = [
+          #     ""
+          #     ""
+          #     ""
+          #     ""
+          #     ""
+          #   ];
+          # };
 
           network = {
             format-wifi = "{essid} ({signalStrength}%) ";
@@ -150,7 +149,7 @@
             format-bluetooth = "{volume}% {icon} {format_source}";
             format-bluetooth-muted = "󰖁 {icon} {format_source}";
             format-muted = "󰖁 {format_source}";
-            format-source = "{volume}% ";
+            format-source = " {volume}% ";
             format-source-muted = "";
             format-icons = {
               headphone = "";
@@ -160,9 +159,9 @@
               portable = "";
               car = "";
               default = [
-                ""
-                ""
-                ""
+                " "
+                " "
+                " "
               ];
             };
             on-click = "pavucontrol";
