@@ -23,8 +23,8 @@
       enable = true;
       systemd.enable = true;
       #systemd.target = config.feature.apps.waybar.systemdTarget;
-      systemd.target = "river-session.target";
-      #systemd.target = "graphical-session.target";
+      #systemd.target = "river-session.target";
+      systemd.target = "graphical-session.target";
       #package = pkgs-unstable.waybar;
       style = builtins.readFile ./waybar/style.css;
       settings = {
