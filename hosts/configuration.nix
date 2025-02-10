@@ -15,69 +15,9 @@
     #./../modules/nixos/system/networking
   ];
 
-  # Set your time zone.
-  time.timeZone = vars.timezone;
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = vars.locale;
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = vars.extraLocale;
-    LC_IDENTIFICATION = vars.extraLocale;
-    LC_MEASUREMENT = vars.extraLocale;
-    LC_MONETARY = vars.extraLocale;
-    LC_NAME = vars.extraLocale;
-    LC_NUMERIC = vars.extraLocale;
-    LC_PAPER = vars.extraLocale;
-    LC_TELEPHONE = vars.extraLocale;
-    LC_TIME = vars.extraLocale;
-  };
-
-  # Configure console keymap
-  console.keyMap = vars.consoleKbdKeymap;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Remove packages that are not needed
-  environment.defaultPackages = lib.mkForce [ ];
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${vars.username} = {
-    isNormalUser = true;
-    description = vars.username;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    shell = pkgs.zsh;
-  };
-
-  #  home-manager = {
-  #	extraSpecialArgs = { inherit inputs; };
-  #	users = {
-  #		mads = import ./home.nix;
-  #	};
-  #  };
-
-  # Install firefox.
-  #programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    kitty
-    git
-    tree
-    util-linux
-    nixfmt-rfc-style
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
