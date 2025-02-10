@@ -53,9 +53,6 @@
       "wheel"
     ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      #  thunderbird
-    ];
   };
 
   #  home-manager = {

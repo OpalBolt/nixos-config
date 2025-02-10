@@ -41,9 +41,6 @@
       eza
       bat
 
-      # Communication tools
-      weechat
-
       # System tools
       pciutils
       usbutils
@@ -51,6 +48,10 @@
       # Wayland tools
       nwg-look
       nwg-displays
+
+      # Communication tools
+      Thunderbird
+      weechat
 
     ];
   };
