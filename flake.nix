@@ -38,6 +38,7 @@
         terminal = "kitty";
         wallpaper = "default";
         editor = "nvim";
+        fullname = "Mads Kristiansen";
 
         # System Configuraiton
         hostname = "ceris";
