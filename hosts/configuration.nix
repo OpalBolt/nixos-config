@@ -41,24 +41,6 @@
   # Remove packages that are not needed
   environment.defaultPackages = lib.mkForce [ ];
 
-  fonts = {
-    packages = with pkgs; [
-      ubuntu_font_family
-      (nerdfonts.override {
-        fonts = [
-          "Iosevka"
-          "FantasqueSansMono"
-          "Mononoki"
-        ];
-      })
-    ];
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "Iosevka NFM:style=Regular" ];
-      };
-    };
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
