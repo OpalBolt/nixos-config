@@ -15,15 +15,6 @@
     #./../modules/nixos/system/networking
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   # Set your time zone.
   time.timeZone = vars.timezone;
 

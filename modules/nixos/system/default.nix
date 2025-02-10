@@ -6,8 +6,7 @@
     ./displayManager
     ./services.nix
     ./virtualization.nix
+    ./system.nix
   ];
 
-  # TODO: Into other module
-  security.polkit.enable = true;
 }
