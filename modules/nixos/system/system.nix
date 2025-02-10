@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -13,7 +13,8 @@
     "flakes"
   ];
 
-  # Enabling polkit
+  # try to automatically unlock keyring when logging in as user
+  security.pam.services.${vars.username}.enableGnomeKeyring = true;
   security.polkit.enable = true;
 
 }
