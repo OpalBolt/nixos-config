@@ -11,7 +11,14 @@
   };
 
   config = lib.mkIf config.feature.common-pkgs.enable {
+
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
+    # Remove packages that are not needed
+    environment.defaultPackages = lib.mkForce [ ];
     environment.systemPackages = with pkgs; [
+
       # Archive managers
       zip
       unzip
@@ -21,38 +28,47 @@
       wget
       curl
 
-      # Misc
-      file
-      tree
-      wl-clipboard
+      # Editors
       vim
-      ripgrep
-      jq
-      yq
-      bottom
-      gcc
-      fzf
-      go-task
+
+      # Misc
+      kitty # Terminal
+      git # Source versioning
+      file # determine file type
+      tree # List how a folder is structured
+      ripgrep # Better grep
+      jq # Json Query
+      yq # Yaml Query
+      bottom # Top like tool
+      gcc # C Compiler
+      fzf # Fuzzy search
+      go-task # Task runner
       nix-tree # Browse packages
-      xdg-utils
-      xdg-launch
-      ungoogled-chromium
-      zoxide
-      eza
-      bat
+      xdg-utils # Tools for desktop integrations
+      xdg-launch # Cli for launching desktop tools
+      ungoogled-chromium # TODO Remove tfetchGit
+      zoxide # CD alternative
+      eza # LS Alternative
+      bat # cat alternative
+      util-linux # system utilities for Linux
+
+      # Nix related
+      nixfmt-rfc-style # Nix formatter
 
       # System tools
       pciutils
       usbutils
 
       # Wayland tools
-      nwg-look
-      nwg-displays
+      #nwg-look
+      #nwg-displays
+      wl-clipboard
 
       # Communication tools
       Thunderbird
       weechat
 
     ];
+
   };
 }
