@@ -65,7 +65,7 @@
       wl-clipboard
 
       # Communication tools
-      Thunderbird
+      thunderbird
       weechat
 
     ];
