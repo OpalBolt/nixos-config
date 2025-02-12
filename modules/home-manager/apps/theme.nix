@@ -14,10 +14,11 @@
       };
     };
 
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-    };
+    # cursorTheme = {
+    #   name = "Bibata-Modern-Classic";
+    #   package = pkgs.bibata-cursors;
+    #   size = 16;
+    # };
     iconTheme = {
       name = "tela-circle-icon-theme";
       package = pkgs.tela-circle-icon-theme;
@@ -35,6 +36,13 @@
         color-scheme = "prefer-dark";
       };
     };
+  };
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 16;
   };
 
   qt = {
