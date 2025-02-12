@@ -41,7 +41,7 @@
       };
       shellAliases = {
 
-        wb = "systemctl --user restart waybar.service";
+        wb = "systemctl --user restart waybar.service && nextcloud --background & disown nextcloud";
 
         # Set screens
         wlh = "bash ~/scripts/wlr/home.sh";
