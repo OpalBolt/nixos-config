@@ -51,6 +51,7 @@
       eza # LS Alternative
       bat # cat alternative
       util-linux # system utilities for Linux
+      fd # Find alternative
 
       # Nix related
       nixfmt-rfc-style # Nix formatter
