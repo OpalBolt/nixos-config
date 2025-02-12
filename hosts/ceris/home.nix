@@ -80,6 +80,7 @@
   #  /etc/profiles/per-user/mads/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+    CUSTOMERS_PATH = "/home/mads/git/work/customers/";
     # EDITOR = "emacs";
   };
 
