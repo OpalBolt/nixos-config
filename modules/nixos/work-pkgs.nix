@@ -12,7 +12,6 @@
     environment.systemPackages = with pkgs; [
       slack
       timewarrior
-      taskwarrior
     ];
   };
 }
