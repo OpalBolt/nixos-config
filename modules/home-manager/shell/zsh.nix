@@ -30,6 +30,7 @@
           "colored-man-pages"
           #"command-not-found"
           "git"
+          "git-extras"
           "aws"
           "docker"
           "docker-compose"
