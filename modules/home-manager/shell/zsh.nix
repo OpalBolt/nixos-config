@@ -72,6 +72,8 @@
 
         # Run git-leaks on current directory
         gle = "podman run --rm -v $\{\PWD}\:/path docker.io/zricethezav/gitleaks:latest git --verbose /path";
+
+        gt = "go-task";
       };
     };
   };
