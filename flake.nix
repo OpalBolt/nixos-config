@@ -9,17 +9,14 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixvim-config.url = "github:Hexamo/nixvim-config2/main";
-    nixvim-config.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    #hyprland.url = "github:hyprwm/Hyprland";
+    #hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
