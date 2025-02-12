@@ -21,4 +21,5 @@
       };
     };
   };
+  environment.variables.XCURSOR_SIZE = "16";
 }
