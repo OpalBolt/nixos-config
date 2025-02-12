@@ -11,6 +11,8 @@
   config = lib.mkIf config.feature.work-pkgs.enable {
     environment.systemPackages = with pkgs; [
       slack
+      timewarrior
+      taskwarrior
     ];
   };
 }
