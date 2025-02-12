@@ -43,6 +43,8 @@
         pkgs.starlark-rust
         pkgs.docker-compose-language-service
         pkgs.docker-ls
+        pkgs.markdownlint-cli2
+        pkgs.marksman
       ];
     };
   };
