@@ -28,7 +28,10 @@
         enable = true;
         plugins = [
           "colored-man-pages"
+          "gitignore"
           #"command-not-found"
+          "fzf"
+          "ssh-agent"
           "git"
           "git-extras"
           "aws"
@@ -40,6 +43,41 @@
           "kitty"
         ];
       };
+      zplug = {
+        enable = true;
+        plugins = [
+          {
+            name = "djui/alias-tips";
+            tags = [
+              "from:github"
+              "as:plugin"
+            ];
+          }
+          {
+            name = "zsh-users/zsh-autosuggestions";
+            tags = [
+              "from:github"
+              "as:plugin"
+            ];
+          }
+          {
+            name = "zsh-users/zsh-syntax-highlighting";
+            tags = [
+              "from:github"
+              "as:plugin"
+              "defer:2"
+            ];
+          }
+          {
+            name = "svenXY/timewarrior";
+            tags = [
+              "from:github"
+              "as:plugin"
+            ];
+          }
+        ];
+      };
+
       shellAliases = {
 
         wb = "systemctl --user restart waybar.service && nextcloud --background & disown nextcloud";

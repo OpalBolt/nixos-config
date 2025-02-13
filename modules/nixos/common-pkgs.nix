@@ -83,6 +83,10 @@
       thunderbird # Email client
       weechat # Terminal-based IRC client
 
+      # Dev tools
+      python3
+      perl
+
     ];
 
   };
