@@ -78,8 +78,8 @@
           "browser.shell.defaultBrowserCheckCount" = 1;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar" = false;
-          #"widget.use-xdg-desktop-portal.file-picker" = 1;
-          #"widget.use-xdg-desktop-portal.mime-handler" = 1;
+          "widget.use-xdg-desktop-portal.file-picker" = 1;
+          "widget.use-xdg-desktop-portal.mime-handler" = 1;
           "browser.search.suggest.enabled" = false;
           "browser.search.suggest.enabled.private" = false;
           "browser.urlbar.suggest.searches" = false;
