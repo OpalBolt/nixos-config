@@ -14,6 +14,7 @@
       timewarrior
       devenv
       devbox
+      awscli2
     ];
   };
 }
