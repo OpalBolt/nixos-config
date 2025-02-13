@@ -46,6 +46,7 @@
       jq # Command-line JSON processor
       yq # Command-line YAML processor
       rsync # Fast incremental file transfer utility
+      libreoffice # Document management
 
       # System Monitoring & Utilities
       bottom # Modern alternative to 'top' with graphical stats
