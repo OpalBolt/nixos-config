@@ -28,7 +28,7 @@
         mode = "enabled";
       };
       settings = {
-        background_opacity = 0.9;
+        background_opacity = 0.85;
         cursor_trail = 0;
         hide_window_decorations = true;
         window_border_width = 0;
