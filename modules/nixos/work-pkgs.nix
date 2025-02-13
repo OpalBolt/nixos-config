@@ -12,6 +12,8 @@
     environment.systemPackages = with pkgs; [
       slack
       timewarrior
+      devenv
+      devbox
     ];
   };
 }
