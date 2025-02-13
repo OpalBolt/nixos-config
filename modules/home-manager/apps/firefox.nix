@@ -57,6 +57,7 @@
           i-dont-care-about-cookies
           adaptive-tab-bar-colour
           keepassxc-browser
+          old-reddit-redirect
         ];
         # extensions = with nur.repos.rycee.firefox-addons; [
         #   "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
