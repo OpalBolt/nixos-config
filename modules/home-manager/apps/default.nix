@@ -10,5 +10,6 @@
     ./swaylock.nix
     ./git.nix
     ./defaultapps.nix
+    ./common-apps.nix
   ];
 }

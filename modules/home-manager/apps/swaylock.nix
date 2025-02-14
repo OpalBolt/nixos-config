@@ -1,6 +1,4 @@
 {
-  inputs,
-  pkgs,
   config,
   lib,
   ...
@@ -8,7 +6,9 @@
 
 {
   options = {
-    feature.apps.swaylock.enable = lib.mkEnableOption "Enables swaylock";
+    feature.apps.swaylock.enable = lib.mkEnableOption "Enables swaylock" // {
+      default = true;
+    };
   };
 
   config = lib.mkIf config.feature.apps.swaylock.enable {
@@ -23,7 +23,7 @@
         indicator-caps-lock = true;
         indicator-radius = 50;
         indicator-thickness = 10;
-        image = /home/mads/nix-dots/dotfiles/bg.png;
+        image = "/home/mads/nix-dots/dotfiles/bg.png";
         scaling = "fill";
       };
     };
