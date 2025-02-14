@@ -11,5 +11,6 @@
     ./git.nix
     ./defaultapps.nix
     ./common-apps.nix
+    ./fuzzel.nix
   ];
 }
