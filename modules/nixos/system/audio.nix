@@ -10,7 +10,10 @@
   };
   config = lib.mkIf config.feature.sound.enable {
     # Enable sound with pipewire.
-    hardware.pulseaudio.enable = false;
+    hardware.pulseaudio = {
+      enable = false;
+      extraConfig = "load-module module-switch-on-connect";
+    };
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

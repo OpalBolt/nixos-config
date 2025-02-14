@@ -9,6 +9,7 @@
     ./services.nix
     ./virtualization.nix
     ./system.nix
+    ./bluetooth.nix
   ];
 
 }
