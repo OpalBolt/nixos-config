@@ -15,6 +15,7 @@
       devenv
       devbox
       awscli2
+      bitwarden-desktop
     ];
   };
 }
