@@ -8,8 +8,6 @@
 {
   pkgs,
   inputs,
-  lib,
-  nur,
   vars,
   ...
 }:
