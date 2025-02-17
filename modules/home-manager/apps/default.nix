@@ -12,5 +12,6 @@
     ./defaultapps.nix
     ./common-apps.nix
     ./fuzzel.nix
+    ./mako.nix
   ];
 }
