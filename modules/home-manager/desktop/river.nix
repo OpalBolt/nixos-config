@@ -61,14 +61,14 @@
         default-attach-mode = "top";
 
         # Defines how focus of mouse is handled. - disabled|normal|always
-        focus-follows-cursor = "always";
+        focus-follows-cursor = "normal";
 
         # Defines how warp mode of the cursor is handled. - disabled|on-output-change|on-focus-change
         # Example could be that when focus is changed to a different window the cursor will be warped to the center of the window.
         set-cursor-warp = "on-focus-change";
 
         # Hides the cursor when typing. - when-typing enabled|disabled
-        hide-cursor = "when-typing enabled";
+        hide-cursor = "when-typing disabled";
 
         # Sets how fast keyboard repeats keystrokes in ms. - rate delay
         # Default is 25 600
