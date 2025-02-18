@@ -78,8 +78,8 @@
           };
 
           clock = {
-            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            format = "{:%H:%M 󰥔 }";
+            tooltip-format = "<tt><small>{calendar}</small></tt>";
+            format = "{:%H:%M 󰥔  %d/%m }";
           };
 
           backlight = {
