@@ -21,6 +21,7 @@
       push.autoSetupRemote = true;
       color.ui = true;
       core.editor = "nvim";
+      init.defaultBranch = "main";
 
     };
     delta = {
