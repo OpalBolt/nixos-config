@@ -12,7 +12,7 @@
   };
 
   config = lib.mkIf config.feature.apps.mako.enable {
-    programs.mako = {
+    services.mako = {
       enable = true;
       defaultTimeout = 5000;
     };
