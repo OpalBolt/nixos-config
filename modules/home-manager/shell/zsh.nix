@@ -111,6 +111,9 @@
 
         # Run git-leaks on current directory
         gle = "podman run --rm -v $\{\PWD}\:/path docker.io/zricethezav/gitleaks:latest git --verbose /path";
+
+        # Better way of getting IP information
+        ipa = "ip -br -c a && echo "---" && ip -br -c l"
       };
     };
   };
