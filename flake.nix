@@ -55,8 +55,27 @@
         system = vars.system;
         config.allowUnfree = true;
       };
+      pkgs = nixpkgs.legacyPackages.${vars.system};
     in
     {
+      homeConfigurations = {
+        user = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            {
+              nixpkgs.overlays = [
+                inputs.nix-vscode-extensions.overlays.default
+              ];
+            }
+            ./hosts/ceris/home.nix
+          ];
+          extraSpecialArgs = {
+            inherit vars;
+            inherit inputs;
+            inherit pkgs-unstable;
+          };
+        };
+      };
       nixosConfigurations = {
         ceris = lib.nixosSystem {
           system = vars.system;
@@ -75,14 +94,6 @@
             ./hosts/configuration.nix
             ./hosts/ceris
 
-            # Imports home-manager configuration
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs vars pkgs-unstable; };
-              home-manager.users.${vars.username} = import ./hosts/ceris/home.nix;
-            }
           ];
         };
       };
