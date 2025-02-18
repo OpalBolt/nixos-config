@@ -47,23 +47,19 @@
         system = "x86_64-linux";
       };
 
-      # Specifies system version.
-      # TODO: Find a better way to handle this
-      system = "x86_64-linux";
-
       # lessens some boilerplate writing
       lib = nixpkgs.lib;
 
       # enables us to use unstable packages in our system
       pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
+        system = vars.system;
         config.allowUnfree = true;
       };
     in
     {
       nixosConfigurations = {
         ceris = lib.nixosSystem {
-          inherit system;
+          system = vars.system;
           specialArgs = { inherit inputs vars pkgs-unstable; };
           modules = [
 
