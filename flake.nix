@@ -29,6 +29,28 @@
       ...
     }:
     let
+      systemVars = {
+        system = "x86_64-linux";
+        hostname = "ceris";
+        hosts = "work";
+        timezone = "Europe/Copenhagen";
+        locale = "en_DK.UTF-8";
+        extraLocale = "da_DK.UTF-8";
+        kbdLayout = "dk";
+        consoleKbdKeymap = "dk-latin1";
+      };
+      userVars = {
+        userName = "mads";
+        name = "Mads";
+        fullName = "Mads Kristiansen";
+        emial = "mads@skumnet.dk";
+        dotfilesDir = "~/.dotfiles";
+        wm = "river";
+        browser = "firefox";
+        term = "kitty";
+        font = "IosevkaTerm Nerd Font Mono";
+        editor = "nvim";
+      };
       vars = {
         # User Configuration
         username = "mads";
