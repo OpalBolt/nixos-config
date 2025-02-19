@@ -45,6 +45,7 @@
         pkgs.docker-ls
         pkgs.markdownlint-cli2
         pkgs.marksman
+        pkgs.tree-sitter
       ];
     };
   };
