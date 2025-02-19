@@ -99,7 +99,7 @@
         };
       };
       nixosConfigurations = {
-        ceris = lib.nixosSystem {
+        system = lib.nixosSystem {
           system = vars.system;
           specialArgs = { inherit inputs vars pkgs-unstable; };
           modules = [
