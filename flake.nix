@@ -101,7 +101,12 @@
       nixosConfigurations = {
         system = lib.nixosSystem {
           system = vars.system;
-          specialArgs = { inherit inputs vars pkgs-unstable; };
+          specialArgs = {
+            inherit inputs;
+            inherit vars;
+            inherit userVars;
+            inherit pkgs-unstable;
+          };
           modules = [
 
             # Enables nix-vscode-extensions overlay that allows us to
