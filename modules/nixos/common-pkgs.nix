@@ -83,6 +83,7 @@
       # Communication Tools
       thunderbird # Email client
       weechat # Terminal-based IRC client
+      bemoji # Dmenu driven emoji picker
 
       # Dev tools
       python3
