@@ -29,13 +29,6 @@
   #   enableSSHSupport = true;
   # };
 
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 7d --keep 5";
-    flake = "/home/mads/nixos-config";
-  };
-
   programs.zsh.enable = true;
 
   # List services that you want to enable:
