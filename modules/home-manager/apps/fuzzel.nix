@@ -29,7 +29,7 @@
           input = "DCD7BAff";
           #text = "eae5e1ff";
           text = "DCD7BAff";
-          match = "7E9CD8";
+          match = "7E9CD8FF";
           #selection = "61afefff";
           selection-text = "282c34ff";
           #selection-match = "282c34ff";
