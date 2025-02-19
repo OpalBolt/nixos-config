@@ -102,6 +102,7 @@
               # Spawn Terminal
               Return = "spawn ${lib.getExe pkgs.kitty}";
               print = "notify-send \"test\"";
+              Exc = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
 
               # Spawn Browser
               B = "spawn ${lib.getExe pkgs.firefox}";
