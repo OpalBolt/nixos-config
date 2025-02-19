@@ -28,6 +28,11 @@ tasks:
     cmds:
       - nix flake update
 
-  test:
+  osTest:
     cmds:
       - nh os test -H system .
+
+  test:
+    cmds:
+      - task: osTest
+      - task: homeSwitch
