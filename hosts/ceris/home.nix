@@ -15,6 +15,7 @@
     desktop.hyprland.enable = false;
     desktop.river.enable = true;
   };
+  programs.home-manager.enable = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
