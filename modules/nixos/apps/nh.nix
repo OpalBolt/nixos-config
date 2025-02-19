@@ -1,10 +1,10 @@
-{ ... }:
+{ userVars, ... }:
 
 {
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep 5";
-    flake = "~/nix-dots";
+    flake = "/home/" + userVars.userName + "/nix-dots";
   };
 }
