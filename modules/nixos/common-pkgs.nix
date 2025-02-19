@@ -84,6 +84,7 @@
       thunderbird # Email client
       weechat # Terminal-based IRC client
       bemoji # Dmenu driven emoji picker
+      wtype # Fake keyboard/mouse input, window management, and more
 
       # Dev tools
       python3
