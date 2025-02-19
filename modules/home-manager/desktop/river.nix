@@ -102,7 +102,6 @@
               # Spawn Terminal
               Return = "spawn ${lib.getExe pkgs.kitty}";
               print = "notify-send \"test\"";
-              Exc = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
 
               # Spawn Browser
               B = "spawn ${lib.getExe pkgs.firefox}";
@@ -151,6 +150,7 @@
               # Send the focused window to the different output
               Period = "send-to-output -current-tags next";
               Comma = "send-to-output -current-tags previous";
+              E = "spawn bemoji -t";
             };
 
             # lock the screen with swaylock
