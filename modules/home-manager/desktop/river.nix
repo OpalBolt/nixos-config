@@ -150,7 +150,7 @@
               # Send the focused window to the different output
               Period = "send-to-output -current-tags next";
               Comma = "send-to-output -current-tags previous";
-              E = "spawn bemoji -t";
+              E = "spawn ${lib.getExe pkgs.bemoji} -t";
             };
 
             # lock the screen with swaylock
