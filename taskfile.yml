@@ -6,32 +6,28 @@ tasks:
     cmds:
       - fd '.nix' | xargs nixfmt
 
-  update:
+  osSwitch:
     cmds:
-      - nix flake update
+      - nh os switch -H system .
 
-  nh:
+  homeSwitch:
     cmds:
-      - nh os switch .
-
-  test:
-    cmds:
-      - nh os test .
-
+      -  nh home switch -c user .
 
   switch:
     cmds:
-      - sudo nixos-rebuild switch --flake .
+      - task: osSwitch
+      - task: homeSwitch
 
-  update-switch:
+  switch-update:
     cmds:
       - task: update
       - task: switch
 
-  switch-next-boot:
+  update:
     cmds:
-      - sudo nixos-rebuild boot --flake .
+      - nix flake update
 
-  build:
+  test:
     cmds:
-      - sudo nixos-rebuild build --flake .
+      - nh os test -H system .
