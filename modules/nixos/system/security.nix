@@ -29,7 +29,7 @@
 
       # only allow users that has sudo permissions to interact with nix pkgs
       {
-        nix.allowedUsers = [ "@wheel" ];
+        nix.settings.allowed-users = [ "@wheel" ];
         security.sudo.execWheelOnly = true;
         environment.defaultPackages = lib.mkForce [ ];
         systemd.coredump.enable = false;
@@ -57,9 +57,11 @@
       })
       (lib.mkIf config.feature.security.sshd-disable {
         services.openssh = {
-          passwordAuthentication = false;
+          settings = {
+            passwordAuthentication = false;
+            challengeResponseAuthentication = false;
+          };
           allowSFTP = false; # Don't set this if you need sftp
-          challengeResponseAuthentication = false;
           extraConfig = ''
             AllowTcpForwarding yes
             X11Forwarding no
