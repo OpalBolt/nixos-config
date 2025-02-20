@@ -27,7 +27,7 @@
         pkgs.vimPlugins.nvim-treesitter.withAllGrammars
       ];
       extraPackages = [
-        #pkgs.nodePackages_latest.vscode-json-languageserver
+        pkgs.nodePackages_latest.vscode-json-languageserver
         pkgs.lua-language-server
         pkgs.nil
         pkgs.go
