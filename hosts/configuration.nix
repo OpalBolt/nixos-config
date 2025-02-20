@@ -11,6 +11,10 @@
 
 {
 
+  nix.extraOptions = ''
+    trusted-users = root mads
+  '';
+
   imports = [
     #./../modules/nixos/system/networking
   ];
