@@ -44,8 +44,10 @@
         ];
 
         # Enable ClamAV
-        services.clamav.daemon.enable = config.feature.security.av.enable;
-        services.clamav.updater.enable = config.feature.security.av.enable;
+        services.clamav = {
+          daemon.enable = true;
+          updater.enable = true;
+        };
       })
       (lib.mkIf config.feature.security.audit.enable {
         security.auditd.enable = true;
