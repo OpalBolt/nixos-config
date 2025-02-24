@@ -10,7 +10,6 @@
     ./cups.nix
     ./dbus.nix
     ./display-manager.nix
-    ./docker.nix
     ./getty.nix
     ./NetworkManager-dispatcher.nix
     ./NetworkManager.nix
