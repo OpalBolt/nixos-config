@@ -6,13 +6,15 @@
     ./autovt.nix
     ./blocky.nix
     ./bluetooth.nix
+    ./clamav.nix
     ./colord.nix
     ./cups.nix
+    ./cups-browsed.nix
     ./dbus.nix
     ./display-manager.nix
     ./getty.nix
-    ./NetworkManager-dispatcher.nix
-    ./NetworkManager.nix
+    ./networkManager-dispatcher.nix
+    ./networkManager.nix
     ./nix-daemon.nix
     ./nscd.nix
     ./reload-systemd-vconsole-setup.nix
@@ -27,6 +29,5 @@
     ./systemd-udevd.nix
     ./user.nix
     ./wpa_supplicant.nix
-    ./clamav.nix
   ];
 }
