@@ -56,6 +56,7 @@
 
       # Build & Compilation Tools
       gcc # GNU Compiler Collection (C/C++ compiler)
+      gnumake
 
       # Search & Navigation
       fzf # Fuzzy finder for interactive search
