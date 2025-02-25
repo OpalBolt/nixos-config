@@ -38,6 +38,7 @@
         pkgs.rustc
         pkgs.python3
         pkgs.basedpyright
+        pkgs.pyright
         pkgs.ruff
         pkgs.nixfmt-rfc-style
         pkgs.starlark-rust
@@ -46,6 +47,7 @@
         pkgs.markdownlint-cli2
         pkgs.marksman
         pkgs.tree-sitter
+        pkgs.vimPlugins.markdown-preview-nvim
       ];
     };
   };
