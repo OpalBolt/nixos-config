@@ -2,10 +2,14 @@
   config,
   lib,
   pkgs,
+  modulesPath,
   ...
 }:
 
 {
+  imports = [
+    (modulesPath + "/profiles/hardened.nix")
+  ];
 
   # only allow users that has sudo permissions to interact with nix pkgs
   nix.settings.allowed-users = [ "@wheel" ];
@@ -13,6 +17,7 @@
   environment.defaultPackages = lib.mkForce [ ];
   systemd.coredump.enable = false;
   security.chromiumSuidSandbox.enable = true;
+  environment.memoryAllocator.provider = "libc";
 
   # Install requried software
   environment.systemPackages = [
@@ -47,5 +52,7 @@
 
   security.loginDefs.settings = {
     PASS_MIN_DAYS = 1;
+    YESCRYPT_COST_FACTOR = 8;
   };
+
 }
