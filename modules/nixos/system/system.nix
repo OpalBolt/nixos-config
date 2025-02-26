@@ -17,4 +17,6 @@
   security.pam.services.${vars.username}.enableGnomeKeyring = true;
   security.polkit.enable = true;
 
+  networking.timeServers = [ "dk.pool.ntp.org" ];
+
 }

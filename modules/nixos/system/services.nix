@@ -6,7 +6,7 @@
     xserver.enable = false;
 
     # enable firmware udpate daemon
-    fwupd.enable = true;
+    #fwupd.enable = true;
 
     # Enable CUPS to print documents.
     printing.enable = true;

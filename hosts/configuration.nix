@@ -17,6 +17,7 @@
 
   imports = [
     #./../modules/nixos/system/networking
+    ../modules/nixos/system/systemdhardening/default.nix
   ];
 
   # List packages installed in system profile. To search, run:
