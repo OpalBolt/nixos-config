@@ -11,7 +11,6 @@
     ./cups.nix
     ./cups-browsed.nix
     ./dbus.nix
-    ./display-manager.nix
     ./getty.nix
     ./networkManager-dispatcher.nix
     ./networkManager.nix
