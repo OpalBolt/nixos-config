@@ -29,6 +29,9 @@
 
       # Editors
       vim # Powerful terminal-based text editor
+      neovim # Powerful terminal-based text editor
+      shellcheck # Shell checker
+      bash-language-server # LSP For Neovim
 
       # Terminal Emulators
       kitty # Fast, feature-rich GPU-accelerated terminal emulator
