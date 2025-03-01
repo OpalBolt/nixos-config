@@ -1,0 +1,14 @@
+{
+    "default": true,
+    "MD013": false,
+    "MD026": true,
+    "MD007": {
+        "indent": 8
+    },
+    "MD024": {
+        "siblings_only": true
+    },
+    "MD025": {
+        "level": 2
+    }
+}

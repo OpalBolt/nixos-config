@@ -1,0 +1,12 @@
+default = true
+MD013 = false
+MD026 = true # No trailing punctuation in heading
+
+[MD007]
+indent = 4
+
+[MD024]
+siblings_only = true
+
+[MD025] # No multiple top-level headings
+level = 2

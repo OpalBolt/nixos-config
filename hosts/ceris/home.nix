@@ -158,6 +158,7 @@
       open-vsx.timonwong.shellcheck
       open-vsx.mads-hartmann.bash-ide-vscode
       open-vsx.mkhl.shfmt
+      open-vsx.rogalmic.bash-debug
 
       # Python
       open-vsx.ms-python.python
