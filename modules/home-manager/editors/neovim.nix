@@ -2,53 +2,51 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
 {
-  options = {
-    feature.cli.neovim.enable = lib.mkEnableOption "Enables neovim" // {
-      default = true;
-    };
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+    black
+    nodePackages_latest.vscode-json-languageserver
+    lua-language-server
+    nil
+    go
+    gopls
+    gofumpt
+    stylua
+    cargo
+    rustc
+    python3
+    basedpyright
+    pyright
+    ruff
+    nixfmt-rfc-style
+    starlark-rust
+    docker-compose-language-service
+    docker-ls
+    markdownlint-cli2
+    marksman
+    tree-sitter
+    vimPlugins.markdown-preview-nvim
+  ];
+
+  programs.neovim = {
+    enable = true;
+    package = pkgs-unstable.neovim-unwrapped;
+    #package = pkgs.neovim;
+    vimAlias = true;
+    withNodeJs = true;
+
+    plugins = [
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+    ];
   };
-  config = lib.mkIf config.feature.cli.neovim.enable {
-    #    home.file = {
-    #    	".config/nvim" = {
-    # 	source = lib.file.mkOutOfStireSymlink ./configfiles/neovim-config;
-    # 	recursive = true;
-    # 	};
-    # };
-    #xdg.configFile.".config/nvim".source = ./configfiles/neovim-config;
-    programs.neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      plugins = [
-        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-      ];
-      extraPackages = [
-        pkgs.nodePackages_latest.vscode-json-languageserver
-        pkgs.lua-language-server
-        pkgs.nil
-        pkgs.go
-        pkgs.gopls
-        pkgs.gofumpt
-        pkgs.stylua
-        pkgs.cargo
-        pkgs.rustc
-        pkgs.python3
-        pkgs.basedpyright
-        pkgs.pyright
-        pkgs.ruff
-        pkgs.nixfmt-rfc-style
-        pkgs.starlark-rust
-        pkgs.docker-compose-language-service
-        pkgs.docker-ls
-        pkgs.markdownlint-cli2
-        pkgs.marksman
-        pkgs.tree-sitter
-        pkgs.vimPlugins.markdown-preview-nvim
-      ];
-    };
+  home.file."./.config/nvim/" = {
+    source = ../../../dotfiles/nvim;
+    recursive = true;
   };
 }
