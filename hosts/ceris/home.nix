@@ -142,11 +142,23 @@
     mutableExtensionsDir = true;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
+    userSettings = {
+      "[jsonc]" = {
+        "editor.defaultFormatter" = "vscode.json-language-features";
+      };
+      "[shellscript]" = {
+        "editor.defaultFormatter" = "mkhl.shfmt";
+      };
+      "[yaml]" = {
+        "editor.defaultFormatter" = "redhat.vscode-yaml";
+      };
+    };
     extensions = with pkgs; [
 
       # General plugins
       open-vsx.mikestead.dotenv
       open-vsx.pflannery.vscode-versionlens
+      vscode-marketplace.ms-vscode-remote.remote-containers
 
       # Nix related
       # vscode-marketplace.github.copilot
@@ -172,6 +184,12 @@
       # Markdown
       open-vsx.yzhang.markdown-all-in-one
       open-vsx.davidanson.vscode-markdownlint
+
+      # Terraform
+      open-vsx.hashicorp.terraform
+
+      # Kubernetes
+      open-vsx.ms-kubernetes-tools.vscode-kubernetes-tools
     ];
   };
 }
