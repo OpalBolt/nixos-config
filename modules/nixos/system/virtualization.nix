@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 {
   virtualisation.containers.enable = true;
@@ -14,6 +14,18 @@
     };
     docker.enable = true;
 
+  };
+
+  programs.virt-manager.enable = true;
+
+  users.groups.libvirtd.members = [ "mads" ];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
