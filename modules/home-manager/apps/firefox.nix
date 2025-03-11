@@ -90,7 +90,7 @@
           "svg.context-properties.content.enabled" = true;
           "general.smoothScroll" = true;
           "uc.tweak.hide-tabs-bar" = true;
-          "uc.tweak.hide-forward-button" = true;
+          "uc.tweak.hide-forward-button" = false;
           "uc.tweak.rounded-corners" = true;
           "uc.tweak.floating-tabs" = true;
           "layout.css.color-mix.enabled" = true;

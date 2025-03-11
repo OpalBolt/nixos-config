@@ -98,7 +98,9 @@
 #placesContext, #placesContext menupopup,
 #downloadsContextMenu, #downloadsContextMenu menupopup,
 #sidebarMenu-popup, #PopupSearchAutoComplete,
+/*
 :is(#back-button, #forward-button) menupopup,
+*/
 #permission-popup-menulist menupopup,
 #contentAreaContextMenu[showservicesmenu="true"],
 #contentAreaContextMenu[showservicesmenu="true"] menupopup {
@@ -276,8 +278,10 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 #pageActionButton,
 #pageActionSeparator,
 #tabs-newtab-button,
+/*
 #back-button,
 #forward-button,
+*/
 .tab-secondary-label {
   display: none !important;
 }
