@@ -67,6 +67,7 @@ create_file() {
     cp "$script_dir/templates/customers.txt" "$new_file_path"
     sed -i "s/REPLACE_TITLE/$new_file_name/g;" $new_file_path
     sed -i "s/REPLACE_DATE/$pretty_date/g;" $new_file_path
+    chmod 644 $new_file_path
     echo "$new_file_path"
 
 }
@@ -82,7 +83,6 @@ main() {
     selected_customer=$(select_from_list ${menu_items[@]})
     exit_on_empty $selected_customer
     elog "Selected customer: $selected_customer"
-    
 
     if [[ "$selected_customer" == "-- New customer --" ]]; then
         read -p "Enter name of new customer: " newcust
@@ -91,13 +91,12 @@ main() {
         selected_customer=$newcust
         selected_file=$(create_file $newcust)
 
-
     else
         customer_path="$base_path/$selected_customer"
         elog "customer path is: $customer_path"
         custfiles=('-- New file --')
         custfiles+=($(ls $customer_path -pr | grep -v /))
-        
+
         selected_file=$(select_from_list ${custfiles[@]})
 
         if [[ "$selected_file" == "-- New file --" ]]; then
