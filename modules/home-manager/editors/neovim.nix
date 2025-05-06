@@ -32,11 +32,13 @@
     marksman
     tree-sitter
     vimPlugins.markdown-preview-nvim
+    #vimPlugins.nvim-dap
+    python312Packages.debugpy
   ];
 
   programs.neovim = {
     enable = true;
-    package = pkgs-unstable.neovim-unwrapped;
+    #package = pkgs-unstable.neovim-unwrapped;
     #package = pkgs.neovim;
     vimAlias = true;
     withNodeJs = true;
@@ -45,8 +47,10 @@
       pkgs.vimPlugins.nvim-treesitter.withAllGrammars
     ];
   };
-  home.file."./.config/nvim/" = {
-    source = ../../../dotfiles/nvim;
-    recursive = true;
+  home.file = {
+    ".config/nvim/" = {
+      source = config.lib.file.mkOutOfStoreSymlink "/home/mads/nix-dots/dotfiles/nvim";
+      recursive = true;
+    };
   };
 }

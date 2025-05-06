@@ -4,7 +4,7 @@
   imports = [
     #./nixvim.nix
     ./neovim.nix
-    ./nixcats
+    #./nixcats
   ];
   home.sessionVariables = {
     EDITOR = "nvim";

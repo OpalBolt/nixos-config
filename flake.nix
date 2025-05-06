@@ -15,6 +15,10 @@
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
+
+    nixCats-test.url = "git+https://codeberg.org/OpalBolt/nixcats-test?ref=main";
+
     #hyprland.url = "github:hyprwm/Hyprland";
     #hyprland.inputs.nixpkgs.follows = "nixpkgs";
 

@@ -9,7 +9,7 @@
     neovim = {
       enable = true;
       defaultEditor = true;
-      package = pkgs-unstable.neovim-unwrapped;
+      #package = pkgs-unstable.neovim-unwrapped;
       # enable providers for plugins in other languages than lua
       withPython3 = true;
       withNodeJs = true;
