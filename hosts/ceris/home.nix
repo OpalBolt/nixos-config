@@ -17,6 +17,13 @@
   };
   programs.home-manager.enable = true;
 
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    };
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home = {
@@ -135,6 +142,7 @@
     '';
   };
   services.ssh-agent.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   programs.vscode = {
     enable = true;
