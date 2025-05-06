@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+
+let
+  home = config.home.homeDirectory;
+in
 {
   programs.lazygit.enable = true;
   programs.git = {
@@ -15,8 +19,15 @@
     # key = key comes here
     #};
 
+    attributes = [
+      "*.sh    text eol=lf"
+      "*.nix   text eol=lf"
+      ".envrc  text eol=lf"
+    ];
+
     extraConfig = {
       #commit.gpgSign = true;
+      core.attributesfile = "${home}/.config/git/attributes";
       pull.rebase = true;
       push.autoSetupRemote = true;
       color.ui = true;
