@@ -7,9 +7,6 @@
 }:
 
 {
-  imports = [
-    (modulesPath + "/profiles/hardened.nix")
-  ];
 
   # only allow users that has sudo permissions to interact with nix pkgs
   nix.settings.allowed-users = [ "@wheel" ];
@@ -17,7 +14,7 @@
   environment.defaultPackages = lib.mkForce [ ];
   systemd.coredump.enable = false;
   security.chromiumSuidSandbox.enable = true;
-  environment.memoryAllocator.provider = "libc";
+  #environment.memoryAllocator.provider = "libc";
 
   # Install requried software
   environment.systemPackages = [
@@ -41,13 +38,6 @@
       challengeResponseAuthentication = false;
     };
     allowSFTP = false; # Don't set this if you need sftp
-    extraConfig = ''
-      AllowTcpForwarding yes
-      X11Forwarding no
-      AllowAgentForwarding no
-      AllowStreamLocalForwarding no
-      AuthenticationMethods publickey
-    '';
   };
 
   security.loginDefs.settings = {
