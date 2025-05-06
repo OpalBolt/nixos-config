@@ -13,6 +13,7 @@
       "optical"
       "storage"
       "docker"
+      "libvirtd"
     ];
     # set default shell to bash, which launches fish
     # see: https://nixos.wiki/wiki/Fish
