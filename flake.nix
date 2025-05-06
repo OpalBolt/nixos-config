@@ -64,8 +64,8 @@
         locale = "en_DK.UTF-8";
         extraLocale = "da_DK.UTF-8";
         timezone = "Europe/Copenhagen";
-        kbdLayout = "dk";
-        consoleKbdKeymap = "dk-latin1";
+        kbdLayout = "us";
+        consoleKbdKeymap = "us";
         system = "x86_64-linux";
       };
 
