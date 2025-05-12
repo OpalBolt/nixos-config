@@ -94,6 +94,9 @@
       python3
       perl
 
+      # Communication
+      discord
+
     ];
 
   };
