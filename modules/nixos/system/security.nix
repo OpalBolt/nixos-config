@@ -9,11 +9,11 @@
 {
 
   # only allow users that has sudo permissions to interact with nix pkgs
-  nix.settings.allowed-users = [ "@wheel" ];
-  security.sudo.execWheelOnly = true;
+  #nix.settings.allowed-users = [ "@wheel" ];
+  #security.sudo.execWheelOnly = true;
   environment.defaultPackages = lib.mkForce [ ];
   systemd.coredump.enable = false;
-  security.chromiumSuidSandbox.enable = true;
+  #security.chromiumSuidSandbox.enable = true;
   #environment.memoryAllocator.provider = "libc";
 
   # Install requried software
@@ -25,6 +25,7 @@
   services.clamav = {
     daemon.enable = true;
     updater.enable = true;
+    updater.interval = "hourly";
   };
   security.auditd.enable = true;
   security.audit.enable = true;
