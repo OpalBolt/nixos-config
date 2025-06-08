@@ -134,6 +134,20 @@
             }
           ];
         };
+        search.engines = {
+          searcnxg = {
+            name = "Local Search";
+            urls = [
+              {
+                template = "http://localhost:8080/search?q={searchTerms}";
+              }
+            ];
+            definedAlias = [ "@x" ];
+          };
+          bing.metaData.hidden = true;
+          google.metaData.hidden = true;
+        };
+        search.default = "searcnxg";
 
         userChrome = (builtins.readFile ./../../../dotfiles/firefox/userChrome.css);
         userContent = (builtins.readFile ./../../../dotfiles/firefox/userContent.css);
