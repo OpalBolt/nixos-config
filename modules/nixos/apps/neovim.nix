@@ -66,9 +66,9 @@
     sqlfluff
     stylua
     taplo
-    terraform
+    #terraform
     opentofu
-    terraform-ls
+    #terraform-ls
     tflint
     yaml-language-server
     go
