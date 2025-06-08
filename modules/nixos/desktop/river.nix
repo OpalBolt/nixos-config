@@ -17,15 +17,18 @@
         xdgOpenUsePortal = true;
         extraPortals = with pkgs; [
           xdg-desktop-portal-wlr
-          xdg-desktop-portal-gtk
+          #xdg-desktop-portal-gtk
         ];
         wlr.enable = true;
-        config.common.default = [ "*" ];
+        #config.common.default = [ "*" ];
+        config.common.default = [ "wlr" ];
       };
     };
 
     environment.sessionVariables = {
       XDG_CURRENT_DESKTOP = "river";
+      XDG_SESSION_DESKTOP = "river";
+      XDG_SESSION_TYPE = "wayland";
     };
 
     programs = {
@@ -52,7 +55,7 @@
 
       # Apps for handling portals
       xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+      #xdg-desktop-portal-gtk
 
       # Handling locks and idle times
       swayidle

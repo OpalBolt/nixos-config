@@ -207,7 +207,7 @@
           "nm-applet"
           "mako"
           #"waybar"
-          "systemctl --user restart waybar.service"
+          #"systemctl --user restart waybar.service"
           #"nextcloud"
           "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
         ];
