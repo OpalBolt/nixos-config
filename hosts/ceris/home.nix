@@ -160,9 +160,6 @@
       "[yaml]" = {
         "editor.defaultFormatter" = "redhat.vscode-yaml";
       };
-
-      "github.copilot.chat.agent.runTasks" = true;
-      "github.copilot.chat.agent.thinkingTool" = true;
     };
     extensions = with pkgs; [
 
