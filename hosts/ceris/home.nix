@@ -40,16 +40,10 @@
     pkgs.keepassxc
     pkgs.nextcloud-client
     pkgs.notify
-
-    (pkgs.nerdfonts.override {
-      fonts = [
-        "Iosevka"
-        "FantasqueSansMono"
-        "Mononoki"
-        "Meslo"
-      ];
-    })
-
+    pkgs.nerd-fonts.iosevka
+    pkgs.nerd-fonts.fantasque-sans-mono
+    pkgs.nerd-fonts.mononoki
+    pkgs.nerd-fonts.meslo-lg
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

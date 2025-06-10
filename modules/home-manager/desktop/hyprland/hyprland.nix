@@ -124,7 +124,7 @@
       };
     };
     # Fix for Electron apps
-    home.sessionVariables."NIXOS_OZONE_WL" = "1";
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
 
     # Fix for Qt5 apps on wayland
     home.packages = [ pkgs.qt5.qtwayland ];

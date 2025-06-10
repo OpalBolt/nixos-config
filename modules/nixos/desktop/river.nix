@@ -29,6 +29,7 @@
       XDG_CURRENT_DESKTOP = "river";
       XDG_SESSION_DESKTOP = "river";
       XDG_SESSION_TYPE = "wayland";
+      NIXOS_OZONE_WL = "1";
     };
 
     programs = {
