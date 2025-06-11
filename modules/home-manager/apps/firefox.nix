@@ -45,7 +45,7 @@
         name = vars.username;
         isDefault = true;
 
-        extensions = with inputs.nur.legacyPackages."${vars.system}".repos.rycee.firefox-addons; [
+        extensions.packages = with inputs.nur.legacyPackages."${vars.system}".repos.rycee.firefox-addons; [
           ublock-origin
           display-_anchors
           reddit-enhancement-suite

@@ -6,33 +6,38 @@ tasks:
     cmds:
       - fd '.nix' | xargs nixfmt
 
-  osSwitch:
+  os-switch:
     cmds:
       - nh os switch -H system .
 
-  homeSwitch:
+  home-switch:
     cmds:
-      -  nh home switch -c user .
+      - nh home switch -c user .
+
+  home-update:
+    cmds:
+      - nh home switch -uc user .
 
   switch:
     cmds:
-      - task: osSwitch
-      - task: homeSwitch
+      - task: os-switch
+      - task: home-switch
 
   switch-update:
     cmds:
-      - task: update
-      - task: switch
+      - task: os-update
+      - task: os-switch
+      - task: home-update
 
-  update:
+  os-update:
     cmds:
       - nix flake update
 
-  osTest:
+  os-test:
     cmds:
       - nh os test -H system .
 
   test:
     cmds:
-      - task: osTest
-      - task: homeSwitch
+      - task: os-test
+      - task: home-switch

@@ -16,12 +16,13 @@
         experimental = true;
       };
     };
-    pulseaudio = {
-      #enable = true;
-      package = pkgs.pulseaudioFull;
-    };
   };
   services.blueman.enable = true;
+  services.pulseaudio = {
+    #enable = true;
+    package = pkgs.pulseaudioFull;
+  };
+
   environment.systemPackages = with pkgs; [
     bluez
   ];
