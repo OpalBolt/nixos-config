@@ -1,8 +1,6 @@
 {
-  config,
   lib,
   pkgs,
-  modulesPath,
   ...
 }:
 
@@ -19,6 +17,8 @@
   # Install requried software
   environment.systemPackages = [
     pkgs.clamav
+    pkgs.age
+    pkgs.sops
   ];
 
   # Enable ClamAV

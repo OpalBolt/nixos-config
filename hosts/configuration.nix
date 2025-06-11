@@ -4,8 +4,7 @@
 
 {
   pkgs,
-  vars,
-  lib,
+  inputs,
   ...
 }:
 
@@ -18,6 +17,7 @@
   imports = [
     #./../modules/nixos/system/networking
     #../modules/nixos/system/systemdhardening/default.nix
+    inputs.sops-nix.nixosModules.sops
   ];
 
   # List packages installed in system profile. To search, run:

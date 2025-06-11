@@ -16,8 +16,10 @@
     nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
-
     nixCats-test.url = "git+https://codeberg.org/OpalBolt/nixcats-test?ref=main";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     #hyprland.url = "github:hyprwm/Hyprland";
     #hyprland.inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +32,7 @@
       nixpkgs,
       home-manager,
       nixpkgs-unstable,
+      sops-nix,
       ...
     }:
     let
@@ -124,6 +127,7 @@
             # Imports configuration and the host defaults
             ./hosts/configuration.nix
             ./hosts/ceris
+            sops-nix.nixosModules.sops
 
           ];
         };
