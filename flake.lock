@@ -60,6 +60,24 @@
         "type": "github"
       }
     },
+    "nix-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1749753151,
+        "narHash": "sha256-Zh3zwZeoTVWKEWYYFyJ8J639XTYjHqu5VpLuzdqme0c=",
+        "ref": "main",
+        "rev": "6d744b3a60bd9edf3392340b05fdada3104ed496",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/OpalBolt/nix-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/OpalBolt/nix-secrets.git"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -188,11 +206,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1749632218,
-        "narHash": "sha256-qq4rfaR0SnWgLGojMzp6bVmRXdlyk6VJKlBjkoFJtw4=",
+        "lastModified": 1749670360,
+        "narHash": "sha256-YmJ5Zffr6tJID0nA3XkQaoeDLFhOZKBtvZl31jXsqQg=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f6a219551c6583b90534e38bdf8f3352151fa0da",
+        "rev": "74f88e0178318b15c3c6d8832c681cc4e72c3d92",
         "type": "github"
       },
       "original": {
@@ -204,6 +222,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nix-secrets": "nix-secrets",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixCats": "nixCats",
         "nixCats-test": "nixCats-test",
