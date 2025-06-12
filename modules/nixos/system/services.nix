@@ -25,9 +25,6 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
 
-    # ssh server
-    openssh.enable = false;
-
     # power profile daemon
     power-profiles-daemon.enable = true;
 

@@ -9,7 +9,6 @@
       firewall.enable = lib.mkEnableOption "Enables System firewall" // {
         default = true;
       };
-      ssh.enable = lib.mkEnableOption "Enables incomming SSH connections";
     };
   };
 
@@ -30,7 +29,5 @@
       ];
     };
     networking.firewall.enable = config.feature.networking.firewall.enable;
-
-    services.openssh.enable = config.feature.networking.ssh.enable;
   };
 }
