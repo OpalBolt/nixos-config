@@ -17,4 +17,14 @@ in
     sopsFile = "${secretspath}/secrets/ceris.yaml";
     key = "openvpn/work";
   };
+
+  sops.secrets."mads/ssh-key-pub" = {
+    owner = config.users.users.mads.name;
+    path = "/home/mads/.ssh/id_ed25519.pub";
+  };
+  sops.secrets."mads/ssh-key-priv" = {
+    owner = config.users.users.mads.name;
+    path = "/home/mads/.ssh/id_ed25519";
+  };
+
 }
