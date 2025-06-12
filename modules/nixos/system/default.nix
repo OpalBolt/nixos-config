@@ -11,6 +11,7 @@
     ./system.nix
     ./bluetooth.nix
     ./security.nix
+    ./secrets.nix
     ./vpn.nix
   ];
 

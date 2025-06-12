@@ -21,6 +21,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-secrets = {
+      url = "git+ssh://git@github.com/OpalBolt/nix-secrets.git?ref=main&shallow=1";
+      flake = false;
+    };
+
     #hyprland.url = "github:hyprwm/Hyprland";
     #hyprland.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -127,8 +132,6 @@
             # Imports configuration and the host defaults
             ./hosts/configuration.nix
             ./hosts/ceris
-            sops-nix.nixosModules.sops
-
           ];
         };
       };
