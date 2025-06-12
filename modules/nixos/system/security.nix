@@ -34,10 +34,21 @@
   ];
 
   services.openssh = {
+    enable = true;
+    #listenAddresses = [ { addr = "127.0.0.1:65535"; } ]; # Prevent SSHD from binding
+    listenAddresses = [ ]; # Prevent SSHD from binding
     settings = {
-      passwordAuthentication = false;
+      PasswordAuthentication = false;
       challengeResponseAuthentication = false;
+      PermitRootLogin = "no";
     };
+    hostKeys = [
+      {
+        type = "ed25519";
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        rounds = 100;
+      }
+    ];
     allowSFTP = false; # Don't set this if you need sftp
   };
 
