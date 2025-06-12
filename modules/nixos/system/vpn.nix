@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   services.openvpn.servers = {
     officeVPN = {
@@ -5,7 +7,7 @@
       autoStart = false;
     };
     jxef = {
-      config = "config /etc/openvpn/jxef.opvn";
+      config = config.sops.secrets.openvpn-work.path;
       autoStart = false;
     };
   };
