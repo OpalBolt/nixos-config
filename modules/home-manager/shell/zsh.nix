@@ -108,6 +108,9 @@
       # Better way of getting IP information
       ipa = "ip -br -c a && echo --- && ip -br -c l";
 
+      # Kubernetes related
+      k = "kubectl";
+
       # =
       # ========== Work related ==========
       # =
