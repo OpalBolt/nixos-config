@@ -11,4 +11,7 @@
       autoStart = false;
     };
   };
+  services.netbird = {
+    enable = true;
+  };
 }

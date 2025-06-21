@@ -7,10 +7,15 @@
   programs.eza.enable = true;
   programs.eza.enableZshIntegration = true;
 
+  home.file.".zshenv".text = ''
+    export ZDOTDIR="$HOME/.config/zsh"
+  '';
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    dotDir = ".config/zsh";
     enableCompletion = true;
     history = {
       ignoreSpace = true;
@@ -115,7 +120,7 @@
       # ========== Work related ==========
       # =
 
-      ovpnw = "openvpn --config /run/secrets/openvpn-work";
+      ovpnw = "sudo openvpn --config /run/secrets/openvpn-work";
 
     };
   };
