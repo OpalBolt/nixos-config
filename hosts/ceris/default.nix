@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix # Handles Hardware configurations for this machine
     ./../../modules/nixos
+    ./../../modules/nixos/efi
   ];
   networking.hostName = vars.hostname;
 
