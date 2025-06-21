@@ -41,5 +41,6 @@
     podman-compose # start group of containers for dev
     swtpm # TMP Emulator
     OVMF
+    virt-viewer
   ];
 }

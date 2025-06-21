@@ -97,6 +97,9 @@
       # Communication
       discord
 
+      #File manager
+      xfce.thunar
+
     ];
 
   };
