@@ -1,11 +1,12 @@
 {
   lib,
-  hostSpec,
+  userVars,
+  systemVars,
   ...
 }:
 {
   imports = [
-    (lib.custom.relativeToRoot "home/global/core")
+    (lib.custom.relativeToRoot "home/core")
   ];
   home.sessionVariables = {
     CUSTOMERS_PATH = "/home/mads/git/work/customers/";
@@ -16,5 +17,5 @@
       source = lib.custom.relativeToRoot "dotfiles/scripts";
       recursive = true;
     };
-  }
+  };
 }
