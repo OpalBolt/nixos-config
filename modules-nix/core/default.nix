@@ -18,7 +18,7 @@
     curl
     git
     sops
-    nvim
+    nano
     openssh
     sshfs
     wget
