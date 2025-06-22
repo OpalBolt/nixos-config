@@ -42,18 +42,18 @@ in
 
     # Use the user's shell, defaulting to bash if not specified
     shell = userVars.shell;
-
-    ## Enable relevant services
-    services.git.enable = true;
-
-    ## Set up ROOT user
-    users.users.root = {
-      shell = pkgs.bash;
-      hashedPasswordFile = lib.mkForce userVars.rootHashedPassword;
-      #openssh.authorizedKeys.keys = user.ssh.publicKeys or [ ];
-    };
-
   };
+
+  ## Enable relevant services
+  programs.git.enable = true;
+
+  ## Set up ROOT user
+  users.users.root = {
+    shell = pkgs.bash;
+    hashedPasswordFile = lib.mkForce userVars.rootHashedPassword;
+    #openssh.authorizedKeys.keys = user.ssh.publicKeys or [ ];
+  };
+
 }
 // lib.optionalAttrs (inputs ? "home-manager") {
   # Set up home-manager for the configured user

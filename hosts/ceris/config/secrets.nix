@@ -43,6 +43,10 @@ in
       sopsFile = "${secretspath}/secrets/efi-mads.yaml";
       key = "user/password";
     };
+    rootHashedPassword = {
+      sopsFile = "${secretspath}/secrets/efi-mads.yaml";
+      key = "user/rootPassword";
+    };
 
     # VPN configuration
     openvpn-efi = {
