@@ -81,6 +81,10 @@
             type = lib.types.str;
             description = "Email address of the primary user";
           };
+          rootHashedPassword = lib.mkOption {
+            type = lib.types.str;
+            description = "Hashed password for the host's user";
+          };
           hashedPassword = lib.mkOption {
             type = lib.types.str;
             description = "Hashed password for the host's user";

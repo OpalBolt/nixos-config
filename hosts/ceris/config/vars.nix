@@ -19,11 +19,12 @@
     userName = "mads";
     name = "Mads";
     hashedPassword = config.sops.secrets.hashedPassword.path;
+    rootHashedPassword = config.sops.secrets.rootHashedPassword.path;
     fullName = "Mads Kristiansen";
     dotfilesDir = "~/.dotfiles";
     font = "IosevkaTerm Nerd Font Mono";
     editor = "nvim";
     fontSize = 10;
-    email = builtins.readFile config.sops.secrets.email.path;
+    email = builtins.readFile config.sops.secrets.personal-email.path;
   };
 }

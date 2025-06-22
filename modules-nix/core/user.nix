@@ -44,5 +44,11 @@ in
     shell = userVars.shell;
 
     # Add any additional configuration needed for this user
+    ## Set up ROOT user
+    users.users.root = {
+      shell = pkgs.bash;
+      hashedPasswordFile = lib.mkForce userVars.rootHashedPassword;
+      #openssh.authorizedKeys.keys = user.ssh.publicKeys or [ ];
+    };
   };
 }

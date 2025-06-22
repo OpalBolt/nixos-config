@@ -5,11 +5,6 @@
   pkgs,
   ...
 }:
-let 
-    # this will print “⎯⎯ ceris.nix is being evaluated ⎯⎯” during evaluation
-  #_ = builtins.trace "⎯⎯ ceris.nix is being evaluated ⎯⎯" null;
-  _ = pkgs.lib.trace "🔍 ceris flake module loaded" null;
-in 
 {
   imports = lib.flatten [
     # Import the vars module to define the options

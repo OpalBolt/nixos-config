@@ -34,9 +34,9 @@ in
     };
 
     # User-config
-    email = {
+    personal-email = {
       sopsFile = "${secretspath}/secrets/per-mads.yaml";
-      key = "personal-email";
+      key = "email";
     };
 
     hashedPassword = {
