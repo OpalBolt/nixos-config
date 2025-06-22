@@ -39,6 +39,21 @@
         "type": "github"
       }
     },
+    "hardware": {
+      "locked": {
+        "lastModified": 1750431636,
+        "narHash": "sha256-vnzzBDbCGvInmfn2ijC4HsIY/3W1CWbwS/YQoFgdgPg=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "1552a9f4513f3f0ceedcf90320e48d3d47165712",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -63,10 +78,10 @@
     "nix-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1750259560,
-        "narHash": "sha256-yJ3pEVV3osgIPnkccxUnlIlOc0GYiGtt4vcaOwIErBM=",
+        "lastModified": 1750599054,
+        "narHash": "sha256-aP8rmWOv8J2p/3ncwRAY2kOQ34iLAREDYneaatHrQdE=",
         "ref": "main",
-        "rev": "daa66afb0eb968a222d330acb61aefaa9db8bf56",
+        "rev": "5fb2d52c9503cb235681987c53fcc27fcbd5f593",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/OpalBolt/nix-secrets.git"
@@ -221,6 +236,7 @@
     },
     "root": {
       "inputs": {
+        "hardware": "hardware",
         "home-manager": "home-manager",
         "nix-secrets": "nix-secrets",
         "nix-vscode-extensions": "nix-vscode-extensions",

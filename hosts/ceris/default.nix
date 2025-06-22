@@ -1,35 +1,44 @@
 {
-  vars,
+  lib,
+  config,
+  inputs,
+  pkgs,
   ...
 }:
-
+let 
+    # this will print “⎯⎯ ceris.nix is being evaluated ⎯⎯” during evaluation
+  #_ = builtins.trace "⎯⎯ ceris.nix is being evaluated ⎯⎯" null;
+  _ = pkgs.lib.trace "🔍 ceris flake module loaded" null;
+in 
 {
-
-  imports = [
+  imports = lib.flatten [
+    # Import the vars module to define the options
+    lib.vars.mkVarsModule
+    
+    ./config
     ./hardware-configuration.nix # Handles Hardware configurations for this machine
-    ./../../modules/nixos
-    ./../../modules/nixos/efi
+
+    inputs.hardware.nixosModules.lenovo-thinkpad-t14s
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-cpu-intel
+
+    (map lib.custom.relativeToRoot [
+
+      ## Required Configs ##
+      "modules-nix/core"
+      ## Required Configs ##
+      #"hosts/global/core"
+
+      ## Optional Configs ##
+      # "hosts/global/common/audio.nix" # pipewire and cli controls
+    ])
   ];
-  networking.hostName = vars.hostname;
 
-  feature = {
-    networking.enable = true;
-    networking.firewall.enable = true;
-    work-pkgs.enable = true;
-  };
+  # Use systemVars.hostname to set the system hostname
+  networking.hostName = config.systemVars.hostname;
 
-  feature = {
-    desktop.river.enable = true;
-    desktop.hyprland.enable = false;
-  };
-
-  # nos = {
-  #   system = {
-  #     networking.enable = true;
-  #   };
-  #   work-pkgs.enable = true;
-  #   #desktop.gnome.enable = true;
-  #
-  # };
-
+  # Run unpatched dynamic binaries on NixOS
+  programs.nix-ld.enable = true;
+  system.stateVersion = "24.11"; # No touchy touchy
 }

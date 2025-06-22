@@ -2,6 +2,7 @@
   pkgs,
   vars,
   pkgs-unstable,
+  config,
   ...
 }:
 
