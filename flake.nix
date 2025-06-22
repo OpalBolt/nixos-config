@@ -138,18 +138,14 @@
           system = getHostSystem hostname;
 
           # Create package sets for this system
-          pkgsForSystem = nixpkgs.legacyPackages.${system};
           pkgsUnstableForSystem = pkgs-unstable system;
         in
         lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs hostname;
-            pkgs = pkgsForSystem;
             pkgs-unstable = pkgsUnstableForSystem;
             # Pass our extended lib to all modules
-            # This is similar to the lib = lib in the getHostSystem function
-            # It ensures all NixOS modules have access to our custom library functions
             lib = lib;
           };
           modules = [
@@ -158,6 +154,7 @@
               nixpkgs.overlays = [
                 inputs.nix-vscode-extensions.overlays.default
               ];
+              nixpkgs.config.allowUnfree = true;
             }
 
             # Import configuration
