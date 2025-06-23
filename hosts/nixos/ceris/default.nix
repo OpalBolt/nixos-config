@@ -20,6 +20,7 @@
 
       ## Required Configs ##
       "hosts/common/core"
+      "hosts/common/optional/sys/networking.nix"
       ## Required Configs ##
       #"hosts/global/core"
 
