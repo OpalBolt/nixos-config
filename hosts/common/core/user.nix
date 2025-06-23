@@ -6,13 +6,10 @@
   ...
 }:
 let
-  userVars = config.userVars;
-  systemVars = config.systemVars;
-  username = config.userVars.userName;
-  # Get user-specific secrets if they exist
-  isMinimal = config.systemVars.isMinimal or false;
-  # Debugging trace to print userVars
-  _ = builtins.trace "User variables: ${builtins.toJSON userVars}" null;
+  # Use the new hostSpec variables
+  username = config.hostSpec.username;
+  # Get user-specific flags
+  isMinimal = config.hostSpec.isMinimal;
 in
 {
   users.mutableUsers = false;
@@ -20,8 +17,8 @@ in
   # Define the user with the specified username
   users.users.${username} = {
     isNormalUser = true;
-    description = userVars.fullName or "${userVars.name} (${username})";
-    hashedPassword = userVars.hashedPassword;
+    description = config.hostSpec.userFullName or "${config.hostSpec.name} (${username})";
+    hashedPassword = config.hostSpec.hashedPassword;
     uid = 1000;
     extraGroups = [
       "wheel"
@@ -36,12 +33,12 @@ in
     ];
 
     # Set the home directory to a custom location if specified
-    home = lib.mkDefault ("/home/${username}");
+    home = lib.mkDefault (config.hostSpec.home);
     createHome = true;
     homeMode = "0750";
 
     # Use the user's shell, defaulting to bash if not specified
-    shell = userVars.shell;
+    shell = config.hostSpec.shell;
   };
 
   ## Enable relevant services

@@ -7,7 +7,7 @@
 {
   networking = {
     dhcpcd.enable = false;
-    hostName = config.systemVars.hostname;
+    hostName = config.hostSpec.hostname;
     networkmanager.enable = true;
     networkmanager.wifi.powersave = true;
     useDHCP = lib.mkDefault true;

@@ -10,7 +10,20 @@
 {
   imports = lib.flatten [
     inputs.home-manager.nixosModules.home-manager # Home Manager module
+    inputs.sops-nix.nixosModules.sops
     (lib.custom.scanPaths ./.) # Scan for all modules in the current directory
+
+    (map lib.custom.relativeToRoot [
+      "new-modules/common"
+      "modules/hosts/common"
+      "modules/hosts/${platform}"
+      "hosts/common/core/${platform}.nix"
+      "hosts/common/core/sops.nix" # Core because it's used for backups, mail
+      "hosts/common/core/ssh.nix"
+      #"hosts/common/core/services" #not used yet
+      "hosts/common/users/primary"
+      "hosts/common/users/primary/${platform}.nix"
+    ])
   ];
 
   ## Install critical packages ##
@@ -32,8 +45,8 @@
   home-manager.useGlobalPkgs = true;
 
   ## Localization and Timezone ##
-  i18n.defaultLocale = config.systemVars.locale;
-  time.timeZone = config.systemVars.timezone;
+  i18n.defaultLocale = config.hostSpec.locale;
+  time.timeZone = config.hostSpec.timezone;
   networking.timeServers = [ "dk.pool.ntp.org" ];
 
   ## Nix Helper ##
@@ -41,7 +54,7 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 20d --keep 20";
-    flake = "${config.userVars.home}/git/Nix/dot.nix/";
+    flake = "${config.hostSpec.home}/git/Nix/dot.nix/";
   };
 
   ## SUDO and Terminal ##
