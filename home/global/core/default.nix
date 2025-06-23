@@ -9,7 +9,7 @@
 {
   imports = lib.flatten [
     (lib.custom.scanPaths ./.)
-  ]
+  ];
 
   services.ssh-agent.enable = true;
 
@@ -49,7 +49,6 @@
     json.enable = false;
     manpages.enable = false;
   };
-
 
   # Configure Nix package manager for this user's home environment
   nix = {
