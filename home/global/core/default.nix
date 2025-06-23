@@ -2,48 +2,44 @@
   config,
   lib,
   pkgs,
-  userVars,
-  systemVars,
+  hostSpec,
   ...
 }:
-let
-  username = userVars.username;
-  homeDir = userVars.home;
-  shell = userVars.shell or pkgs.zsh;
-in
+
 {
   imports = lib.flatten [
     (lib.custom.scanPaths ./.)
-  ];
-  services.ssh-agent.enable = true;
-  home = {
-    username = lib.mkDefault username;
-    homeDirectory = lib.mkDefault homeDir;
-    stateVersion = lib.mkDefault "24.05";
-    sessionVariables = {
-      CUSTOMERS_PATH = "/home/mads/git/work/customers/";
-      EDITOR = lib.mkDefault "nvim";
-      VISUAL = lib.mkDefault "nvim";
-      FLAKE = lib.mkDefault "${homeDir}/git/Nix/dot.nix";
-      SHELL = lib.getExe shell;
-    };
-    preferXdgDirectories = true; # whether to make programs use XDG directories whenever supported
+  ]
 
-  };
+  services.ssh-agent.enable = true;
 
   # Install core packages
   home.packages = builtins.attrValues {
     inherit (pkgs)
+      bottom # preformance top monitor
       coreutils # basic gnu utils
+      curl # data transfer
       direnv # environment per directory
       dust # disk usage
       eza # ls replacement
+      fastfetch # fast fetching system information
+      fd # fast file search
+      findutils # find files
+      fzf # fuzzy file finder
+      git # version control
+      jq # json processor
+      ncdu # network disk usage
       nmap # network scanner
       trashy # trash cli
       unrar # rar extraction
       unzip # zip extraction
+      usbutils # usb device management
+      wev # Show wayaland events
+      wget # download files from the web
+      xdg-user-dirs # manage user directories
+      xdg-utils # XDG compliant utilities
+      yq-go # yaml processor
       zip # zip compression
-      fastfetch # fast fetching system information
       ;
   };
 
@@ -53,6 +49,7 @@ in
     json.enable = false;
     manpages.enable = false;
   };
+
 
   # Configure Nix package manager for this user's home environment
   nix = {
@@ -74,4 +71,5 @@ in
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
+
 }
