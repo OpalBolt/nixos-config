@@ -102,7 +102,7 @@
       );
 
       # --- Formatter ---
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
       # --- DevShell ---
       # Useful for development, accessible via `nix develop`
