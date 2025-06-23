@@ -7,9 +7,7 @@
 }:
 {
   imports = lib.flatten [
-    # Import the vars module to define the options
-    lib.vars.mkVarsModule
-    
+
     ./config
     ./hardware-configuration.nix # Handles Hardware configurations for this machine
 
@@ -21,7 +19,7 @@
     (map lib.custom.relativeToRoot [
 
       ## Required Configs ##
-      "modules-nix/core"
+      "hosts/common/core"
       ## Required Configs ##
       #"hosts/global/core"
 
@@ -30,8 +28,8 @@
     ])
   ];
 
-  # Use systemVars.hostname to set the system hostname
-  networking.hostName = config.systemVars.hostname;
+  # Use hostSpec.hostname to set the system hostname
+  networking.hostName = config.hostSpec.hostname;
 
   # Run unpatched dynamic binaries on NixOS
   programs.nix-ld.enable = true;
