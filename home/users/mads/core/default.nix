@@ -13,8 +13,7 @@ in
 {
   imports = lib.flatten [
     (lib.custom.scanPaths ./.)
-    lib.custom.relativeToRoot
-    "home/global/core"
+    (lib.custom.relativeToRoot "home/global/core")
   ];
   services.ssh-agent.enable = true;
   home = {

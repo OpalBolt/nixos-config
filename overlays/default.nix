@@ -8,15 +8,12 @@ let
   # Adds my custom packages
   additions =
     final: prev:
-    let 
+    let
       # Check if pkgs directory exists, otherwise return empty set
       pkgsPath = ../pkgs;
       pkgsExists = builtins.pathExists pkgsPath;
     in
-    if pkgsExists then 
-      import pkgsPath { pkgs = final; }
-    else
-      { };
+    if pkgsExists then import pkgsPath { pkgs = final; } else { };
 
   # Linux-specific modifications
   linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { };

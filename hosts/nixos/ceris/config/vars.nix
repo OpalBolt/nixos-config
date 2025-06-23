@@ -1,5 +1,10 @@
 # Host-specific variable settings
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Set all values according to the hostSpec structure from default.nix
@@ -12,7 +17,7 @@
     extraLocale = "da_DK.UTF-8";
     kbdLayout = "dk";
     consoleKbdKeymap = "dk-latin1";
-    
+
     # User variables
     username = "mads";
     name = "Mads";
@@ -25,7 +30,7 @@
     editor = "nvim";
     fontSize = 10;
     shell = pkgs.zsh;
-    
+
     # Configuration flags
     isMinimal = false;
     isMobile = false;

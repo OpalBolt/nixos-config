@@ -1,8 +1,8 @@
 { pkgs, vars, ... }:
-let 
-    # this will print “⎯⎯ boot.nix is being evaluated ⎯⎯” during evaluation
+let
+  # this will print “⎯⎯ boot.nix is being evaluated ⎯⎯” during evaluation
   _ = builtins.trace "⎯⎯ boot.nix is being evaluated ⎯⎯" null;
-in 
+in
 {
   # Bootloader.
   boot.loader.grub.enable = false;
