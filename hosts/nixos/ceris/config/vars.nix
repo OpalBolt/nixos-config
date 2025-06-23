@@ -1,9 +1,10 @@
 # Host-specific variable settings
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  # Set the values for system variables
-  systemVars = {
+  # Set all values according to the hostSpec structure from default.nix
+  hostSpec = {
+    # System variables
     hostname = "ceris";
     system = "x86_64-linux";
     timezone = "Europe/Copenhagen";
@@ -11,20 +12,27 @@
     extraLocale = "da_DK.UTF-8";
     kbdLayout = "dk";
     consoleKbdKeymap = "dk-latin1";
-    isMinimal = false;
-  };
-  
-  # Set the values for user variables
-  userVars = {
-    userName = "mads";
+    
+    # User variables
+    username = "mads";
     name = "Mads";
+    userFullName = "Mads Kristiansen";
+    email = builtins.readFile config.sops.secrets.personal-email.path;
     hashedPassword = config.sops.secrets.hashedPassword.path;
     rootHashedPassword = config.sops.secrets.rootHashedPassword.path;
-    fullName = "Mads Kristiansen";
     dotfilesDir = "~/.dotfiles";
     font = "IosevkaTerm Nerd Font Mono";
     editor = "nvim";
     fontSize = 10;
-    email = builtins.readFile config.sops.secrets.personal-email.path;
+    shell = pkgs.zsh;
+    
+    # Configuration flags
+    isMinimal = false;
+    isMobile = false;
+    isServer = false;
+    isWork = false;
+    useYubikey = false;
+    useWindowManager = true;
+    scaling = "1";
   };
 }

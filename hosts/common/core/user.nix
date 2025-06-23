@@ -6,6 +6,8 @@
   ...
 }:
 let
+  # Import the hostSpec from the configuration
+  hostSpec = config.hostSpec;
   # Use the new hostSpec variables
   username = config.hostSpec.username;
   # Get user-specific flags
@@ -47,7 +49,7 @@ in
   ## Set up ROOT user
   users.users.root = {
     shell = pkgs.bash;
-    hashedPasswordFile = lib.mkForce userVars.rootHashedPassword;
+    hashedPasswordFile = lib.mkForce config.hostSpec.rootHashedPassword;
     #openssh.authorizedKeys.keys = user.ssh.publicKeys or [ ];
   };
 
@@ -57,7 +59,7 @@ in
   home-manager = {
     extraSpecialArgs = {
       inherit pkgs inputs;
-      inherit (config) userVars systemVars;
+      hostSpec = config.hostSpec;
     };
     users = {
       root.home.stateVersion = "24.05"; # Avoid error
@@ -70,13 +72,12 @@ in
                 if isMinimal then
                   lib.custom.relativeToRoot "home/global/core"
                 else
-                  lib.custom.relativeToRoot "home/users/${username}"
+                  lib.custom.relativeToRoot "home/users/${username}/${hostSpec.hostname}.nix"
               )
               {
                 inherit
                   config
-                  userVars
-                  systemVars
+                  hostSpec
                   inputs
                   lib
                   pkgs
