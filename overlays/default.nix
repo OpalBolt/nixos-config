@@ -1,33 +1,62 @@
-# This file defines overlays
-{ inputs, ... }:
-{
-  # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+#
+# This file defines overlays/custom modifications to upstream packages
+#
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://wiki.nixos.org/wiki/Overlays
+{ inputs, ... }:
+
+let
+  # Adds my custom packages
+  additions =
+    final: prev:
+    let 
+      # Check if pkgs directory exists, otherwise return empty set
+      pkgsPath = ../pkgs;
+      pkgsExists = builtins.pathExists pkgsPath;
+    in
+    if pkgsExists then 
+      import pkgsPath { pkgs = final; }
+    else
+      { };
+
+  # Linux-specific modifications
+  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { };
+
+  # Package modifications
   modifications = final: prev: {
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
   };
 
-  # When applied, the unstable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.unstable'
-  # unstable-packages = final: _prev: {
-  #   unstable = import inputs.nixpkgs-unstable {
-  #     system = final.system;
-  #     config.allowUnfree = true;
-  #   };
-  # };
+  # VS Code extensions overlay
+  vscode-extensions = final: prev: {
+    vscode-extensions = inputs.nix-vscode-extensions.extensions.${prev.system};
+  };
 
-  # When applied, the master nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.master'
-  # master-packages = final: _prev: {
-  #   master = import inputs.nixpkgs-master {
-  #     system = final.system;
-  #     config.allowUnfree = true;
-  #   };
-  # };
+  # Stable packages accessible as pkgs.stable
+  stable-packages = final: _prev: {
+    stable = import inputs.nixpkgs-stable {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
+
+  # Unstable packages accessible as pkgs.unstable
+  unstable-packages = final: _prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
+in
+{
+  default =
+    final: prev:
+
+    (additions final prev)
+    // (modifications final prev)
+    // (linuxModifications final prev)
+    // (vscode-extensions final prev)
+    // (stable-packages final prev)
+    // (unstable-packages final prev);
 }
