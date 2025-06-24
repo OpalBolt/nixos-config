@@ -12,6 +12,8 @@ let
   username = config.hostSpec.username;
   # Get user-specific flags
   isMinimal = config.hostSpec.isMinimal;
+
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
   users.mutableUsers = false;
@@ -20,18 +22,20 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = config.hostSpec.userFullName or "${config.hostSpec.name} (${username})";
-    hashedPassword = config.hostSpec.hashedPassword;
+    hashedPasswordFile = config.hostSpec.hashedPassword;
     uid = 1000;
-    extraGroups = [
+    extraGroups = lib.flatten [
       "wheel"
-      "networkmanager"
-      "audio"
-      "input"
-      "video"
-      "docker"
-      "optical"
-      "storage"
-      "libvirtd"
+      (ifTheyExist [
+        "networkmanager"
+        "audio"
+        "input"
+        "video"
+        "docker"
+        "optical"
+        "storage"
+        "libvirtd"
+      ])
     ];
 
     # Set the home directory to a custom location if specified
