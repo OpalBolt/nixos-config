@@ -12,7 +12,6 @@ let
   username = config.hostSpec.username;
   # Get user-specific flags
   isMinimal = config.hostSpec.isMinimal;
-
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
@@ -24,6 +23,7 @@ in
     description = config.hostSpec.userFullName or "${config.hostSpec.name} (${username})";
     hashedPasswordFile = config.hostSpec.hashedPassword;
     uid = 1000;
+    
     extraGroups = lib.flatten [
       "wheel"
       (ifTheyExist [
