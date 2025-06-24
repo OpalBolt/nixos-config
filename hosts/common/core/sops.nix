@@ -1,6 +1,11 @@
-{ inputs, config, hostSpec, ... }:
+{
+  inputs,
+  config,
+  hostSpec,
+  ...
+}:
 let
-  secretspath = builtins.toString inputs.nix-secrets;
+  secretspath = builtins.toString inputs.nix-secrets.outPath;
 in
 {
   imports = [
@@ -19,22 +24,21 @@ in
     "ssh/privateKey" = {
       owner = config.users.users.${config.hostSpec.username}.name;
       path = "/home/${config.hostSpec.username}/.ssh/id_ed25519"; # Private key
-      key = "opalbolt/ssh-key-priv"
-
+      key = "opalbolt/ssh-key-priv";
     };
     "ssh/publicKey" = {
       owner = config.users.users.${config.hostSpec.username}.name;
       path = "/home/${config.hostSpec.username}/.ssh/id_ed25519.pub"; # Public key
-      key = "opalbolt/ssh-key-pub"
+      key = "opalbolt/ssh-key-pub";
     };
 
     hashedPassword = {
-      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostName}.yaml";
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
       key = "user/password";
     };
     rootHashedPassword = {
-      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostName}.yaml";
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
       key = "user/rootPassword";
     };
-
-  }
+  };
+}
