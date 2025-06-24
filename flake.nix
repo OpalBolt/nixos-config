@@ -33,7 +33,6 @@
     };
     nix-secrets = {
       url = "git+ssh://git@github.com/OpalBolt/nix-secrets.git?ref=main&shallow=1";
-      flake = false;
     };
     hardware.url = "github:nixos/nixos-hardware";
 
