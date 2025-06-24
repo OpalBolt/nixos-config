@@ -1,11 +1,11 @@
-{ inputs, config, ... }:
+{ inputs, config, hostSpec, ... }:
 let
   secretspath = builtins.toString inputs.nix-secrets;
 
   # Common attributes for WiFi secrets
   wifi_secret = {
     owner = config.users.users.mads.name;
-    sopsFile = "${secretspath}/secrets/efi-wifi.yaml";
+    sopsFile = "${secretspath}/secrets/${config.hostSpec.hostName}-wifi.yaml";
   };
 in
 {
@@ -21,36 +21,10 @@ in
 
   # All secrets organized by type
   sops.secrets = {
-    # SSH keys
-    "ssh/privateKey" = {
-      sopsFile = "${secretspath}/secrets/per-mads.yaml";
-      owner = config.users.users.mads.name;
-      path = "/home/mads/.ssh/id_ed25519"; # Private key
-    };
-    "ssh/publicKey" = {
-      sopsFile = "${secretspath}/secrets/per-mads.yaml";
-      owner = config.users.users.mads.name;
-      path = "/home/mads/.ssh/id_ed25519.pub"; # Public key
-    };
-
-    # User-config
-    personal-email = {
-      sopsFile = "${secretspath}/secrets/per-mads.yaml";
-      key = "email";
-    };
-
-    hashedPassword = {
-      sopsFile = "${secretspath}/secrets/efi-mads.yaml";
-      key = "user/password";
-    };
-    rootHashedPassword = {
-      sopsFile = "${secretspath}/secrets/efi-mads.yaml";
-      key = "user/rootPassword";
-    };
-
+    
     # VPN configuration
     openvpn-efi = {
-      sopsFile = "${secretspath}/secrets/efi-vpn.yaml";
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostName}-vpn.yaml";
       key = "openvpn";
     };
 
