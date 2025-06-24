@@ -20,7 +20,13 @@
 
       ## Required Configs ##
       "hosts/common/core"
-      "hosts/common/optional/sys/networking.nix"
+      "hosts/common/optional/sys-services/audio.nix"
+      "hosts/common/optional/sys-services/bluetooth.nix"
+      "hosts/common/optional/sys-services/laptop.nix"
+      "hosts/common/optional/sys-services/libvirt.nix"
+      "hosts/common/optional/sys-services/openssh.nix"
+      "hosts/common/optional/sys-services/printing.nix"
+
       ## Required Configs ##
       #"hosts/global/core"
 
