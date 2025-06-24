@@ -96,6 +96,12 @@
       description = "Directory containing dotfiles";
     };
 
+    networking = lib.mkOption {
+      default = { };
+      type = lib.types.attrsOf lib.types.anything;
+      description = "An attribute set of networking information";
+    };
+
     font = lib.mkOption {
       type = lib.types.str;
       default = "IosevkaTerm Nerd Font Mono";
