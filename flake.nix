@@ -36,6 +36,12 @@
     };
     hardware.url = "github:nixos/nixos-hardware";
 
+    # Declarative vms using libvirt
+    nixvirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Desktop environments (currently disabled)
     #hyprland = {
     #  url = "github:hyprwm/Hyprland";
