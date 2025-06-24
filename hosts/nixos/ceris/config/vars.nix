@@ -3,9 +3,9 @@
   config,
   lib,
   pkgs,
+  hostSpec,
   ...
 }:
-
 {
   # Set all values according to the hostSpec structure from default.nix
   hostSpec = {
@@ -22,22 +22,17 @@
     username = "mads";
     name = "Mads";
     userFullName = "Mads Kristiansen";
-    email = builtins.readFile config.sops.secrets.personal-email.path;
     hashedPassword = config.sops.secrets.hashedPassword.path;
     rootHashedPassword = config.sops.secrets.rootHashedPassword.path;
-    dotfilesDir = "~/.dotfiles";
-    font = "IosevkaTerm Nerd Font Mono";
-    editor = "nvim";
-    fontSize = 10;
-    shell = pkgs.zsh;
 
     # Configuration flags
-    isMinimal = false;
-    isMobile = false;
-    isServer = false;
-    isWork = false;
+    isWork = true;
     useYubikey = false;
     useWindowManager = true;
     scaling = "1";
+
+    inherit (inputs.nix-secrets)
+    networking
+    email
   };
 }
