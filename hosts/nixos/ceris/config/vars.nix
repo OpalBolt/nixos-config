@@ -4,6 +4,7 @@
   lib,
   pkgs,
   hostSpec,
+  inputs,
   ...
 }:
 {
@@ -30,9 +31,5 @@
     useYubikey = false;
     useWindowManager = true;
     scaling = "1";
-
-    inherit (inputs.nix-secrets)
-    networking
-    email
   };
 }

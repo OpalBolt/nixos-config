@@ -26,6 +26,13 @@
     ])
   ];
 
+  hostSpec = {
+    inherit (inputs.nix-secrets)
+      networking
+      email
+      ;
+  };
+
   ## Install critical packages ##
   environment.systemPackages = with pkgs; [
     curl
