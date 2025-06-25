@@ -88,3 +88,21 @@ To create a new host:
 ```
 
 All variables are defined in one place and properly validated!
+
+
+## Program categorization
+
+- web (browsers, web apps, internet tools)
+- comms (chat, email, collaboration)
+- desktop (window managers, desktop environments, UI customization)
+- dev (programming languages, compilers, IDEs)
+- editors (text editors, code editors)
+- media (audio, video, images)
+- net (networking, VPN, connectivity)
+- office (documents, productivity)
+- shell (terminals, shells, CLI tools)
+- sys (system services, daemons)
+- security (authentication, encryption, permissions)
+- theme (visual styling, fonts, icons)
+- tools (utilities, file managers)
+- virt (virtualization, containers)
