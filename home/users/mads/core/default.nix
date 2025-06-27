@@ -24,7 +24,7 @@ in
       CUSTOMERS_PATH = "/home/mads/git/work/customers/";
       EDITOR = lib.mkDefault "nvim";
       VISUAL = lib.mkDefault "nvim";
-      FLAKE = lib.mkDefault "${homeDir}/nix-dots";
+      FLAKE = lib.mkDefault "${homeDir}/git/Nix/dot.nix/";
       SHELL = "zsh";
       TERM = "kitty";
       TERMINAL = "kitty";
