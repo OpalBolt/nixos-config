@@ -9,7 +9,6 @@
   imports = [
     ./waybar.nix
   ];
-  feature.apps.waybar.systemdTarget = "river-session.target";
 
   wayland.windowManager.river = {
     enable = true;
