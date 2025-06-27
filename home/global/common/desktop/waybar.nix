@@ -10,7 +10,7 @@
     enable = true;
     systemd.enable = true;
     systemd.target = "river-session.target";
-    style = builtins.readFile (lib.custom.relativeToRoot "dotfiles/waybar/userChrome.css"));
+    style = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/waybar/userChrome.css"));
     settings = {
       mainBar = {
         layer = "top";

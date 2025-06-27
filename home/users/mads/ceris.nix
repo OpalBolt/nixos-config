@@ -13,6 +13,8 @@
       "home/global/common/sys/complex-fonts.nix"
       "home/global/common/tools/bat.nix"
       "home/global/common/tools/direnv.nix"
+      "home/global/common/desktop/river.nix"
+      
 
       #"home/global/common/"
     ])
