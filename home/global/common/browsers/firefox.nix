@@ -9,6 +9,7 @@
   pkgs,
   inputs,
   hostSpec,
+  lib,
   ...
 }:
 {
@@ -56,7 +57,7 @@
           #adaptive-tab-bar-colour
           #keepassxc-browser
           old-reddit-redirect
-          bitwarden-password-manager
+          bitwarden
         ];
         settings = {
           "browser.search.defaultenginename" = "duckduckgo";
@@ -137,8 +138,8 @@
         };
         search.default = "searcnxg";
 
-        userChrome = (builtins.readFile ./../../../dotfiles/firefox/userChrome.css);
-        userContent = (builtins.readFile ./../../../dotfiles/firefox/userContent.css);
+        userChrome = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/firefox/userChrome.css"));
+        userContent = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/firefox/userContent.css"));
 
       };
 
