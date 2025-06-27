@@ -20,12 +20,17 @@
 
       ## Required Configs ##
       "hosts/common/core"
-      "hosts/common/optional/sys-services/audio.nix"
-      "hosts/common/optional/sys-services/bluetooth.nix"
-      "hosts/common/optional/sys-services/laptop.nix"
-      "hosts/common/optional/sys-services/libvirt.nix"
-      "hosts/common/optional/sys-services/openssh.nix"
-      "hosts/common/optional/sys-services/printing.nix"
+      "hosts/common/optional/audio.nix" # pipewire and cli controls
+      "hosts/common/optional/bluetooth.nix" # bluetooth controls
+      "hosts/common/optional/laptop.nix" # laptop controls
+      "hosts/common/optional/libvirt.nix" # libvirt controls
+      "hosts/common/optional/neovim.nix" # neovim controls
+      "hosts/common/optional/networking.nix" # networking controls
+      "hosts/common/optional/printing.nix" # printing controls
+      "hosts/common/optional/river.nix" # river controls
+      "hosts/common/optional/thunar.nix" # thunar controls
+      "hosts/common/optional/vpn.nix" # vpn controls
+      "hosts/common/optional/work-wifi.nix" # work wifi controls
 
       ## Required Configs ##
       #"hosts/global/core"
