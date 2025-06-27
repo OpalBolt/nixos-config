@@ -23,7 +23,7 @@ in
     description = config.hostSpec.userFullName or "${config.hostSpec.name} (${username})";
     hashedPasswordFile = config.hostSpec.hashedPassword;
     uid = 1000;
-    
+
     extraGroups = lib.flatten [
       "wheel"
       (ifTheyExist [

@@ -1,4 +1,9 @@
-{ inputs, config, hostSpec, ... }:
+{
+  inputs,
+  config,
+  hostSpec,
+  ...
+}:
 let
   secretspath = builtins.toString inputs.nix-secrets.outPath;
 
@@ -21,7 +26,7 @@ in
 
   # All secrets organized by type
   sops.secrets = {
-    
+
     # VPN configuration
     openvpn-efi = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-vpn.yaml";
