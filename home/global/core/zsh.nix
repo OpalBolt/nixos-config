@@ -7,9 +7,9 @@
   programs.eza.enable = true;
   programs.eza.enableZshIntegration = true;
 
-  home.file.".zshenv".text = ''
-    export ZDOTDIR="$HOME/.config/zsh"
-  '';
+  # home.file.".zshenv".text = ''
+  #   export ZDOTDIR="$HOME/.config/zsh"
+  # '';
 
   programs.zsh = {
     enable = true;
@@ -22,13 +22,13 @@
       ignoreDups = true;
       size = 1000000;
     };
-    extraConfig = ''
-      # Display red dots whilst waiting for completion.
-      COMPLETION_WAITING_DOTS="true"
-    '';
 
     oh-my-zsh = {
       enable = true;
+      extraConfig = ''
+        # Display red dots whilst waiting for completion.
+        COMPLETION_WAITING_DOTS="true"
+      '';
       plugins = [
         "colored-man-pages"
         "gitignore"
