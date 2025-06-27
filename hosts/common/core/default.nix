@@ -106,4 +106,7 @@
     };
   };
 
+  # Disable default packages
+  environment.defaultPackages = lib.mkForce [ ];
+
 }
