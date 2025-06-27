@@ -1,4 +1,4 @@
-{ pkgs, config, hostSpec, ... }:
+{ inputs, pkgs, config, hostSpec, ... }:
 
 let
   home = hostSpec.home;
