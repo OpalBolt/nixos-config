@@ -16,30 +16,49 @@
   # Install core packages
   home.packages = builtins.attrValues {
     inherit (pkgs)
-      bottom # preformance top monitor
+      # Core System Utilities
       coreutils # basic gnu utils
-      curl # data transfer
-      direnv # environment per directory
+      findutils # find files
+      util-linux # Essential Linux system utilities (mount, fdisk, etc.)
+      
+      # File Management & Search
       dust # disk usage
       eza # ls replacement
-      fastfetch # fast fetching system information
       fd # fast file search
-      findutils # find files
       fzf # fuzzy file finder
-      git # version control
-      jq # json processor
       ncdu # network disk usage
-      nmap # network scanner
       trashy # trash cli
+      
+      # Archive & Compression
       unrar # rar extraction
       unzip # zip extraction
-      usbutils # usb device management
-      wev # Show wayaland events
+      zip # zip compression
+      
+      # Network Tools
+      curl # data transfer
+      nmap # network scanner
       wget # download files from the web
+      
+      # Development & Version Control
+      direnv # environment per directory
+      git # version control
+      
+      # Data Processing
+      jq # json processor
+      yq-go # yaml processor
+      
+      # System Monitoring & Performance
+      bottom # preformance top monitor
+      fastfetch # fast fetching system information
+      
+      # System Information & Hardware
+      pciutils # Tools for inspecting PCI devices
+      usbutils # Tools for inspecting USB devices
+      
+      # Desktop Environment
+      wev # Show wayaland events
       xdg-user-dirs # manage user directories
       xdg-utils # XDG compliant utilities
-      yq-go # yaml processor
-      zip # zip compression
       ;
   };
 
@@ -70,8 +89,5 @@
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-
-
-
 
 }

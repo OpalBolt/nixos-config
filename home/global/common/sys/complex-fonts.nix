@@ -8,6 +8,7 @@
     # --- Special Character and Emoji Fonts ---
     noto-fonts-emoji # Google's emoji font
     material-symbols # Google's Material Design icons
+    bemoji # A font for displaying Bitmoji-style emojis
 
     # --- Sans-Serif Fonts ---
     lexend # Highly readable font designed to reduce visual stress
