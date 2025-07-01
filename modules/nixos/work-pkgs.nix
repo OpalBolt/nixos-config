@@ -12,7 +12,7 @@
     environment.systemPackages = with pkgs; [
       slack
       timewarrior
-      devenv
+      #devenv
       devbox
       awscli2
       bitwarden-desktop
