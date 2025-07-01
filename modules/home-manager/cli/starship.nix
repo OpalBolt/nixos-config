@@ -15,6 +15,8 @@
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
       #settings = pkgs.lib.importTOML ./configfiles/starship-config.toml;
     };
   };
