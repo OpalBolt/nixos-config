@@ -5,29 +5,43 @@
 { inputs, ... }:
 
 let
-  # Adds my custom packages
+  # CUSTOM PACKAGES: Automatically import custom packages from ../pkgs directory
+  # This overlay function checks if a "pkgs" directory exists and imports custom packages from it.
+  # If no pkgs directory exists, it returns an empty set (no custom packages added).
   additions =
     final: prev:
     let
-      # Check if pkgs directory exists, otherwise return empty set
       pkgsPath = ../pkgs;
-      pkgsExists = builtins.pathExists pkgsPath;
     in
-    if pkgsExists then import pkgsPath { pkgs = final; } else { };
+    if builtins.pathExists pkgsPath then import pkgsPath { pkgs = final; } else { };
 
-  # Linux-specific modifications
-  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { };
-
-  # Package modifications
-  modifications = final: prev: {
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
+  # UNFREE SOFTWARE: Allow installation of proprietary/unfree packages
+  # By default, Nix blocks unfree software. This overlay enables it system-wide.
+  # Examples: Discord, VS Code, Spotify, NVIDIA drivers, etc.
+  unfree-config = final: prev: {
+    config = prev.config // {
+      allowUnfree = true;
+    };
   };
 
-  # VS Code extensions overlay
-  vscode-extensions = final: prev: {
-    vscode-extensions = inputs.nix-vscode-extensions.extensions.${prev.system};
+  # LINUX-SPECIFIC: Framework for Linux-only package modifications  
+  # Currently empty but provides structure for future Linux-specific customizations.
+  # Use this to conditionally apply modifications only on Linux systems.
+  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { 
+    # Add Linux-specific package overrides here when needed
+    # Example: someLinuxTool = prev.someLinuxTool.override { enableFeature = true; };
+  };
+
+  # PACKAGE OVERRIDES: Customize existing packages with different build options
+  # Use this section to modify how existing packages are built or configured.
+  modifications = final: prev: {
+    # Example of overriding a package with custom attributes:
+    # firefox = prev.firefox.override { enableGeckodriver = true; };
+    # 
+    # Example of patching a package:
+    # myapp = prev.myapp.overrideAttrs (oldAttrs: {
+    #   patches = oldAttrs.patches or [] ++ [ ./my-custom.patch ];
+    # });
   };
 
   # Stable packages accessible as pkgs.stable
@@ -51,9 +65,9 @@ in
     final: prev:
 
     (additions final prev)
+    // (unfree-config final prev)
     // (modifications final prev)
     // (linuxModifications final prev)
-    // (vscode-extensions final prev)
     // (stable-packages final prev)
     // (unstable-packages final prev);
 }
