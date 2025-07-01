@@ -16,7 +16,9 @@
     };
     shellIntegration = {
       enableZshIntegration = true;
-      mode = "enabled";
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      #mode = "enabled";
     };
     settings = {
       background_opacity = 0.85;
