@@ -22,6 +22,7 @@
       "hosts/common/core"
       "hosts/common/optional/audio.nix" # pipewire and cli controls
       "hosts/common/optional/bluetooth.nix" # bluetooth controls
+      "hosts/common/optional/containers.nix" # podman and docker controls
       "hosts/common/optional/laptop.nix" # laptop controls
       "hosts/common/optional/libvirt.nix" # libvirt controls
       "hosts/common/optional/neovim.nix" # neovim controls
