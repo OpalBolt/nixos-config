@@ -88,7 +88,10 @@
               modules = [
                 # Global overlay and config
                 {
-                  nixpkgs.overlays = [ self.overlays.default ];
+                  nixpkgs.overlays = [ 
+                    self.overlays.default 
+                    inputs.nix-vscode-extensions.overlays.default
+                  ];
                   nixpkgs.config.allowUnfree = true;
                 }
 
