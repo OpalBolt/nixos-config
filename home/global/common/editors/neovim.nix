@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
@@ -71,7 +70,7 @@
   };
   home.file = {
     ".config/nvim/" = {
-      source = config.lib.file.mkOutOfStoreSymlink lib.custom.relativeToRoot "dotfiles/nvim";
+      source = config.lib.file.mkOutOfStoreSymlink (lib.custom.relativeToRoot "dotfiles/nvim");
       recursive = true;
     };
   };

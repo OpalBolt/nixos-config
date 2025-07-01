@@ -11,6 +11,6 @@
     enableFishIntegration = true;
     enableBashIntegration = true;
     settings.theme = "kanagawa";
-    themes = "kanagawa";
+    #themes = "kanagawa";
   };
 }

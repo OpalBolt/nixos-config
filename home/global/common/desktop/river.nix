@@ -9,7 +9,7 @@
   imports = [
     ./waybar.nix
     ./fuzzel.nix
-    ./dunst.nix
+    ./mako.nix
     ./swaylock.nix
   ];
 

@@ -15,7 +15,7 @@
 
   # Extension of ripgrep that can search in PDFs, E-Books, Office docs, etc.
   # Automatically detects file types and uses appropriate tools to extract text
-  programs.ripgrep_all = {
+  programs.ripgrep-all = {
     enable = true;
   };
 
@@ -91,10 +91,6 @@
     enable = true;
   };
 
-  programs.yq = {
-    enable = true;
-  };
-
   # Automatically loads and unloads environment variables per directory
   # nix-direnv provides better integration with Nix than native direnv
   # Essential for project-specific development environments
@@ -106,5 +102,6 @@
   ## Nix installed apps
   home.packages = with pkgs; [
     rsync # Fast incremental file transfer utility
+    yq-go # Command-line YAML processor
   ];
 }

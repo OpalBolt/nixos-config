@@ -38,8 +38,6 @@
       "home/global/common/tools/bitwarden.nix"
       "home/global/common/tools/nix-related.nix"
     ])
-
-    ./core
   ];
 
 }

@@ -1,9 +1,9 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   programs.vscode = {
     enable = true;
-    package = pkgs-unstable.vscode-fhs;
+    package = pkgs.unstable.vscode-fhs;
     mutableExtensionsDir = true;
     profiles.default = {
       enableUpdateCheck = false;
