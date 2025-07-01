@@ -8,6 +8,9 @@
 {
   imports = [
     ./waybar.nix
+    ./fuzzel.nix
+    ./dunst.nix
+    ./swaylock.nix
   ];
 
   wayland.windowManager.river = {
