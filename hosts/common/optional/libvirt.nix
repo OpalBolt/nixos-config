@@ -62,6 +62,10 @@
     #   qemu-system-xtensa qemu-xtensa qemu-system-xtensaeb qemu-xtensaeb
     #   ......
     pkgs.qemu
+
+    swtpm # TMP Emulator
+    OVMF # UEFI firmware for virtual machines
+    virt-viewer # Virtual machine viewer for libvirt
   ];
 
   users.users.${config.hostSpec.username} = {
