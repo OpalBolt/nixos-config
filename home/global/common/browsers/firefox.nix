@@ -46,19 +46,20 @@
         name = hostSpec.username;
         isDefault = true;
 
-        extensions.packages = with inputs.nur.legacyPackages."${hostSpec.system}".repos.rycee.firefox-addons; [
-          ublock-origin
-          display-_anchors
-          reddit-enhancement-suite
-          #save-webp-as-png-or-jpeg
-          vimium
-          sidebery
-          i-dont-care-about-cookies
-          #adaptive-tab-bar-colour
-          #keepassxc-browser
-          old-reddit-redirect
-          bitwarden
-        ];
+        extensions.packages =
+          with inputs.nur.legacyPackages."${hostSpec.system}".repos.rycee.firefox-addons; [
+            ublock-origin
+            display-_anchors
+            reddit-enhancement-suite
+            #save-webp-as-png-or-jpeg
+            vimium
+            sidebery
+            i-dont-care-about-cookies
+            #adaptive-tab-bar-colour
+            #keepassxc-browser
+            old-reddit-redirect
+            bitwarden
+          ];
         settings = {
           "browser.search.defaultenginename" = "duckduckgo";
           "browser.shell.checkDefaultBrowser" = false;
