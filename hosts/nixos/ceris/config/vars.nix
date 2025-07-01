@@ -31,5 +31,6 @@
     useYubikey = false;
     useWindowManager = true;
     scaling = "1";
+    handle = inputs.nix-secrets.handle;
   };
 }

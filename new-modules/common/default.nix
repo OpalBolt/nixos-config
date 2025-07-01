@@ -14,6 +14,11 @@
       description = "Hostname of the system";
     };
 
+    handle = lib.mkOption {
+      type = lib.types.str;
+      description = "Online handle or username for the primary user";
+    };
+
     system = lib.mkOption {
       type = lib.types.str;
       description = "System architecture (e.g., x86_64-linux)";
