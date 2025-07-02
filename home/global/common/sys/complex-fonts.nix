@@ -30,9 +30,10 @@
         serif = [ "Ubuntu" ];
         sansSerif = [ "Lexend" ];
         monospace = [
-          "Iosevka NFM"
-          "Fantasque Sans Mono Nerd Font"
-          "Mononoki Nerd Font"
+          "Iosevka NFM:style=Regular"
+          # "Iosevka NFM"
+          # "Fantasque Sans Mono Nerd Font"
+          # "Mononoki Nerd Font"
         ];
         emoji = [ "Noto Color Emoji" ];
       };

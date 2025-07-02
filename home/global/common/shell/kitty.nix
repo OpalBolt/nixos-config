@@ -8,7 +8,7 @@
     enable = true;
     themeFile = "kanagawa";
     font = {
-      name = "IosevkaTerm Nerd Font Mono";
+      name = "Iosevka NFM:style=Regular";
       size = 12;
     };
     keybindings = {
