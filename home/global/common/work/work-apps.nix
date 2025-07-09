@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  home.packages = with pkgs; [
+ home.packages = lib.flatten [
+    (builtins.attrValues {
+      inherit (pkgs)
     slack
     timewarrior
     devenv
     devbox
     awscli2
+    ;
+    })
   ];
 }
