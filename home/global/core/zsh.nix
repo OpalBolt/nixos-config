@@ -15,7 +15,7 @@
     enable = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    dotDir = ".config/zsh";
+    #dotDir = ".config/zsh";
     enableCompletion = true;
     history = {
       ignoreSpace = true;
@@ -134,7 +134,7 @@
       # =
       # ========== Work Related ==========
       # =
-      ovpnw = "sudo openvpn --config /run/secrets/openvpn-work";
+      ovpnw = "sudo openvpn --config /run/secrets/openvpn-efi";
 
     };
   };
