@@ -4,7 +4,6 @@
   # Common CLI Tools Configuration
   # Essential command-line utilities for modern shell workflow
 
-
   ## Search & Find Tools
 
   # Fast line-oriented search tool (better grep replacement)
@@ -31,23 +30,22 @@
     enable = true;
   };
 
-
   ## File Viewing & Navigation
 
   # Modern replacement for 'ls' with better defaults and git integration
   programs.eza = {
     enable = true;
-    colors = "always";     # Always use colored output
-    icons = "always";      # Display file type icons
-    git = true;           # Show git status in listings
+    colors = "always"; # Always use colored output
+    icons = "always"; # Display file type icons
+    git = true; # Show git status in listings
   };
 
   # Syntax-highlighted 'cat' clone with git integration and paging
   programs.bat = {
     enable = true;
     config = {
-      style = "changes,header";  # Show git modifications and file header (no grid)
-      theme = "kanagawa";        # Use custom kanagawa theme for consistent colorscheme
+      style = "changes,header"; # Show git modifications and file header (no grid)
+      theme = "kanagawa"; # Use custom kanagawa theme for consistent colorscheme
     };
 
     # Custom theme matching the kanagawa colorscheme
@@ -66,13 +64,12 @@
     # Additional bat utilities for enhanced functionality
     extraPackages = builtins.attrValues {
       inherit (pkgs.bat-extras)
-        batgrep   # Search through and highlight files using ripgrep
-        batdiff   # Diff files against git index or between two files
-        batman    # Read manpages using bat as the formatter
+        batgrep # Search through and highlight files using ripgrep
+        batdiff # Diff files against git index or between two files
+        batman # Read manpages using bat as the formatter
         ;
     };
   };
-
 
   ## System Monitoring
 
@@ -81,7 +78,6 @@
   programs.bottom = {
     enable = true;
   };
-
 
   ## Data Processing & Development
 
@@ -97,6 +93,12 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+
+  # Smart cd command that learns your habits
+  # Jump to frequently and recently used directories with fuzzy matching
+  programs.zoxide = {
+    enable = true;
   };
 
   ## Nix installed apps

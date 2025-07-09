@@ -45,7 +45,7 @@ in
     # Core git settings
     extraConfig = {
       # General settings
-      log.showSignature = "true";
+      #log.showSignature = "true";
       init.defaultBranch = "main";
       pull.rebase = true;
       color.ui = true;
@@ -62,16 +62,16 @@ in
 
       # GPG signing configuration
       commit.gpgsign = false;
-      gpg.format = "ssh";
-      user.signingkey = "${publicKey}";
-      gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
+      #gpg.format = "ssh";
+      #user.signingkey = "${publicKey}";
+      #gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
     };
 
     # Signing configuration
-    signing = {
-      signByDefault = false;
-      key = publicKey;
-    };
+    #signing = {
+    #  signByDefault = false;
+    #  key = publicKey;
+    #};
 
     # Global gitignore patterns
     ignores = [
@@ -141,6 +141,7 @@ in
       p = "push";
       b = "branch -avv";
       ci = "clean -i";
+      init = "commit -m \"Initial commit\"";
 
       # Log views
       g = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative --all";
@@ -151,9 +152,9 @@ in
   };
 
   # SSH allowed signers file
-  home.file.".ssh/allowed_signers".text = ''
-    ${publicGitEmail} ${inputs.nix-secrets.networking.ssh.publicKeys.opalbolt}
-  '';
+  #home.file.".ssh/allowed_signers".text = ''
+  #  ${publicGitEmail} ${inputs.nix-secrets.networking.ssh.publicKeys.opalbolt}
+  #'';
 
   # Private git configuration
   home.file."${privateGitConfig}".text = ''
