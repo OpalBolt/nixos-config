@@ -8,12 +8,12 @@ let
   spreadsheet = [ "libreoffice-calc.desktop" ];
   slidedeck = [ "libreoffice-impress.desktop" ];
   # Extensive list of associations here:
-  # https://github.com/iggut/GamiNiX/blob/8070528de419703e13b4d234ef39f05966a7fafb/system/desktop/home-main.nix#L77
+  # https://github.com/iggut/GamiNiX/blob/8070528de419703e13b4d234ef39f05966a7fafb/system/desktop1/home-main.nix#L77
   associations = {
     "text/*" = editor;
     "text/plain" = editor;
 
-    # "text/html" = browser;
+    "text/html" = browser;
     "application/x-zerosize" = editor; # empty files
 
     "application/x-shellscript" = editor;
@@ -119,6 +119,13 @@ in
   xdg.mimeApps.defaultApplications = associations;
   xdg.mimeApps.associations.removed = removals;
   xdg.mimeApps.associations.added = associations;
+
+  # Create the firefox desktop entry that the associations reference
+  xdg.desktopEntries.firefox = {
+    name = "firefox";
+    exec = "${pkgs.firefox}/bin/firefox %U";
+    type = "Application";
+  };
 
   home.packages = builtins.attrValues {
     inherit (pkgs)
