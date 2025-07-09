@@ -61,7 +61,7 @@ in
       diff.tool = "delta";
 
       # GPG signing configuration
-      commit.gpgsign = true;
+      commit.gpgsign = false;
       gpg.format = "ssh";
       user.signingkey = "${publicKey}";
       gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
@@ -69,7 +69,7 @@ in
 
     # Signing configuration
     signing = {
-      signByDefault = true;
+      signByDefault = false;
       key = publicKey;
     };
 
