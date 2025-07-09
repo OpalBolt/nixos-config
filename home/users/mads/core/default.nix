@@ -20,6 +20,7 @@ in
     username = lib.mkDefault username;
     homeDirectory = lib.mkDefault homeDir;
     stateVersion = lib.mkDefault "24.05";
+    shell.enableZshIntegration = true; # Enable Zsh integration
     sessionVariables = {
       CUSTOMERS_PATH = "/home/mads/git/work/customers/";
       EDITOR = lib.mkDefault "nvim";
