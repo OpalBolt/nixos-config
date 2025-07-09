@@ -1,12 +1,6 @@
 { config, lib, ... }:
 
 {
-  programs.zoxide.enable = true;
-  programs.zoxide.enableZshIntegration = true;
-
-  programs.eza.enable = true;
-  programs.eza.enableZshIntegration = true;
-
   # home.file.".zshenv".text = ''
   #   export ZDOTDIR="$HOME/.config/zsh"
   # '';
