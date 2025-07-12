@@ -138,6 +138,7 @@
           google.metaData.hidden = true;
         };
         search.default = "searcnxg";
+        search.force = true;
 
         userChrome = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/firefox/userChrome.css"));
         userContent = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/firefox/userContent.css"));
