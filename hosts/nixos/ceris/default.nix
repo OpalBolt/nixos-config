@@ -24,7 +24,7 @@
       "hosts/common/optional/bluetooth.nix" # bluetooth controls
       "hosts/common/optional/containers.nix" # podman and docker controls
       "hosts/common/optional/laptop.nix" # laptop controls
-      "hosts/common/optional/libvirt.nix" # libvirt controls
+      #"hosts/common/optional/libvirt.nix" # libvirt controls
       #"hosts/common/optional/neovim.nix" # neovim controls
       "hosts/common/optional/networking.nix" # networking controls
       "hosts/common/optional/printing.nix" # printing controls
@@ -32,6 +32,8 @@
       "hosts/common/optional/thunar.nix" # thunar controls
       "hosts/common/optional/vpn.nix" # vpn controls
       "hosts/common/optional/work-wifi.nix" # work wifi controls
+      "hosts/common/optional/fonts.nix" # font controls
+      "hosts/common/optional/solaar.nix" # solaar controls
 
       ## Required Configs ##
       #"hosts/global/core"
