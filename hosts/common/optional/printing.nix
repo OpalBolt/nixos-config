@@ -7,17 +7,19 @@
       pkgs.brlaser
       pkgs.brgenml1lpr
       pkgs.brgenml1cupswrapper
+      pkgs.gutenprint
+      pkgs.gutenprintBin
     ];
 
     avahi = {
       enable = true;
       nssmdns4 = true;
-      openFirewall = false;
+      openFirewall = true;
     };
   };
 
   systemd.services.cups-browsed = {
-    enable = false;
-    unitConfig.Mask = true;
+    enable = true;
+    #unitConfig.Mask = true;
   };
 }
