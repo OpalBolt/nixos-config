@@ -43,6 +43,10 @@
     sshfs
     wget
     yazi
+    perl
+    bat
+    openssl
+    openvpn
   ];
 
   # Enables simple printing support
@@ -50,6 +54,7 @@
 
   # Force Home Manager to use global packages
   home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "bak";
 
   ## Localization and Timezone ##
   i18n.defaultLocale = config.hostSpec.locale;
