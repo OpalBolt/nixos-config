@@ -35,11 +35,10 @@ in
           publicKey = inputs.nix-secrets.Wireguard.server-public-key;
           presharedKeyFile = config.sops.secrets.home-vpn-preshared-key.path;
           allowedIPs = [
-            "0.0.0.0/0"
-            "::/0"
+            "192.168.60.0/24"
+            "192.168.4.1/32"
           ];
           endpoint = inputs.nix-secrets.Wireguard.endpoint;
-          persistentKeepalive = 25;
         }
       ];
     };
