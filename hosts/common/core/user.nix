@@ -21,7 +21,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     description = config.hostSpec.userFullName or "${config.hostSpec.name} (${username})";
-    hashedPasswordFile = config.hostSpec.hashedPassword;
+    hashedPasswordFile = config.sops.secrets.hashedPassword.path;
     uid = 1000;
 
     extraGroups = lib.flatten [
@@ -53,7 +53,7 @@ in
   ## Set up ROOT user
   users.users.root = {
     shell = pkgs.bash;
-    hashedPasswordFile = lib.mkForce config.hostSpec.rootHashedPassword;
+    hashedPasswordFile = config.sops.secrets.rootHashedPassword.path;
     #openssh.authorizedKeys.keys = user.ssh.publicKeys or [ ];
   };
 

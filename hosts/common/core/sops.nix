@@ -35,10 +35,12 @@ in
     hashedPassword = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
       key = "user/password";
+      neededForUsers = true;
     };
     rootHashedPassword = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
       key = "user/rootPassword";
+      neededForUsers = true;
     };
   };
 }
