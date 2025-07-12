@@ -14,12 +14,12 @@
     keybindings = {
       "alt+shift++" = "send_key alt+?";
     };
-    shellIntegration = {
-      enableZshIntegration = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-      #mode = "enabled";
-    };
+    #shellIntegration = {
+    #  enableZshIntegration = true;
+    #  enableFishIntegration = true;
+    #  enableBashIntegration = true;
+    #  #mode = "enabled";
+    #};
     settings = {
       background_opacity = 0.85;
       cursor_trail = 0;

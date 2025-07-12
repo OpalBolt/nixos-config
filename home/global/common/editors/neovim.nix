@@ -70,7 +70,7 @@
   };
   home.file = {
     ".config/nvim/" = {
-      source = config.lib.file.mkOutOfStoreSymlink (lib.custom.relativeToRoot "dotfiles/nvim");
+      source = (lib.custom.relativeToRoot "dotfiles/nvim");
       recursive = true;
     };
   };

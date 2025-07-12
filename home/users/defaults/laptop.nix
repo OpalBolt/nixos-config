@@ -28,7 +28,7 @@
       "home/global/common/shell/tealdeer.nix"
       "home/global/common/shell/yazi.nix"
       "home/global/common/shell/zellij.nix"
-      "home/global/common/shell/zsh.nix"
+      #"home/global/common/shell/zsh.nix"
 
       # System and General Purpose Tools
       "home/global/common/sys/complex-fonts.nix"
