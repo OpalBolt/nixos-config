@@ -2,6 +2,7 @@
   config,
   pkgs,
   vars,
+  hostSpec,
   ...
 }:
 
@@ -23,24 +24,21 @@
         {
           file = config.sops.secrets.key_password.path;
           key = "private-key-password";
-          matchId = "Eficode_wifi";
+          matchId = "Eficode Group";  # Must match connection.id exactly
           matchSetting = "802-1x";
           matchType = "wifi";
         }
       ];
     };
-    environmentFiles = [
-      config.sops.secrets.key_password.path
-    ];
     profiles = {
       Eficode_wifi = {
         connection = {
-          id = "Eficode_wifi";
+          id = "Eficode Group";
           #permissions = "mads:mads";
           type = "wifi";
           interface-name = "wlp9s0";
           autoconnect = true;
-          autoconnect-priority = 10; # ← sets priority
+          autoconnect-priority = 0; # ← sets priority
         };
         wifi = {
           mode = "infrastructure";
@@ -53,14 +51,15 @@
         "802-1x" = {
           eap = "tls";
           identity = "anonymous";
-          ca-cert = "/run/secrets/wifi/ca_cert";
-          client-cert = "/run/secrets/wifi/user_cert";
-          private-key = "/run/secrets/wifi/user_key";
-          #private-key-password-flags = 1;
+          ca-cert = config.sops.secrets.ca_cert.path;
+          client-cert = config.sops.secrets.user_cert.path;
+          private-key = config.sops.secrets.user_key.path;
+          private-key-password-flags = 0;
 
-          # $FILE is used in order for network managed to know to read from file
-          # This is not a NIX thing, this is related to NM
-          #private-key-password = builtins.readFile config.sops.secrets.key_password.path;
+          # The nm-file-secret-agent will automatically provide the password
+          # from the sops secret file when NetworkManager requests it
+          private-key-password = "$FILE:${config.sops.secrets.key_password.path}";
+          
         };
         ipv4 = {
           method = "auto";
