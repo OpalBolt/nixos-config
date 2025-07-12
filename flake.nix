@@ -42,6 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    solaar = {
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Desktop environments (currently disabled)
     #hyprland = {
     #  url = "github:hyprwm/Hyprland";
@@ -56,6 +61,7 @@
       home-manager,
       nixpkgs-unstable,
       sops-nix,
+      solaar,
       ...
     }@inputs:
     let
@@ -88,12 +94,14 @@
               modules = [
                 # Global overlay and config
                 {
-                  nixpkgs.overlays = [ 
-                    self.overlays.default 
+                  nixpkgs.overlays = [
+                    self.overlays.default
                     inputs.nix-vscode-extensions.overlays.default
                   ];
                   nixpkgs.config.allowUnfree = true;
+                  
                 }
+                solaar.nixosModules.default
 
                 # Import configurations
                 ./hosts/configuration.nix
