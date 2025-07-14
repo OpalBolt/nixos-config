@@ -64,7 +64,7 @@
     # Additional bat utilities for enhanced functionality
     extraPackages = builtins.attrValues {
       inherit (pkgs.bat-extras)
-        batgrep # Search through and highlight files using ripgrep
+        #batgrep # Search through and highlight files using ripgrep
         batdiff # Diff files against git index or between two files
         batman # Read manpages using bat as the formatter
         ;
