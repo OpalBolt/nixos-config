@@ -31,6 +31,7 @@
       "hosts/common/optional/river.nix" # river controls
       "hosts/common/optional/thunar.nix" # thunar controls
       "hosts/common/optional/vpn.nix" # vpn controls
+      "hosts/common/optional/work-backup.nix" # work backup
       "hosts/common/optional/work-wifi.nix" # work wifi controls
       "hosts/common/optional/fonts.nix" # font controls
       "hosts/common/optional/solaar.nix" # solaar controls
