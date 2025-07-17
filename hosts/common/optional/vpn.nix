@@ -22,6 +22,7 @@ in
   # WireGuard VPN configuration
   networking.wg-quick.interfaces = {
     wg0 = {
+      autostart = true;
       address = [
         "10.10.12.3/32"
       ];
