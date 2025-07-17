@@ -5,8 +5,6 @@
       inherit (pkgs)
     slack
     timewarrior
-    devenv
-    devbox
     awscli2
     ;
     })
