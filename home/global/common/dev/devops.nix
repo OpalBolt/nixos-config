@@ -12,7 +12,7 @@
 
     kubectl
     yamllint
-    kubeconfirm
+    kubeconform
     fluxcd
 
     trivy
