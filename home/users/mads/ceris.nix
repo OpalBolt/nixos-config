@@ -14,6 +14,7 @@
       "home/global/common/editors/neovim.nix"
       "home/global/common/editors/vscode.nix"
       "home/global/common/work/work-apps.nix"
+      "home/global/common/dev/devops.nix"
     ])
 
     ./core
