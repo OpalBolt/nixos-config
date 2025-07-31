@@ -91,6 +91,9 @@
   documentation.nixos.enable = lib.mkForce false;
   nix = {
     settings = {
+
+      cores = 2;
+      max-jobs = 4;
       # See https://jackson.dev/post/nix-reasonable-defaults/
       connect-timeout = 5;
       log-lines = 25;
