@@ -16,8 +16,8 @@
     fluxcd
 
     trivy
-    prettier
-    codeql
+    #prettier
+    #codeql
     markdownlint-cli
     pre-commit
     go-task

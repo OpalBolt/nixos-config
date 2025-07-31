@@ -89,7 +89,7 @@
       # =
       cat = "bat --paging=never";
       diff = "batdiff";
-      rg = "batgrep";
+      #rg = "batgrep";
       man = "batman";
 
       # =
@@ -108,7 +108,7 @@
       # =
       # ========== System & Desktop (Ceris) ==========
       # =
-      wb = "systemctl --user restart waybar.service && nextcloud --background & disown nextcloud";
+      wb = "systemctl --user restart waybar.service";
       wlh = "bash ~/scripts/wlr/home.sh"; # Set screens for home
       wlw = "bash ~/scripts/wlr/work.sh"; # Set screens for work
       neofetch = "fastfetch";
