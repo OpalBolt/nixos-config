@@ -18,6 +18,12 @@
         "[yaml]" = {
           "editor.defaultFormatter" = "redhat.vscode-yaml";
         };
+        "github.copilot.enable": {
+          "*": true,
+          "plaintext": false,
+          "markdown": true,
+          "scminput": false
+        }
       };
       extensions = with pkgs; [
 
