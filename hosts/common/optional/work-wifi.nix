@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   pkgs,
   vars,
   hostSpec,
@@ -54,11 +55,11 @@
           ca-cert = config.sops.secrets.ca_cert.path;
           client-cert = config.sops.secrets.user_cert.path;
           private-key = config.sops.secrets.user_key.path;
-          private-key-password-flags = 0;
+          private-key-password-flags = 1;
 
           # The nm-file-secret-agent will automatically provide the password
           # from the sops secret file when NetworkManager requests it
-          private-key-password = "$FILE:${config.sops.secrets.key_password.path}";
+          private-key-password = inputs.nix-secrets.work.wifi;
           
         };
         ipv4 = {
