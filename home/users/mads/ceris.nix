@@ -13,6 +13,7 @@
       "home/global/common/dev/git.nix"
       "home/global/common/editors/neovim.nix"
       "home/global/common/editors/vscode.nix"
+      "home/global/common/editors/zed.nix"
       "home/global/common/work/work-apps.nix"
       "home/global/common/dev/devops.nix"
       "home/global/common/common.nix"
