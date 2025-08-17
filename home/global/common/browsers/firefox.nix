@@ -97,6 +97,7 @@
           "browser.urlbar.suggest.pocket" = false;
           "browser.urlbar.suggest.topsites" = false;
           "extensions.autoDisableScopes" = 0;
+          "browser.tabs.groups.smart.enabled" = false;
           "browser.newtabpage.pinned" = [
             {
               title = "youtube";
