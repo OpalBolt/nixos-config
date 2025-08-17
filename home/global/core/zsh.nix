@@ -130,6 +130,11 @@
       # =
       ovpnw = "sudo openvpn --config /run/secrets/openvpn-efi";
 
+      # =
+      # ========== Editor related ==========
+      # =
+      zed = "env -u WAYLAND_DISPLAY zeditor";
+
     };
   };
 }
