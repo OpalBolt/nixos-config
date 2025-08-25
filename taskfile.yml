@@ -8,26 +8,16 @@ tasks:
 
   os-switch:
     cmds:
-      - nh os switch -H system .
-
-  home-switch:
-    cmds:
-      - nh home switch -c user .
-
-  home-update:
-    cmds:
-      - nh home switch -uc user .
+      - nh os switch .
 
   switch:
     cmds:
       - task: os-switch
-      - task: home-switch
 
   switch-update:
     cmds:
       - task: os-update
       - task: os-switch
-      - task: home-update
 
   os-update:
     cmds:
@@ -35,9 +25,8 @@ tasks:
 
   os-test:
     cmds:
-      - nh os test -H system .
+      - nh os test .
 
   test:
     cmds:
       - task: os-test
-      - task: home-switch
