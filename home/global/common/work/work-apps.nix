@@ -1,12 +1,12 @@
 { pkgs, lib, ... }:
 {
- home.packages = lib.flatten [
+  home.packages = lib.flatten [
     (builtins.attrValues {
       inherit (pkgs)
-    slack
-    timewarrior
-    awscli2
-    ;
+        slack
+        timewarrior
+        awscli2
+        ;
     })
   ];
 }
