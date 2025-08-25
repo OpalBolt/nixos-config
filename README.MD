@@ -1,7 +1,7 @@
 # OpalBolt's Nix Configuration
 
-> **Note:** This GitHub repository is a mirror. The primary repository is hosted at:  
-> **<https://codeberg.org/OpalBolt/nixos-config>**
+> **Note:** This repository is mirrored.
+> The primary repository is hosted on [Codeberg](https://codeberg.org/OpalBolt/nixos-config).
 
 A personal NixOS and Home Manager configuration using flakes for declarative system management.
 
@@ -67,7 +67,7 @@ This configuration is provided as-is for reference and learning purposes. See [L
 ---
 
 <div align="center">
-  
+
   Made with ❤️ by [OpalBolt](https://codeberg.org/OpalBolt)
-  
+
 </div>
