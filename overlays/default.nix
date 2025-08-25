@@ -1,33 +1,75 @@
-# This file defines overlays
-{ inputs, ... }:
-{
-  # This one brings our custom packages from the 'pkgs' directory
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+#
+# This file defines overlays/custom modifications to upstream packages
+#
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://wiki.nixos.org/wiki/Overlays
+{ inputs, ... }:
+
+let
+  # CUSTOM PACKAGES: Automatically import custom packages from ../pkgs directory
+  # This overlay function checks if a "pkgs" directory exists and imports custom packages from it.
+  # If no pkgs directory exists, it returns an empty set (no custom packages added).
+  additions =
+    final: prev:
+    let
+      pkgsPath = ../pkgs;
+    in
+    if builtins.pathExists pkgsPath then import pkgsPath { pkgs = final; } else { };
+
+  # UNFREE SOFTWARE: Allow installation of proprietary/unfree packages
+  # By default, Nix blocks unfree software. This overlay enables it system-wide.
+  # Examples: Discord, VS Code, Spotify, NVIDIA drivers, etc.
+  unfree-config = final: prev: {
+    config = prev.config // {
+      allowUnfree = true;
+    };
+  };
+
+  # LINUX-SPECIFIC: Framework for Linux-only package modifications
+  # Currently empty but provides structure for future Linux-specific customizations.
+  # Use this to conditionally apply modifications only on Linux systems.
+  linuxModifications =
+    final: prev:
+    prev.lib.mkIf final.stdenv.isLinux {
+      # Add Linux-specific package overrides here when needed
+      # Example: someLinuxTool = prev.someLinuxTool.override { enableFeature = true; };
+    };
+
+  # PACKAGE OVERRIDES: Customize existing packages with different build options
+  # Use this section to modify how existing packages are built or configured.
   modifications = final: prev: {
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
+    # Example of overriding a package with custom attributes:
+    # firefox = prev.firefox.override { enableGeckodriver = true; };
+    #
+    # Example of patching a package:
+    # myapp = prev.myapp.overrideAttrs (oldAttrs: {
+    #   patches = oldAttrs.patches or [] ++ [ ./my-custom.patch ];
     # });
   };
 
-  # When applied, the unstable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.unstable'
-  # unstable-packages = final: _prev: {
-  #   unstable = import inputs.nixpkgs-unstable {
-  #     system = final.system;
-  #     config.allowUnfree = true;
-  #   };
-  # };
+  # Stable packages accessible as pkgs.stable
+  stable-packages = final: _prev: {
+    stable = import inputs.nixpkgs-stable {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
 
-  # When applied, the master nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.master'
-  # master-packages = final: _prev: {
-  #   master = import inputs.nixpkgs-master {
-  #     system = final.system;
-  #     config.allowUnfree = true;
-  #   };
-  # };
+  # Unstable packages accessible as pkgs.unstable
+  unstable-packages = final: _prev: {
+    unstable = import inputs.nixpkgs-unstable {
+      inherit (final) system;
+      config.allowUnfree = true;
+    };
+  };
+in
+{
+  default =
+    final: prev:
+
+    (additions final prev)
+    // (unfree-config final prev)
+    // (modifications final prev)
+    // (linuxModifications final prev)
+    // (stable-packages final prev)
+    // (unstable-packages final prev);
 }

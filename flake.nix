@@ -1,139 +1,131 @@
 {
-  description = "Nix, Nixos and flake configuraiton";
+  description = "Nix, Nixos and flake configuration";
 
   inputs = {
+    # Core nixpkgs channels
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # User enviroment manager
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # User environment management
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # Extension and package sources
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
-    nur.url = "github:nix-community/NUR";
-    nur.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
+    # Neovim configurations
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     nixCats-test.url = "git+https://codeberg.org/OpalBolt/nixcats-test?ref=main";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-
+    # Secrets management
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-secrets = {
       url = "git+ssh://git@github.com/OpalBolt/nix-secrets.git?ref=main&shallow=1";
-      flake = false;
+    };
+    hardware.url = "github:nixos/nixos-hardware";
+
+    # Declarative vms using libvirt
+    nixvirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #hyprland.url = "github:hyprwm/Hyprland";
-    #hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    solaar = {
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    # Desktop environments (currently disabled)
+    #hyprland = {
+    #  url = "github:hyprwm/Hyprland";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nixpkgs,
       home-manager,
       nixpkgs-unstable,
       sops-nix,
+      solaar,
       ...
-    }:
+    }@inputs:
     let
-      systemVars = {
-        system = "x86_64-linux";
-        hostname = "ceris";
-        hosts = "work";
-        timezone = "Europe/Copenhagen";
-        locale = "en_DK.UTF-8";
-        extraLocale = "da_DK.UTF-8";
-        kbdLayout = "dk";
-        consoleKbdKeymap = "dk-latin1";
-      };
-      userVars = {
-        userName = "mads";
-        name = "Mads";
-        fullName = "Mads Kristiansen";
-        emial = "mads@skumnet.dk";
-        dotfilesDir = "~/.dotfiles";
-        wm = "river";
-        browser = "firefox";
-        term = "kitty";
-        font = "IosevkaTerm Nerd Font Mono";
-        editor = "nvim";
-      };
-      vars = {
-        # User Configuration
-        username = "mads";
-        terminal = "kitty";
-        wallpaper = "default";
-        editor = "nvim";
-        fullname = "Mads Kristiansen";
+      # --- Library Setup ---
+      # Import custom lib and extend nixpkgs lib
+      lib = nixpkgs.lib.extend (
+        final: prev: {
+          custom = import ./lib { inherit (nixpkgs) lib; };
+        }
+      );
 
-        # System Configuraiton
-        hostname = "ceris";
-        locale = "en_DK.UTF-8";
-        extraLocale = "da_DK.UTF-8";
-        timezone = "Europe/Copenhagen";
-        kbdLayout = "us";
-        consoleKbdKeymap = "us";
-        system = "x86_64-linux";
-      };
-
-      # lessens some boilerplate writing
-      lib = nixpkgs.lib;
-
-      # enables us to use unstable packages in our system
-      pkgs-unstable = import nixpkgs-unstable {
-        system = vars.system;
-        config.allowUnfree = true;
-      };
-      pkgs = nixpkgs.legacyPackages.${vars.system};
+      # Helper function for systems
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
     in
     {
-      homeConfigurations = {
-        user = inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            {
-              nixpkgs.overlays = [
-                inputs.nix-vscode-extensions.overlays.default
-              ];
-            }
-            ./hosts/ceris/home.nix
-          ];
-          extraSpecialArgs = {
-            inherit vars;
-            inherit inputs;
-            inherit pkgs-unstable;
-          };
-        };
-      };
-      nixosConfigurations = {
-        system = lib.nixosSystem {
-          system = vars.system;
-          specialArgs = {
-            inherit inputs;
-            inherit vars;
-            inherit userVars;
-            inherit pkgs-unstable;
-          };
-          modules = [
+      # --- Overlays ---
+      overlays = import ./overlays { inherit inputs; };
 
-            # Enables nix-vscode-extensions overlay that allows us to
-            # install vscode extensions from other locations
-            {
-              nixpkgs.overlays = [
-                inputs.nix-vscode-extensions.overlays.default
-              ];
-            }
+      # --- Host Configurations ---
+      # Simple host discovery by reading directories in hosts/
+      nixosConfigurations = builtins.listToAttrs (
+        map
+          (hostname: {
+            name = hostname;
+            value = nixpkgs.lib.nixosSystem {
+              specialArgs = {
+                inherit inputs hostname lib;
+                # Access unstable packages through pkgs.unstable
+              };
+              modules = [
+                # Global overlay and config
+                {
+                  nixpkgs.overlays = [
+                    self.overlays.default
+                    inputs.nix-vscode-extensions.overlays.default
+                  ];
+                  nixpkgs.config.allowUnfree = true;
 
-            # Imports configuration and the host defaults
-            ./hosts/configuration.nix
-            ./hosts/ceris
-          ];
+                }
+                solaar.nixosModules.default
+
+                # Import configurations
+                ./hosts/configuration.nix
+                (./hosts/nixos + "/${hostname}")
+              ];
+            };
+          })
+          (
+            # Get all host directories with a default.nix file
+            builtins.filter (name: builtins.pathExists (./hosts/nixos + "/${name}/default.nix")) (
+              builtins.attrNames (builtins.readDir ./hosts/nixos)
+            )
+          )
+      );
+
+      # --- Formatter ---
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
+      # --- DevShell ---
+      # Useful for development, accessible via `nix develop`
+      devShells = forAllSystems (system: {
+        default = import ./shell.nix {
+          pkgs = nixpkgs.legacyPackages.${system};
         };
-      };
+      });
     };
 }
