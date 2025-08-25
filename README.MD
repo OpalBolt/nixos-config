@@ -1,53 +1,73 @@
-# NixOS Configuration
+# OpalBolt's Nix Configuration
 
-Personal NixOS configuration files (dotfiles) for my system setup.
+> **Note:** This GitHub repository is a mirror. The primary repository is hosted at:  
+> **<https://codeberg.org/OpalBolt/nixos-config>**
 
-## Quick Reference
+A personal NixOS and Home Manager configuration using flakes for declarative system management.
 
-- **Host:** ceris
-- **Window Manager:** Hyprland, River
-- **Shell:** zsh
-- **Terminal:** kitty
-- **Editor:** Neovim
+## Features
 
-## Todo List
+- **Flake-based configuration** - Modern Nix configuration with reproducible builds
+- **Multi-host support** - Configurations for different machines
+- **Home Manager integration** - User environment management
+- **Modular structure** - Easy to customize and extend
+- **Dotfiles management** - Comprehensive dotfiles for development workflow
 
-### Overall changes
+## Structure
 
-- [ ] Solaar-flake (already in progress)
-- [ ] Update Firefox user styles for better compatibility
-- [ ] Zen-browser: youwen5/zen-browser-flake
-- [X] Implement nixos hardware settings: nixos/nixos-hardware
-- [ ] ensure that XCURSER_SIZE is set
-- [ ] Enhance secret management with nix-sops
-- [ ] Add unified theming with Stylix integration
-- [ ] Create ISO generation capability for system deployment
-- [ ] Setup automated backup system to Nextcloud
-- [ ] Implement container management solution (Docker or similar)
+- `flake.nix` - Main entry point for the configuration
+- `hosts/` - System-level configurations for different machines
+  - `common/` - Shared configurations across hosts
+  - `nixos/` - NixOS-specific machine configurations
+- `home/` - Home Manager configurations
+  - `global/` - Shared user configurations
+  - `users/` - User-specific configurations
+- `dotfiles/` - Configuration files and scripts
+  - `nvim/` - Neovim configuration
+  - `scripts/` - Utility scripts
+  - `waybar/` - Waybar configuration
+  - `zellij/` - Terminal multiplexer configuration
+- `lib/` - Custom library functions
+- `overlays/` - Package modifications
 
-### Setup changes
+## Quick Start
 
-- [X] flake.nix should only do nixosConfigurations
-- [X] each host should define a username, and by extention do the home-manager fun.
-- [X] the hosts files should define everything.
-- [ ] Create host specification system for standardized host attributes
-- [ ] Implement multi-user support with per-user themes
-- [ ] Configure Nextcloud client for automated backups
+1. Clone the repository:
 
-### Direct changes
+   ```bash
+   git clone https://codeberg.org/OpalBolt/nixos-config
+   cd nixos-config
+   ```
 
-- [ ] MOVE: trusted-users to core/default.nix
-- [ ] Enhance zsh configuration with custom prompt and improved aliases
-- [ ] Add dedicated modules for terminal tools (fastfetch, etc.)
-- [ ] Create comprehensive networking module (VPN, firewall settings)
-- [ ] Setup modern file manager configuration (yazi or similar)
-- [ ] Implement XDG file association management
-- [ ] Create sops-nix secret rotation strategy
+2. Build and switch to the configuration:
 
-### Documentation
+   ```bash
+   sudo nixos-rebuild switch --flake .#<hostname>
+   ```
 
-- [ ] Add architecture overview diagram
-- [ ] Create quick reference for frequent commands
-- [ ] Document key configuration files and sops-nix usage
-- [ ] Add screenshots of desktop environment
-- [ ] Document Nextcloud backup configuration and restore procedures
+3. For Home Manager only:
+
+   ```bash
+   home-manager switch --flake .#<username>@<hostname>
+   ```
+
+## Requirements
+
+- NixOS 23.11 or later
+- Flakes enabled in your Nix configuration
+
+## License
+
+This configuration is provided as-is for reference and learning purposes. See [LICENSE](LICENSE) for details.
+
+---
+
+*Primary repository: <https://codeberg.org/OpalBolt/nixos-config>*
+
+---
+
+<div align="center">
+  
+  Made with ❤️ by [OpalBolt](https://codeberg.org/OpalBolt)
+  
+</div>
