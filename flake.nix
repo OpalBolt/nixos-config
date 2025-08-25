@@ -104,7 +104,6 @@
                 solaar.nixosModules.default
 
                 # Import configurations
-                ./hosts/configuration.nix
                 (./hosts/nixos + "/${hostname}")
               ];
             };
