@@ -4,8 +4,9 @@
   inputs,
   lib,
   ...
-}: {
-  imports = [inputs.nixvirt.nixosModules.default];
+}:
+{
+  imports = [ inputs.nixvirt.nixosModules.default ];
 
   # configure for using virt-manager
   virtualisation = {
@@ -16,7 +17,7 @@
         package = pkgs.qemu_kvm;
         swtpm.enable = true;
         ovmf.enable = true;
-        ovmf.packages = [pkgs.OVMFFull.fd];
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
     kvmgt.enable = true;
@@ -39,7 +40,6 @@
         ];
       };
     };
-
 
   };
 

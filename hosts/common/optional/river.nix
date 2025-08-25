@@ -13,8 +13,8 @@
 
       # Extra portals handled by the xdg-portal.wlr.enable
       extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      #xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+        #xdg-desktop-portal-gtk
       ];
       wlr.enable = true;
       #config.common.default = [ "*" ];

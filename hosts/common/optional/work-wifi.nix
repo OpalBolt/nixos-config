@@ -25,7 +25,7 @@
         {
           file = config.sops.secrets.key_password.path;
           key = "private-key-password";
-          matchId = "Eficode Group";  # Must match connection.id exactly
+          matchId = "Eficode Group"; # Must match connection.id exactly
           matchSetting = "802-1x";
           matchType = "wifi";
         }
@@ -60,7 +60,7 @@
           # The nm-file-secret-agent will automatically provide the password
           # from the sops secret file when NetworkManager requests it
           private-key-password = inputs.nix-secrets.work.wifi;
-          
+
         };
         ipv4 = {
           method = "auto";

@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 
 {
   services.solaar.enable = true;

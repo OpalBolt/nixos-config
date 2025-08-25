@@ -24,20 +24,22 @@ let
     };
   };
 
-  # LINUX-SPECIFIC: Framework for Linux-only package modifications  
+  # LINUX-SPECIFIC: Framework for Linux-only package modifications
   # Currently empty but provides structure for future Linux-specific customizations.
   # Use this to conditionally apply modifications only on Linux systems.
-  linuxModifications = final: prev: prev.lib.mkIf final.stdenv.isLinux { 
-    # Add Linux-specific package overrides here when needed
-    # Example: someLinuxTool = prev.someLinuxTool.override { enableFeature = true; };
-  };
+  linuxModifications =
+    final: prev:
+    prev.lib.mkIf final.stdenv.isLinux {
+      # Add Linux-specific package overrides here when needed
+      # Example: someLinuxTool = prev.someLinuxTool.override { enableFeature = true; };
+    };
 
   # PACKAGE OVERRIDES: Customize existing packages with different build options
   # Use this section to modify how existing packages are built or configured.
   modifications = final: prev: {
     # Example of overriding a package with custom attributes:
     # firefox = prev.firefox.override { enableGeckodriver = true; };
-    # 
+    #
     # Example of patching a package:
     # myapp = prev.myapp.overrideAttrs (oldAttrs: {
     #   patches = oldAttrs.patches or [] ++ [ ./my-custom.patch ];
