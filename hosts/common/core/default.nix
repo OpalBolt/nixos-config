@@ -39,6 +39,7 @@
     bat
     openssl
     openvpn
+    python3
   ];
 
   # Enables simple printing support
@@ -59,6 +60,10 @@
     clean.enable = true;
     clean.extraArgs = "--keep-since 20d --keep 20";
     flake = "${config.hostSpec.home}/git/Nix/dot.nix/";
+  };
+
+  programs.ssh = {
+    startAgent = true;
   };
 
   ## SUDO and Terminal ##
