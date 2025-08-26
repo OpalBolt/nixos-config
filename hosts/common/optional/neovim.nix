@@ -5,7 +5,7 @@
 }:
 {
   environment.systemPackages = [
-    inputs.nixCats-test.packages.${pkgs.system}.default
+    inputs.neovim-config-nix.packages.${pkgs.system}.default
   ];
 
   environment.variables = {
