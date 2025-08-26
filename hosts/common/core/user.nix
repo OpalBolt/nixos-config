@@ -49,6 +49,7 @@ in
 
   ## Enable relevant services
   programs.git.enable = true;
+  programs.zsh.enable = true;
 
   ## Set up ROOT user
   users.users.root = {
