@@ -23,8 +23,8 @@
     };
 
     # Neovim configurations
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    nixCats-test.url = "git+https://codeberg.org/OpalBolt/nixcats-test?ref=main";
+    neovim-config-nix.url = "git+https://codeberg.org/OpalBolt/neovim-config-nix?ref=main";
+    neovim-config-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     # Secrets management
     sops-nix = {
@@ -62,6 +62,7 @@
       nixpkgs-unstable,
       sops-nix,
       solaar,
+      neovim-config-nix,
       ...
     }@inputs:
     let
