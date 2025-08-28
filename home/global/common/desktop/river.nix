@@ -205,7 +205,6 @@
     };
 
     extraConfig = ''
-
       # ===== keymaps =====
 
       riverctl map normal Super+Shift D spawn "grim -g \"\$(slurp)\" - | swappy -f -"
@@ -216,46 +215,45 @@
       riverctl map normal Super 0 set-focused-tags $all_tags
       riverctl map normal Super+Shift 0 set-view-tags $all_tags
 
+      keys_alpha="qwertyuio"
+      keys_num="123456789"
 
-      # TODO: figure out how to do this in nix
       for i in $(seq 1 9); do
-        tags=$((1 << (i - 1)))
+          idx=$((i-1))
+          tag=$((1 << idx))
+          ka=''${keys_alpha:idx:1}
+          kn=''${keys_num:idx:1}
 
-        # Super+[1-9] to focus tag [0-8]
-        riverctl map normal Super "$i" set-focused-tags $tags
-
-        # Super+Shift+[1-9] to tag focused view with tag [0-8]
-        riverctl map normal Super+Shift "$i" set-view-tags $tags
-
-        # Super+Control+[1-9] to toggle focus of tag [0-8]
-        riverctl map normal Super+Control "$i" toggle-focused-tags $tags
-
-        # Super+Shift+Control+[1-9] to toggle tag [0-8] of focused view
-        riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
+          for key in "$ka" "$kn"; do
+              riverctl map normal Super "$key" set-focused-tags $tag
+              riverctl map normal Super+Shift "$key" set-view-tags $tag
+              riverctl map normal Super+Control "$key" toggle-focused-tags $tag
+              riverctl map normal Super+Shift+Control "$key" toggle-view-tags $tag
+          done
       done
 
       # ===== start rivertile =====
 
       # start wideriver
       wideriver \
-        --layout left \
-        --layout-alt monocle \
-        --stack even \
-        --count-master 1 \
-        --ratio-master 0.50 \
-        --count-wide-left 0 \
-        --ratio-wide 0.35 \
-        --smart-gaps \
-        --inner-gaps 5 \
-        --outer-gaps 5 \
-        --border-width 1 \
-        --border-width-monocle 0 \
-        --border-width-smart-gaps 0 \
-        --border-color-focused "0x61afef" \
-        --border-color-focused-monocle "0x5c6370" \
-        --border-color-unfocused "0x5c6370" \
-        --log-threshold info \
-        >"/tmp/wideriver.log" 2>&1 &
+          --layout left \
+          --layout-alt monocle \
+          --stack even \
+          --count-master 1 \
+          --ratio-master 0.50 \
+          --count-wide-left 0 \
+          --ratio-wide 0.35 \
+          --smart-gaps \
+          --inner-gaps 5 \
+          --outer-gaps 5 \
+          --border-width 1 \
+          --border-width-monocle 0 \
+          --border-width-smart-gaps 0 \
+          --border-color-focused "0x61afef" \
+          --border-color-focused-monocle "0x5c6370" \
+          --border-color-unfocused "0x5c6370" \
+          --log-threshold info \
+          >"/tmp/wideriver.log" 2>&1 &
     '';
   };
 }
