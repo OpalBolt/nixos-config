@@ -26,6 +26,7 @@
       "hosts/common/optional/laptop.nix" # laptop controls
       #"hosts/common/optional/libvirt.nix" # libvirt controls
       #"hosts/common/optional/neovim.nix" # neovim controls
+      "hosts/common/optional/qmk.nix"
       "hosts/common/optional/networking.nix" # networking controls
       "hosts/common/optional/printing.nix" # printing controls
       "hosts/common/optional/river.nix" # river controls
