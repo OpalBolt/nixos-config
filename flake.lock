@@ -144,6 +144,28 @@
         "type": "github"
       }
     },
+    "neovim-config-nix": {
+      "inputs": {
+        "nixCats": "nixCats",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756225767,
+        "narHash": "sha256-Mt1sPb1AF3mEFVvLgYIIlXsj0NyQmQK9y5W+y8UZimY=",
+        "ref": "main",
+        "rev": "516093d99b329f5ac853d647546795799b662198",
+        "revCount": 24,
+        "type": "git",
+        "url": "https://codeberg.org/OpalBolt/neovim-config-nix"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://codeberg.org/OpalBolt/neovim-config-nix"
+      }
+    },
     "nix-secrets": {
       "locked": {
         "lastModified": 1753244341,
@@ -195,28 +217,6 @@
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
         "type": "github"
-      }
-    },
-    "nixCats-test": {
-      "inputs": {
-        "nixCats": "nixCats",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1756142787,
-        "narHash": "sha256-zyTqqxS4EANSs/DWrX24rWw7kWamJ7HNUhSdhTAimGs=",
-        "ref": "main",
-        "rev": "e04c28a2eeadb0593d22ee09e64c8a9a22c51a5e",
-        "revCount": 7,
-        "type": "git",
-        "url": "https://codeberg.org/OpalBolt/nixcats-test"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://codeberg.org/OpalBolt/nixcats-test"
       }
     },
     "nixpkgs": {
@@ -295,9 +295,9 @@
       "inputs": {
         "hardware": "hardware",
         "home-manager": "home-manager",
+        "neovim-config-nix": "neovim-config-nix",
         "nix-secrets": "nix-secrets",
         "nix-vscode-extensions": "nix-vscode-extensions",
-        "nixCats-test": "nixCats-test",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvirt": "nixvirt",
