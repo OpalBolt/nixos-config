@@ -1,8 +1,9 @@
 {
+  hostSpec,
   ...
 }:
 {
   home = {
-    keyboard.layout = "us";
+    keyboard.layout = hostSpec.kbdLayout;
   };
 }
