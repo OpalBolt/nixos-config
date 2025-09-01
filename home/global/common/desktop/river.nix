@@ -1,6 +1,6 @@
 {
   lib,
-  config,
+  hostSpec,
   pkgs,
   ...
 }:
@@ -81,7 +81,7 @@
       #  Input configurations  #
       ##########################
 
-      keyboard-layout = "dk";
+      keyboard-layout = hostSpec.kbdLayout;
 
       ##############
       #  Mappings  #
@@ -129,7 +129,8 @@
 
           "Super+Shift" = {
             # Close focused window
-            Q = "close";
+            X = "close";
+            A = "close";
 
             # Move window up and down
             J = "swap next";
@@ -142,13 +143,10 @@
             Period = "send-to-output -current-tags next";
             Comma = "send-to-output -current-tags previous";
 
-            E = "spawn \"bemoji -t\"";
+            F = "spawn \"bemoji -t\"";
 
-          };
+            L = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
 
-          # lock the screen with swaylock
-          "Super+Shift" = {
-            l = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
           };
 
           # Super+Shift+E to exit river
@@ -206,6 +204,12 @@
 
     extraConfig = ''
       # ===== keymaps =====
+      #
+      # switch keyboard layouts
+      riverctl map normal Super+Shift M spawn "riverctl keyboard-layout -options \"compose:lwin-altgr\" us"
+      #riverctl map normal Super+Shift M spawn "riverctl keyboard-layout us"
+      riverctl map normal Super+Shift N spawn "riverctl keyboard-layout dk"
+
 
       riverctl map normal Super+Shift D spawn "grim -g \"\$(slurp)\" - | swappy -f -"
 

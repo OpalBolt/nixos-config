@@ -1,0 +1,8 @@
+{
+  ...
+}:
+{
+  home = {
+    keyboard.layout = "us";
+  };
+}
