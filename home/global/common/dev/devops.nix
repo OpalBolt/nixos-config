@@ -13,19 +13,19 @@
     kubectl
     yamllint
     kubeconform
-    fluxcd
+    #fluxcd
 
-    trivy
+    #trivy
     #prettier
     #codeql
     markdownlint-cli
     pre-commit
     go-task
 
-    opentofu
-    tflint
+    #opentofu
+    #tflint
 
-    talosctl
+    #talosctl
 
   ];
 }
