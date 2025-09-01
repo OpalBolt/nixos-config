@@ -303,7 +303,8 @@
         "nixvirt": "nixvirt",
         "nur": "nur",
         "solaar": "solaar",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "time-helper": "time-helper"
       }
     },
     "snowfall-lib": {
@@ -399,6 +400,27 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "time-helper": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756752414,
+        "narHash": "sha256-zmnAAnP7VcMDWgJON8J9LTGOrJIDTPEfWCzV6TniWtE=",
+        "ref": "main",
+        "rev": "a643b3bb4ef8e01700316a6e6eff2d2a9d3a4bc1",
+        "revCount": 2,
+        "type": "git",
+        "url": "https://codeberg.org/OpalBolt/time-helper"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://codeberg.org/OpalBolt/time-helper"
       }
     }
   },
