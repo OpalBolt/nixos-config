@@ -409,11 +409,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756752414,
-        "narHash": "sha256-zmnAAnP7VcMDWgJON8J9LTGOrJIDTPEfWCzV6TniWtE=",
+        "lastModified": 1756756043,
+        "narHash": "sha256-brBdpu3xBwUY/aXiBFZMd7J6+T1Pq0b9LjB7BdiOsYM=",
         "ref": "main",
-        "rev": "a643b3bb4ef8e01700316a6e6eff2d2a9d3a4bc1",
-        "revCount": 2,
+        "rev": "120c36870cb5767c151ac624a6e2d1965ecd5137",
+        "revCount": 4,
         "type": "git",
         "url": "https://codeberg.org/OpalBolt/time-helper"
       },
