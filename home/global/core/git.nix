@@ -1,14 +1,8 @@
 {
   inputs,
-  pkgs,
-  config,
   hostSpec,
   ...
 }:
-
-let
-  home = hostSpec.home;
-in
 {
   programs.lazygit.enable = true;
   programs.git = {
