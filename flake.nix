@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    time-helper = {
+      url = "git+https://codeberg.org/OpalBolt/time-helper?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Desktop environments (currently disabled)
     #hyprland = {
     #  url = "github:hyprwm/Hyprland";
@@ -63,6 +68,7 @@
       sops-nix,
       solaar,
       neovim-config-nix,
+      time-helper,
       ...
     }@inputs:
     let
