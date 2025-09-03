@@ -8,6 +8,7 @@
     (map lib.custom.relativeToRoot [
       # Browsers
       "home/global/common/browsers/firefox.nix"
+      "home/global/common/browsers/chromium.nix"
 
       # Desktop Environment
       "home/global/common/desktop/gtk.nix"
