@@ -36,6 +36,7 @@
       "hosts/common/optional/work-wifi.nix" # work wifi controls
       "hosts/common/optional/fonts.nix" # font controls
       "hosts/common/optional/solaar.nix" # solaar controls
+      "hosts/common/optional/chromiumPolicies.nix" # policies for chromium like browsers
 
       ## Required Configs ##
       #"hosts/global/core"

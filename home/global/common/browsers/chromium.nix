@@ -7,15 +7,9 @@
 {
   programs.chromium = {
     enable = true;
-    package = pkgs.ungoogled-chromium.override {
-      #package = pkgs.chromium.override {
-      enableWideVine = true;
-      commandLineArgs = [
-        "--enable-features=AcceleratedVideoEncoder,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan"
-        "--ignore-gpu-blocklist"
-        "--force-dark-mode"
-        "--enable-zero-copy"
-      ];
+    #package = pkgs.brave.override {
+    package = pkgs.vivaldi.override {
+      commandLineArgs = "--password-store=detect";
     };
     extensions =
       let
@@ -35,24 +29,56 @@
             };
             inherit version;
           };
-        createChromiumExtension = createChromiumExtensionFor (
-          lib.versions.major pkgs.ungoogled-chromium.version
-        );
+        createChromiumExtension = createChromiumExtensionFor (lib.versions.major pkgs.chromium.version);
       in
       [
         (createChromiumExtension {
           # ublock origin
           id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-          #sha256 = "sha256:0ycnkna72n969crgxfy2lc1qbndjqrj46b9gr5l9b7pgfxi5q0ll";
-          sha256 = "sha256:168vr0p31sp5ffsqnrnarw6ab1m95yil4hph0xs6gjbfky7wygki";
-          version = "1.65.0";
+          sha256 = "sha256:cT7Pj59uyWd0B/BCQqMvqYalDM/KZou1c+XqMC7IG5k=";
+          version = "1.65.0.0";
         })
         (createChromiumExtension {
-          # bitwarden
+          # Bitwarden
           id = "nngceckbapebfimnlniiiahkandclblb";
-          #sha256 = "sha256:0jxk3cqmgd5qj8hnw7s0k5s4bfrcmr0w0rckp3x0bmng07azw4gi";
-          sha256 = "sha256:1y250l9z7cvs8fq7frm6jgxnbxry4bxmm2xzk5wri68zjabvw7j3";
-          version = "2025.8.2";
+          sha256 = "sha256:Qx6+l5IfmZh5mb+LWvsiPvdl+5OmZnewQ3qz8xMFRfg=";
+          version = "2025.8.2.0";
+        })
+        (createChromiumExtension {
+          # Old reddit redirect
+          id = "dneaehbmnbhcippjikoajpoabadpodje";
+          sha256 = "sha256:26kMNZktrRomwltsAlQMEwiZ/MNv6Fw8GHoJ6GebsRE=";
+          version = "2.0.9.0";
+        })
+        (createChromiumExtension {
+          # Vimium
+          id = "dbepggeogbaibhgnhhndojpepiihcmeb";
+          sha256 = "sha256:3UUyo8UVd8s4OrFlwMTnF8UjMKpi31l6JG+EKycBzHw=";
+          version = "2.3.0.0";
+        })
+        (createChromiumExtension {
+          # Display Achnors
+          id = "poahndpaaanbpbeafbkploiobpiiieko";
+          sha256 = "sha256:Pbwu1OjYOg8+AJEVFllIhpKRZgmIuscRP7msAVf7zNg=";
+          version = "1.5.0.0";
+        })
+        (createChromiumExtension {
+          # I still dont care about cookies
+          id = "edibdbjcniadpccecjdfdjjppcpchdlm";
+          sha256 = "sha256:Ur/tOwmZNfU13ytsc4Pzgr7F3aJxEdpV/Eg7JVlnZ4Y=";
+          version = "1.1.4.0";
+        })
+        (createChromiumExtension {
+          # RSS finder
+          id = "kfghpdldaipanmkhfpdcjglncmilendn";
+          sha256 = "sha256:4QeGDV5zsdZpbb9B34+vkQr3yWiC0hsEbZNDyOa8IDE=";
+          version = "3.1.1.0";
+        })
+        (createChromiumExtension {
+          # RES
+          id = "kbmfpngjjgdllneeigpgjifpgocmfgmb";
+          sha256 = "sha256:wM2vceDp5M96hD7aPYEY0c9x1f/fK8Bz1UVokRTJyxg=";
+          version = "5.24.8.0";
         })
       ];
   };
