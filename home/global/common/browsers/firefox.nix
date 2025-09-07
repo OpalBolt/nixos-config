@@ -61,7 +61,7 @@
             bitwarden
           ];
         settings = {
-          "browser.search.defaultenginename" = "duckduckgo";
+          "browser.search.defaultenginename" = "search.local.skumnet.dk";
           "browser.shell.checkDefaultBrowser" = false;
           "browser.shell.defaultBrowserCheckCount" = 1;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
@@ -130,7 +130,7 @@
             name = "Local Search";
             urls = [
               {
-                template = "http://localhost:8080/search?q={searchTerms}";
+                template = "https://search.local.skumnet.dk/search?q={searchTerms}";
               }
             ];
             definedAlias = [ "@x" ];
