@@ -206,7 +206,8 @@
       # ===== keymaps =====
       #
       # switch keyboard layouts
-      riverctl map normal Super+Shift M spawn "riverctl keyboard-layout -options \"compose:lwin-altgr\" us"
+      #riverctl map normal Super+Shift M spawn "riverctl keyboard-layout -options \"compose:lwin-altgr\" us"
+      riverctl map normal Super+Shift M spawn "riverctl keyboard-layout -variant altgr-intl -rules evdev -model evdev us"
       #riverctl map normal Super+Shift M spawn "riverctl keyboard-layout us"
       riverctl map normal Super+Shift N spawn "riverctl keyboard-layout dk"
 
