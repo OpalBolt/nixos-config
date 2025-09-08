@@ -4,12 +4,30 @@
   ...
 }:
 
+let
+  features = [
+    "VaapiVideoDecodeLinuxGL"
+    "VaapiVideoEncoder"
+    "Vulkan"
+    "VulkanFromANGLE"
+    "DefaultANGLEVulkan"
+    "VaapiIgnoreDriverChecks"
+    "VaapiVideoDecoder"
+    "PlatformHEVCDecoderSupport"
+    "UseMultiPlaneFormatForHardwareVideo"
+  ];
+
+  chromiumArgs = [
+    "--password-store=detect"
+    ("--enable-features=" + (lib.concatStringsSep "," features))
+  ];
+in
 {
   programs.chromium = {
     enable = true;
     #package = pkgs.brave.override {
     package = pkgs.vivaldi.override {
-      commandLineArgs = "--password-store=detect";
+      commandLineArgs = lib.concatStringsSep " " chromiumArgs;
     };
     extensions =
       let
