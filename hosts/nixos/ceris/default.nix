@@ -49,6 +49,9 @@
   # Use hostSpec.hostname to set the system hostname
   networking.hostName = config.hostSpec.hostname;
 
+  # Tmp enable ssh
+  #services.openssh.enable = true;
+
   # Run unpatched dynamic binaries on NixOS
   programs.nix-ld.enable = true;
   system.stateVersion = "24.11"; # No touchy touchy

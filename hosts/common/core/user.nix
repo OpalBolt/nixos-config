@@ -15,13 +15,13 @@ let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-  users.mutableUsers = false;
+  #users.mutableUsers = false;
 
   # Define the user with the specified username
   users.users.${username} = {
     isNormalUser = true;
     description = config.hostSpec.userFullName or "${config.hostSpec.name} (${username})";
-    hashedPasswordFile = config.sops.secrets.hashedPassword.path;
+    #hashedPasswordFile = config.sops.secrets.hashedPassword.path;
     uid = 1000;
 
     extraGroups = lib.flatten [
@@ -54,7 +54,7 @@ in
   ## Set up ROOT user
   users.users.root = {
     shell = pkgs.bash;
-    hashedPasswordFile = config.sops.secrets.rootHashedPassword.path;
+    #hashedPasswordFile = config.sops.secrets.rootHashedPassword.path;
     #openssh.authorizedKeys.keys = user.ssh.publicKeys or [ ];
   };
 
