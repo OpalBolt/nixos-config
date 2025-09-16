@@ -53,8 +53,8 @@ in
         (createChromiumExtension {
           # ublock origin
           id = "cjpalhdlnbpafiamejdnhcphjbkeiagm";
-          sha256 = "sha256:cT7Pj59uyWd0B/BCQqMvqYalDM/KZou1c+XqMC7IG5k=";
-          version = "1.65.0.0";
+          sha256 = "sha256:HFD1A9b9958FbtjJGjWl5FnsttsNZBTsdVyaE5N151A=";
+          version = "1.66.0.0";
         })
         (createChromiumExtension {
           # Bitwarden

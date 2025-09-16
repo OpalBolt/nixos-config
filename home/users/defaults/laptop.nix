@@ -10,6 +10,9 @@
       "home/global/common/browsers/firefox.nix"
       "home/global/common/browsers/chromium.nix"
 
+      # Entertainment
+      "home/global/common/entertainment/music.nix"
+
       # Desktop Environment
       "home/global/common/desktop/gtk.nix"
       "home/global/common/desktop/river.nix"

@@ -11,6 +11,7 @@ let
   wifi_secret = {
     owner = config.users.users.mads.name;
     sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
+    path = "/run/wifi";
   };
 in
 {
@@ -34,9 +35,27 @@ in
     };
 
     # WiFi certificates and keys - using shared attributes
-    ca_cert = wifi_secret;
-    user_cert = wifi_secret;
-    user_key = wifi_secret;
-    key_password = wifi_secret;
+    ca_cert = {
+      owner = config.users.users.mads.name;
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
+      path = "/run/wifi/ca_cert.cer";
+    };
+    user_cert = {
+      owner = config.users.users.mads.name;
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
+      path = "/run/wifi/user_cert.pem";
+    };
+    user_key = {
+      owner = config.users.users.mads.name;
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
+      path = "/run/wifi/user_key.key";
+    };
+
+    key_password = {
+      owner = config.users.users.mads.name;
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
+      path = "/run/wifi/key_password";
+    };
+
   };
 }
