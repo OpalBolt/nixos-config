@@ -1,0 +1,8 @@
+{
+  ...
+}:
+{
+  programs.qutebrowser = {
+    enable = true;
+  };
+}
