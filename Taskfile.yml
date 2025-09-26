@@ -1,0 +1,78 @@
+# NixOS Configuration Management Taskfile
+version: '3'
+
+tasks:
+  default:
+    desc: Show available tasks
+    silent: true
+    cmds:
+      - echo "NixOS Configuration Management Tasks:"
+      - echo ""
+      - echo "Main Workflow:"
+      - echo "   smart-switch        - Intelligent NixOS workflow (format + git + switch)"
+      - echo ""
+      - echo "NixOS Operations:"
+      - echo "   test               - Test NixOS configuration"
+      - echo "   switch             - Apply NixOS configuration"
+      - echo "   safe-switch        - Test then switch if successful"
+      - echo "   info               - Show system information"
+      - echo "   format             - Format Nix files"
+      - echo ""
+      - echo "Usage - task <task-name>"
+
+  # Main smart workflow - calls our bash script
+  smart-switch:
+    desc: Intelligent NixOS workflow with Git integration
+    cmds:
+      - ./scripts/smart-switch.sh
+
+  # NixOS management tasks
+  test:
+    desc: Test NixOS configuration without applying
+    silent: true
+    cmds:
+      - echo 'Testing NixOS configuration...'
+      - nh os test
+      - echo '✓ Configuration test passed'
+
+  switch:
+    desc: Apply NixOS configuration
+    silent: true
+    cmds:
+      - echo 'Applying NixOS configuration...'
+      - nh os switch
+      - echo '✓ NixOS configuration applied successfully'
+
+  safe-switch:
+    desc: Test configuration then switch if successful
+    silent: true
+    cmds:
+      - task: test
+      - echo 'Test passed, applying configuration...'
+      - task: switch
+
+  info:
+    desc: Show current system information
+    silent: true
+    cmds:
+      - echo 'Current system information:'
+      - nh os info | head -n 5
+
+  format:
+    desc: Format Nix configuration files
+    silent: true
+    cmds:
+      - echo 'Formatting Nix files...'
+      - |
+        if command -v nixfmt >/dev/null 2>&1; then
+          echo '  Using nixfmt...'
+          find . -name "*.nix" -not -path "./.git/*" -exec nixfmt {} \; 2>/dev/null || true
+          echo '✓ Nix files formatted with nixfmt'
+        elif command -v nixpkgs-fmt >/dev/null 2>&1; then
+          echo '  Using nixpkgs-fmt...'
+          find . -name "*.nix" -not -path "./.git/*" -exec nixpkgs-fmt {} \; 2>/dev/null || true
+          echo '✓ Nix files formatted with nixpkgs-fmt'
+        else
+          echo '  No Nix formatter available (nixfmt or nixpkgs-fmt)'
+          echo '  Install with: nix-env -iA nixpkgs.nixfmt'
+        fi
