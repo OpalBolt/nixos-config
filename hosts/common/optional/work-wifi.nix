@@ -1,12 +1,8 @@
 {
   config,
   inputs,
-  pkgs,
-  vars,
-  hostSpec,
   ...
 }:
-
 # Network manager configuration nix:
 # https://search.nixos.org/options?channel=25.05&show=networking.networkmanager.ensureProfiles.profiles&from=0&size=50&sort=relevance&type=packages&query=networking.networkmanager.ensureProfiles
 #
@@ -17,8 +13,49 @@
 # https://linux.die.net/man/5/wpa_supplicant.conf
 #
 # Sops values are set in security.nix
-
+let
+  secretspath = builtins.toString inputs.nix-secrets.outPath;
+in
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
+
+  # Base SOPS configuration
+  sops = {
+    defaultSopsFile = "${secretspath}/secrets/shared.yaml";
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  };
+
+  # All secrets organized by type
+  sops.secrets = {
+    # VPN configuration
+    openvpn-efi = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
+      key = "openvpn";
+    };
+
+    # WiFi certificates and keys - using shared attributes
+    ca_cert = {
+      owner = config.users.users.mads.name;
+      path = "/run/wifi/ca_cert.cer";
+    };
+    user_cert = {
+      owner = config.users.users.mads.name;
+      path = "/run/wifi/user_cert.pem";
+    };
+    user_key = {
+      owner = config.users.users.mads.name;
+      path = "/run/wifi/user_key.key";
+    };
+
+    key_password = {
+      owner = config.users.users.mads.name;
+      path = "/run/wifi/key_password";
+    };
+
+  };
+
   networking.networkmanager.ensureProfiles = {
     secrets = {
       entries = [
@@ -59,7 +96,8 @@
 
           # The nm-file-secret-agent will automatically provide the password
           # from the sops secret file when NetworkManager requests it
-          private-key-password = inputs.nix-secrets.work.wifi;
+          private-key-password = "$FILE:${config.sops.secrets.key_password.path}";
+          #private-key-password = inputs.nix-secrets.work.wifi;
 
         };
         ipv4 = {

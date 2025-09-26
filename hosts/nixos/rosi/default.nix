@@ -34,6 +34,7 @@
       "hosts/common/optional/vpn.nix" # vpn controls
       #"hosts/common/optional/work-backup.nix" # work backup
       "hosts/common/optional/work-wifi.nix" # work wifi controls
+      "hosts/common/optional/work-vpn.nix" # VPN file for Work
       "hosts/common/optional/fonts.nix" # font controls
       "hosts/common/optional/solaar.nix" # solaar controls
       "hosts/common/optional/chromiumPolicies.nix" # policies for chromium like browsers

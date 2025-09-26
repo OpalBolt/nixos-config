@@ -13,8 +13,21 @@ let
   # Get user-specific flags
   isMinimal = config.hostSpec.isMinimal;
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+  secretspath = builtins.toString inputs.nix-secrets.outPath;
 in
 {
+  sops.secrets = {
+    hashedPassword = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
+      key = "user/password";
+      neededForUsers = true;
+    };
+    rootHashedPassword = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
+      key = "user/rootPassword";
+      neededForUsers = true;
+    };
+  };
   #users.mutableUsers = false;
 
   # Define the user with the specified username

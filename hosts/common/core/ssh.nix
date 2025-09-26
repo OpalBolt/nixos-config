@@ -5,7 +5,37 @@
   pkgs,
   ...
 }:
+let
+  secretspath = builtins.toString inputs.nix-secrets.outPath;
+in
 {
+  sops.secrets = {
+    # SSH keys
+    ssh-per-pri = {
+      sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      owner = config.users.users.${config.hostSpec.username}.name;
+      path = "/home/${config.hostSpec.username}/.ssh/id_ed25519"; # Private key
+      key = "ssh/privateKey";
+    };
+    ssh-per-pub = {
+      sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      owner = config.users.users.${config.hostSpec.username}.name;
+      path = "/home/${config.hostSpec.username}/.ssh/id_ed25519.pub"; # Public key
+      key = "ssh/publicKey";
+    };
+    ssh-com-pri = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
+      #owner = config.users.users.${config.hostSpec.username}.name;
+      path = "/etc/ssh/id_ed25519"; # Private key
+      key = "ssh/publicKey";
+    };
+    ssh-com-pub = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
+      #owner = config.users.users.${config.hostSpec.username}.name;
+      path = "/etc/ssh/id_ed25519.pub"; # Public key
+      key = "ssh/publicKey";
+    };
+  };
 
   programs.ssh = lib.optionalAttrs pkgs.stdenv.isLinux {
     startAgent = true;

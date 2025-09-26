@@ -11,11 +11,11 @@ in
   sops.secrets = {
     home-vpn-private-key = {
       key = "home-vpn/PrivateKey";
-      sopsFile = "${secretspath}/secrets/shared.yaml";
+      sopsFile = "${secretspath}/secrets/per-mads.yaml";
     };
     home-vpn-preshared-key = {
       key = "home-vpn/PresharedKey";
-      sopsFile = "${secretspath}/secrets/shared.yaml";
+      sopsFile = "${secretspath}/secrets/per-mads.yaml";
     };
   };
 
