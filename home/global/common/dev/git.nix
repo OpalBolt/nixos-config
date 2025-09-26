@@ -123,7 +123,7 @@ in
         light = false;
         line-numbers = true;
         commit-decoration = true;
-        syntax-theme = "Github";
+        #syntax-theme = "Github";
         zero-style = "syntax dim";
         minus-style = "syntax bold auto";
       };
