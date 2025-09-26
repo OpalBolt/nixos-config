@@ -10,20 +10,9 @@ in
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
-
-  # Base SOPS configuration
-  sops = {
-    defaultSopsFile = "${secretspath}/secrets/shared.yaml";
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  };
-
-  # All secrets organized by type
-  sops.secrets = {
-
+  sops.secrets.openvpn-efi = {
     # VPN configuration
-    openvpn-efi = {
-      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-vpn.yaml";
-      key = "openvpn";
-    };
+    sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-vpn.yaml";
+    key = "openvpn";
   };
 }

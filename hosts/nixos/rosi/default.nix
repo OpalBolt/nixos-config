@@ -11,10 +11,10 @@
     ./config
     ./hardware-configuration.nix # Handles Hardware configurations for this machine
 
-    inputs.hardware.nixosModules.lenovo-thinkpad-t14s
+    inputs.hardware.nixosModules.framework-amd-ai-300-series
     inputs.hardware.nixosModules.common-pc-laptop-ssd
-    inputs.hardware.nixosModules.common-gpu-intel
-    inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-gpu-amd
+    inputs.hardware.nixosModules.common-cpu-amd
 
     (map lib.custom.relativeToRoot [
 
@@ -52,6 +52,8 @@
 
   # Tmp enable ssh
   #services.openssh.enable = true;
+
+  services.fwupd.enable = true;
 
   # Run unpatched dynamic binaries on NixOS
   programs.nix-ld.enable = true;

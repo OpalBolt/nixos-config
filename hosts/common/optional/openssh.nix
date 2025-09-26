@@ -10,7 +10,7 @@ in
 
 {
   services.openssh = {
-    enable = true;
+    enable = false;
     ports = [ sshPort ];
 
     settings = {

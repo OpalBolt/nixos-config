@@ -26,14 +26,14 @@ in
     ssh-com-pri = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
       #owner = config.users.users.${config.hostSpec.username}.name;
-      path = "/etc/ssh/id_ed25519"; # Private key
-      key = "ssh/publicKey";
+      path = "/etc/ssh/ssh_host_ed25519"; # Private key
+      key = "ssh-computer/privateKey";
     };
     ssh-com-pub = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}.yaml";
       #owner = config.users.users.${config.hostSpec.username}.name;
-      path = "/etc/ssh/id_ed25519.pub"; # Public key
-      key = "ssh/publicKey";
+      path = "/etc/ssh/ssh_host_ed25519.pub"; # Public key
+      key = "ssh-computer/publicKey";
     };
   };
 

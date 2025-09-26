@@ -13,6 +13,7 @@ in
   # Base SOPS configuration
   sops = {
     defaultSopsFile = "${secretspath}/secrets/shared.yaml";
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.keyFile = "/home/mads/.config/sops/age/keys.txt";
+    #age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   };
 }

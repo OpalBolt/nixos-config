@@ -21,37 +21,29 @@ in
     inputs.sops-nix.nixosModules.sops
   ];
 
-  # Base SOPS configuration
-  sops = {
-    defaultSopsFile = "${secretspath}/secrets/shared.yaml";
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  };
-
   # All secrets organized by type
   sops.secrets = {
-    # VPN configuration
-    openvpn-efi = {
-      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
-      key = "openvpn";
-    };
-
     # WiFi certificates and keys - using shared attributes
     ca_cert = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      path = "/run/wifi/ca_cert.cer";
+      #path = "/run/wifi/ca_cert.cer";
     };
     user_cert = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      path = "/run/wifi/user_cert.pem";
+      #path = "/run/wifi/user_cert.pem";
     };
     user_key = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      path = "/run/wifi/user_key.key";
+      #path = "/run/wifi/user_key.key";
     };
 
     key_password = {
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      path = "/run/wifi/key_password";
+      #path = "/run/wifi/key_password";
     };
 
   };

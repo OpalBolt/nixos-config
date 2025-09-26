@@ -30,7 +30,7 @@
           "network"
           "backlight"
           "battery#bat0"
-          #"battery#bat1"
+          "battery#bat1"
           "idle_inhibitor"
           "custom/kernel"
           "tray"
@@ -100,24 +100,24 @@
           ];
         };
 
-        # "battery#bat1" = {
-        #   bat = "BAT1";
-        #   states = {
-        #     warning = 30;
-        #     critical = 15;
-        #   };
-        #   format = "BAT0:{capacity}% {icon}";
-        #   format-charging = "BAT0:{capacity}% 󱐋";
-        #   format-plugged = "BAT0:{capacity}% ";
-        #   format-alt = "BAT0:{time} {icon}";
-        #   format-icons = [
-        #     ""
-        #     ""
-        #     ""
-        #     ""
-        #     ""
-        #   ];
-        # };
+        "battery#bat1" = {
+          bat = "BAT1";
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "BAT1:{capacity}% {icon}";
+          format-charging = "BAT1:{capacity}% 󱐋";
+          format-plugged = "BAT1:{capacity}% ";
+          format-alt = "BAT1:{time} {icon}";
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+        };
 
         network = {
           format-wifi = "{essid} ({signalStrength}%) ";

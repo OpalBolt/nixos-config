@@ -10,12 +10,12 @@ in
   # VPN secrets configuration
   sops.secrets = {
     home-vpn-private-key = {
-      key = "home-vpn/PrivateKey";
       sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      key = "home-vpn/PrivateKey";
     };
     home-vpn-preshared-key = {
-      key = "home-vpn/PresharedKey";
       sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      key = "home-vpn/PresharedKey";
     };
   };
 
