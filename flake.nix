@@ -52,11 +52,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Desktop environments (currently disabled)
-    #hyprland = {
-    #  url = "github:hyprwm/Hyprland";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    qbpm = {
+      url = "github:pvsr/qbpm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =

@@ -1,7 +1,13 @@
 {
+  inputs,
+  pkgs,
   ...
 }:
 {
+
+  home.packages = [
+    inputs.qbpm.packages.${pkgs.system}.qbpm
+  ];
   programs.qutebrowser = {
     enable = true;
     searchEngines = {
@@ -10,6 +16,14 @@
       nh = "https://home-manager-options.extranix.com/?query={}";
       DEFAULT = "https://search.local.skumnet.dk/search?q={}";
       go = "https://www.google.com/search?hl=en&q={}";
+    };
+    keyBindings = {
+      normal = {
+        ",p" = "spawn --userscript qute-bitwarden";
+        "eb" = ":quickmark-del";
+        "eB" = ":bookmark-del";
+        "SB" = "bookmark-list --jump -t";
+      };
     };
     settings = {
       tabs.show = "multiple";

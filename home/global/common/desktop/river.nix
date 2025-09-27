@@ -95,7 +95,7 @@
             print = "notify-send \"test\"";
 
             # Spawn Browser
-            B = "spawn ${lib.getExe pkgs.firefox}";
+            B = "qbpm choose";
 
             # Spawn app launcher
             #D = "spawn ${lib.getExe config.programs.rofi.finalPackage} -show drun";
@@ -146,6 +146,8 @@
             F = "spawn \"bemoji -t\"";
 
             L = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
+
+            B = "spawn ${lib.getExe pkgs.firefox}";
 
           };
 
