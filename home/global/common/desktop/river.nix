@@ -95,7 +95,7 @@
             print = "notify-send \"test\"";
 
             # Spawn Browser
-            B = "qbpm choose";
+            B = "qbpm choose --menu \'fuzzel --dmenu\'";
 
             # Spawn app launcher
             #D = "spawn ${lib.getExe config.programs.rofi.finalPackage} -show drun";
