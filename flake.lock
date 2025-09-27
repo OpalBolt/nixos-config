@@ -291,6 +291,48 @@
         "type": "github"
       }
     },
+    "pyproject-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "qbpm",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1753063596,
+        "narHash": "sha256-el1vFxDk6DR2hKGYnMfQHR7+K4aMiJDKQRMP3gdh+ZI=",
+        "owner": "nix-community",
+        "repo": "pyproject.nix",
+        "rev": "cac90713492f23be5f1072bae88406890b9c68f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "pyproject.nix",
+        "type": "github"
+      }
+    },
+    "qbpm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pyproject-nix": "pyproject-nix"
+      },
+      "locked": {
+        "lastModified": 1755994605,
+        "narHash": "sha256-5YFdNkBbmPnj+CyZapyIL/bj2LjnOjVEJAqTHLFKRo0=",
+        "owner": "pvsr",
+        "repo": "qbpm",
+        "rev": "99960df79924d4ce57e40a705da742a19bda1253",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pvsr",
+        "repo": "qbpm",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "hardware": "hardware",
@@ -302,6 +344,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvirt": "nixvirt",
         "nur": "nur",
+        "qbpm": "qbpm",
         "solaar": "solaar",
         "sops-nix": "sops-nix",
         "time-helper": "time-helper"
