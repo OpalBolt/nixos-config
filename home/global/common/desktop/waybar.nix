@@ -87,10 +87,10 @@
             warning = 30;
             critical = 15;
           };
-          format = "BAT0:{capacity}% {icon}";
-          format-charging = "BAT0:{capacity}% 󱐋";
-          format-plugged = "BAT0:{capacity}% ";
-          format-alt = "BAT0:{time} {icon}";
+          format = "󰄌 :{capacity}% {icon}";
+          format-charging = "󰄌 :{capacity}% 󱐋";
+          format-plugged = "󰄌 :{capacity}% ";
+          format-alt = "󰄌 :{time} {icon}";
           format-icons = [
             ""
             ""
@@ -106,10 +106,10 @@
             warning = 30;
             critical = 15;
           };
-          format = "BAT1:{capacity}% {icon}";
-          format-charging = "BAT1:{capacity}% 󱐋";
-          format-plugged = "BAT1:{capacity}% ";
-          format-alt = "BAT1:{time} {icon}";
+          format = " :{capacity}% {icon}";
+          format-charging = " :{capacity}% 󱐋";
+          format-plugged = " :{capacity}% ";
+          format-alt = " :{time} {icon}";
           format-icons = [
             ""
             ""
