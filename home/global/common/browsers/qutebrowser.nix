@@ -23,6 +23,7 @@
         "eb" = ":quickmark-del";
         "eB" = ":bookmark-del";
         "SB" = "bookmark-list --jump -t";
+        "Sk" = "spawn --userscript qute-bitwarden";
       };
     };
     settings = {
