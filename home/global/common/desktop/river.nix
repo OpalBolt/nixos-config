@@ -96,6 +96,7 @@
 
             # Spawn Browser
             B = "spawn \"qbpm choose --menu \'fuzzel --dmenu\'\"";
+            V = "spawn \"rofi-rbw --no-folder\"";
 
             # Spawn app launcher
             #D = "spawn ${lib.getExe config.programs.rofi.finalPackage} -show drun";
