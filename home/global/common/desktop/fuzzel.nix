@@ -1,6 +1,6 @@
 # Config borrowed from: https://codeberg.org/tobiaisu/hyprland-dotfiles/src/commit/1bf5de1c23929da2ad83017be3eface294a246bd/.config/foot/foot.ini
 
-{ lib, config, ... }:
+{ ... }:
 {
   programs.fuzzel = {
     enable = true;
