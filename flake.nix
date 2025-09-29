@@ -106,6 +106,13 @@
                     inputs.nix-vscode-extensions.overlays.default
                   ];
                   nixpkgs.config.allowUnfree = true;
+                  system.configurationRevision =
+                    self.rev or (
+                      if self ? "dirtyRev" then
+                        "${self.dirtyRev}-${self.lastModifiedDate}"
+                      else
+                        "dirty-${self.lastModifiedDate}"
+                    );
 
                 }
                 solaar.nixosModules.default
