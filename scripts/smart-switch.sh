@@ -7,6 +7,14 @@ set -euo pipefail
 # Global debug flag
 DEBUG=false
 
+# Check if gum is available
+if ! command -v gum >/dev/null 2>&1; then
+    echo "❌ Error: gum is not installed or not in PATH"
+    echo "💡 To install gum, ensure you're in a nix develop shell or add it to your system packages"
+    echo "   Run: nix develop"
+    exit 1
+fi
+
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -15,36 +23,61 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         -h|--help)
-            echo "Usage: $0 [-v|--verbose] [-h|--help]"
-            echo "  -v, --verbose    Enable debug output"
-            echo "  -h, --help       Show this help message"
+            gum style \
+                --foreground 212 \
+                --border-foreground 212 \
+                --border double \
+                --align center \
+                --width 50 \
+                --margin "1 2" \
+                --padding "2 4" \
+                "Smart Switch" "NixOS Workflow Tool"
+            
+            echo ""
+            gum format -- "**Usage:** $0 [-v|--verbose] [-h|--help]"
+            echo ""
+            gum format -- "**Options:**"
+            gum format -- "  -v, --verbose    Enable debug output"
+            gum format -- "  -h, --help       Show this help message"
+            echo ""
+            gum format -- "**Description:**"
+            gum format -- "Intelligent NixOS workflow that handles:"
+            gum format -- "• Code formatting with nixfmt"
+            gum format -- "• Git commits with Conventional Commits"
+            gum format -- "• Safe NixOS configuration switching"
             exit 0
             ;;
         *)
-            echo "Unknown option: $1"
-            echo "Use -h or --help for usage information"
+            gum style --foreground 196 "❌ Unknown option: $1"
+            gum format -- "Use -h or --help for usage information"
             exit 1
             ;;
     esac
 done
 
-# Colors for output
-readonly RED='\033[0;31m'
-readonly GREEN='\033[0;32m'
-readonly YELLOW='\033[1;33m'
-readonly BLUE='\033[0;34m'
-readonly CYAN='\033[0;36m'
-readonly NC='\033[0m' # No Color
-
-# Logging functions
-info() { echo -e "${BLUE}ℹ${NC} $*"; }
-success() { echo -e "${GREEN}✓${NC} $*"; }
-warning() { echo -e "${YELLOW}⚠${NC} $*"; }
-error() { echo -e "${RED}✗${NC} $*"; }
+# Logging functions - now using gum for better styling
+info() { gum style --foreground 39 "ℹ️ $*"; }
+success() { gum style --foreground 46 "✅ $*"; }
+warning() { gum style --foreground 226 "⚠️  $*"; }
+error() { gum style --foreground 196 "❌ $*"; }
 debug() { 
     if [[ "$DEBUG" == "true" ]]; then
-        echo -e "${CYAN}🐛${NC} DEBUG: $*" >&2
+        gum style --foreground 51 --faint "🐛 DEBUG: $*"
     fi
+}
+
+# Pretty header function
+show_header() {
+    gum style \
+        --foreground 212 \
+        --border-foreground 212 \
+        --border double \
+        --align center \
+        --width 60 \
+        --margin "1 2" \
+        --padding "1 4" \
+        "🚀 Smart Switch" \
+        "NixOS Configuration Workflow"
 }
 
 # Check if we're in a git repository
@@ -74,69 +107,56 @@ GIT_WORKFLOW_ACTION=""  # "SWITCH", "TEST_ONLY", "NO_ACTION"
 # Interactive commit helper - sets global COMMIT_MESSAGE variable
 commit_helper() {
     debug "Entering commit_helper function"
-    echo ""
-    info "Commit Type Examples:"
-    echo "  feat     - New features"
-    echo "  fix      - Bug fixes"  
-    echo "  refactor - Code restructuring"
-    echo "  chore    - Maintenance, updates"
-    echo ""
+    
+    gum style --border normal --margin "1 2" --padding "1 2" \
+        "📝 **Commit Message Builder**" \
+        "" \
+        "Building a Conventional Commit message..." \
+        "Format: type(scope): description"
     
     debug "Displaying commit type selection menu"
-    echo "Select commit type:"
-    echo "1) feat      - New feature or capability"
-    echo "2) fix       - Bug fix or correction"
-    echo "3) refactor  - Code restructuring" 
-    echo "4) perf      - Performance improvement"
-    echo "5) chore     - Maintenance, updates, cleanup"
-    echo "6) docs      - Documentation changes"
-    echo "7) style     - Formatting, whitespace"
-    echo "8) revert    - Revert previous changes"
-    echo ""
     
-    debug "Starting commit type selection loop"
-    while true; do
-        printf "Enter choice (1-8): "
-        if read -r type_choice < /dev/tty; then
-            debug "User selected type choice: '$type_choice'"
-        else
-            debug "Failed to read input from terminal"
-            error "Failed to read input. Please ensure script is run interactively."
-            return 1
-        fi
-        case $type_choice in
-            1) commit_type='feat'; debug "Selected commit type: feat"; break ;;
-            2) commit_type='fix'; debug "Selected commit type: fix"; break ;;
-            3) commit_type='refactor'; debug "Selected commit type: refactor"; break ;;
-            4) commit_type='perf'; debug "Selected commit type: perf"; break ;;
-            5) commit_type='chore'; debug "Selected commit type: chore"; break ;;
-            6) commit_type='docs'; debug "Selected commit type: docs"; break ;;
-            7) commit_type='style'; debug "Selected commit type: style"; break ;;
-            8) commit_type='revert'; debug "Selected commit type: revert"; break ;;
-            *) debug "Invalid choice: '$type_choice'"; warning "Invalid choice. Please select 1-8." ;;
-        esac
-    done
+    # Commit type selection with gum filter for fuzzy search
+    commit_type=$(gum filter \
+        --header "🏷️ Select commit type (fuzzy search enabled):" \
+        --height 10 \
+        --placeholder "Type to search..." \
+        --limit 1 \
+        "feat     - New feature or capability" \
+        "fix      - Bug fix or correction" \
+        "refactor - Code restructuring" \
+        "perf     - Performance improvement" \
+        "chore    - Maintenance, updates, cleanup" \
+        "docs     - Documentation changes" \
+        "style    - Formatting, whitespace" \
+        "test     - Adding or fixing tests" \
+        "revert   - Revert previous changes" \
+        "ci       - CI/CD changes" \
+        "build    - Build system changes")
     
-    debug "Commit type selected: $commit_type"
-    echo ""
-    info "Common scopes: specialisation, home-manager, kernel, audio, nvidia, desktop, services"
-    printf "Enter scope (optional): "
-    if read -r scope < /dev/tty; then
-        debug "User entered scope: '$scope'"
-    else
-        debug "Failed to read scope input"
-        scope=""
-    fi
+    # Extract just the type name
+    commit_type=$(echo "$commit_type" | cut -d' ' -f1)
+    debug "Selected commit type: $commit_type"
     
-    echo ""
-    printf "Enter description: "
-    if read -r description < /dev/tty; then
-        debug "User entered description: '$description'"
-    else
-        debug "Failed to read description input"
-        error "Failed to read commit description. Aborting."
+    # Scope input with gum
+    gum style --foreground 39 "🎯 Common scopes: specialisation, home-manager, kernel, audio, nvidia, desktop, services"
+    scope=$(gum input \
+        --placeholder "Enter scope (optional)" \
+        --prompt "Scope: " \
+        --width 50 || echo "")
+    debug "User entered scope: '$scope'"
+    
+    # Description input with gum
+    description=$(gum input \
+        --placeholder "Enter a clear, concise description" \
+        --prompt "Description: " \
+        --width 80)
+    
+    if [[ -z "$description" ]]; then
+        error "Description cannot be empty"
         return 1
     fi
+    debug "User entered description: '$description'"
     
     # Build commit message
     if [ -n "$scope" ]; then
@@ -146,20 +166,15 @@ commit_helper() {
     fi
     
     debug "Built commit message: '$commit_msg'"
-    echo ""
-    info "Generated commit message:"
-    echo "  $commit_msg"
-    echo ""
     
-    printf "Open in editor for extended message? (y/N): "
-    if read -r editor_choice < /dev/tty; then
-        debug "User chose editor option: '$editor_choice'"
-    else
-        debug "Failed to read editor choice, defaulting to 'N'"
-        editor_choice="N"
-    fi
+    # Show preview
+    gum style --border normal --margin "1 2" --padding "1 2" \
+        "📄 **Generated commit message:**" \
+        "" \
+        "$commit_msg"
     
-    if [[ "$editor_choice" =~ ^[Yy]$ ]]; then
+    # Ask about extended message
+    if gum confirm "📝 Open editor for extended commit message?"; then
         debug "Opening editor for extended commit message"
         temp_file=$(mktemp)
         debug "Created temp file: $temp_file"
@@ -173,7 +188,7 @@ commit_helper() {
         
         debug "About to launch editor: ${EDITOR:-nvim}"
         info "Opening editor..."
-        if ${EDITOR:-nvim} "$temp_file" </dev/tty >/dev/tty 2>&1; then
+        if ${EDITOR:-nvim} "$temp_file"; then
             debug "Editor exited successfully, processing commit message"
             # Clean up the commit message (remove comments and trim)
             commit_msg=$(grep -v '^#' "$temp_file" | sed '/^$/d' | head -c 500)
@@ -195,23 +210,81 @@ commit_helper() {
 
 # Format Nix files
 format_nix_files() {
-    info "Step 1: Format Nix files"
-    printf "Format Nix configuration files? (y/N): "
-    read -r format_confirm < /dev/tty
+    gum style --foreground 39 "📝 Step 1: Format Nix files"
     
-    if [[ "$format_confirm" =~ ^[Yy]$ ]]; then
-        info "Formatting Nix files..."
-        if command -v nixfmt >/dev/null 2>&1; then
-            info "Using nixfmt..."
-            find . -name "*.nix" -not -path "./.git/*" -exec nixfmt {} \; 2>/dev/null || true
-            success "Nix files formatted with nixfmt"
-        elif command -v nixpkgs-fmt >/dev/null 2>&1; then
-            info "Using nixpkgs-fmt..."
-            find . -name "*.nix" -not -path "./.git/*" -exec nixpkgs-fmt {} \; 2>/dev/null || true
-            success "Nix files formatted with nixpkgs-fmt"
+    if gum confirm "Format Nix configuration files?"; then
+        # Check if there are any staged changes first
+        local has_staged_changes=false
+        if git diff --cached --quiet; then
+            has_staged_changes=false
         else
-            warning "No Nix formatter available (nixfmt or nixpkgs-fmt)"
-            warning "Install with: nix-env -iA nixpkgs.nixfmt"
+            has_staged_changes=true
+        fi
+        
+        if [[ "$has_staged_changes" == "true" ]]; then
+            warning "You have staged changes. Formatting will only affect unstaged files."
+            if ! gum confirm "Continue with formatting?"; then
+                info "Skipping code formatting"
+                return 0
+            fi
+        fi
+        
+        # Get list of Nix files that are either unstaged or untracked
+        local nix_files_to_format
+        nix_files_to_format=$(find . -name "*.nix" -not -path "./.git/*" -type f | while read -r file; do
+            # Check if file has unstaged changes or is untracked
+            if ! git diff --quiet "$file" 2>/dev/null || ! git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+                echo "$file"
+            fi
+        done)
+        
+        if [[ -z "$nix_files_to_format" ]]; then
+            info "No Nix files need formatting"
+            return 0
+        fi
+        
+        # Show which files will be formatted
+        local file_count
+        file_count=$(echo "$nix_files_to_format" | wc -l)
+        local preview_text
+        preview_text=$(echo "$nix_files_to_format" | head -10)
+        if [[ $file_count -gt 10 ]]; then
+            preview_text="$preview_text"$'\n'"... and $(( file_count - 10 )) more files"
+        fi
+        
+        gum style --border normal --margin "1 2" --padding "1 2" \
+            "📝 **Files to be formatted:**" \
+            "" \
+            "$preview_text"
+        
+        if gum confirm "Proceed with formatting these files?"; then
+            gum spin --spinner dot --title "Formatting Nix files..." -- bash -c "
+                if command -v nixfmt >/dev/null 2>&1; then
+                    echo '$nix_files_to_format' | xargs -r nixfmt 2>/dev/null || true
+                    echo 'nixfmt-rfc-style'
+                elif command -v nixpkgs-fmt >/dev/null 2>&1; then
+                    echo '$nix_files_to_format' | xargs -r nixpkgs-fmt 2>/dev/null || true
+                    echo 'nixpkgs-fmt'
+                else
+                    echo 'none'
+                fi
+            " | {
+                read formatter
+                case $formatter in
+                    "nixfmt-rfc-style")
+                        success "Nix files formatted with nixfmt (RFC style)"
+                        ;;
+                    "nixpkgs-fmt")
+                        success "Nix files formatted with nixpkgs-fmt"
+                        ;;
+                    "none")
+                        warning "No Nix formatter available (nixfmt or nixpkgs-fmt)"
+                        warning "Run 'nix develop' to access nixfmt-rfc-style formatter"
+                        ;;
+                esac
+            }
+        else
+            info "Formatting cancelled"
         fi
     else
         info "Skipping code formatting"
@@ -222,7 +295,7 @@ format_nix_files() {
 # Sets global GIT_WORKFLOW_ACTION: "SWITCH", "TEST_ONLY", "NO_ACTION"
 # Returns: 0=success, 1=error/user declined
 handle_git_workflow() {
-    info "Step 2: Analyze Git status and handle commits"
+    gum style --foreground 39 "🔍 Step 2: Analyze Git status and handle commits"
     
     # Get git status information
     local status_output
@@ -236,12 +309,14 @@ handle_git_workflow() {
     
     if [ -n "$untracked_files" ]; then
         # Untracked files present - never switch
-        info "You have untracked files:"
-        git status --short
-        echo ""
+        gum style --border normal --margin "1 2" --padding "1 2" \
+            "📂 **Untracked files detected:**" \
+            "" \
+            "$(git status --short)"
+        
         warning "Please stage files first:"
-        warning "  git add <files>  # Add specific files"
-        warning "  git add .        # Add all files"
+        gum format -- "• \`git add <files>\`  - Add specific files"
+        gum format -- "• \`git add .\`        - Add all files"
         GIT_WORKFLOW_ACTION="NO_ACTION"
         return 1
         
@@ -258,9 +333,12 @@ handle_git_workflow() {
             return 0
         else
             warning "Last commit does not follow Conventional Commits format"
-            printf "Fix commit message and then switch? (y/N): "
-            read -r confirm < /dev/tty
-            if [[ "$confirm" =~ ^[Yy]$ ]]; then
+            gum style --border normal --margin "1 2" --padding "1 2" \
+                "📝 **Current commit message:**" \
+                "" \
+                "$last_commit"
+            
+            if gum confirm "Fix commit message and then switch?"; then
                 info "Fixing commit message..."
                 commit_helper
                 local new_commit_msg="$COMMIT_MESSAGE"
@@ -271,7 +349,7 @@ handle_git_workflow() {
                     return 1
                 fi
                 
-                if git commit --amend -m "$new_commit_msg"; then
+                if gum spin --spinner dot --title "Amending commit message..." -- git commit --amend -m "$new_commit_msg"; then
                     success "Commit message fixed"
                     GIT_WORKFLOW_ACTION="SWITCH"
                     return 0
@@ -288,13 +366,12 @@ handle_git_workflow() {
         
     elif [ -n "$staged_files" ] && [ -z "$unstaged_files" ] && [ -z "$untracked_files" ]; then
         # All changes staged (has staged, no unstaged, no untracked)
-        info "All changes are staged:"
-        git status --short
-        echo ""
-        printf "Commit staged changes and switch? (y/N): "
-        read -r confirm < /dev/tty
-        debug "User confirm choice: '$confirm'"
-        if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        gum style --border normal --margin "1 2" --padding "1 2" \
+            "📋 **All changes are staged:**" \
+            "" \
+            "$(git status --short)"
+        
+        if gum confirm "Commit staged changes and switch?"; then
             debug "User confirmed commit, starting commit helper"
             info "Generating commit message..."
             commit_helper
@@ -309,8 +386,7 @@ handle_git_workflow() {
             fi
             
             debug "Executing git commit with message: '$commit_msg'"
-            info "Committing changes..."
-            if git commit -m "$commit_msg"; then
+            if gum spin --spinner dot --title "Committing changes..." -- git commit -m "$commit_msg"; then
                 debug "Git commit succeeded"
                 success "Changes committed successfully"
                 GIT_WORKFLOW_ACTION="SWITCH"
@@ -330,14 +406,13 @@ handle_git_workflow() {
     elif [ -n "$staged_files" ] && [ -n "$unstaged_files" ]; then
         # Mixed staged/unstaged (has staged, has unstaged)
         debug "Detected mixed staged/unstaged changes"
-        info "You have both staged and unstaged changes:"
-        git status --short
-        echo ""
+        gum style --border normal --margin "1 2" --padding "1 2" \
+            "⚡ **Mixed staged and unstaged changes:**" \
+            "" \
+            "$(git status --short)"
+        
         warning "Unstaged changes won't be committed."
-        printf "Commit staged changes only? (y/N): "
-        read -r commit_confirm < /dev/tty
-        debug "User commit_confirm choice: '$commit_confirm'"
-        if [[ "$commit_confirm" =~ ^[Yy]$ ]]; then
+        if gum confirm "Commit staged changes only?"; then
             debug "User confirmed commit for staged changes only, starting commit helper"
             info "Generating commit message..."
             commit_helper
@@ -349,8 +424,7 @@ handle_git_workflow() {
                 error "Commit failed: Empty commit message"
             else
                 debug "Executing git commit with message: '$commit_msg'"
-                info "Committing staged changes..."
-                if git commit -m "$commit_msg"; then
+                if gum spin --spinner dot --title "Committing staged changes..." -- git commit -m "$commit_msg"; then
                     debug "Git commit succeeded"
                     success "Staged changes committed successfully"
                 else
@@ -368,82 +442,136 @@ handle_git_workflow() {
         
     elif [ -z "$staged_files" ] && [ -n "$unstaged_files" ]; then
         # Unstaged changes only (no staged, has unstaged)
-        info "You have unstaged changes:"
-        git status --short
-        echo ""
-        warning "Please stage changes first: git add <files> or git add ."
+        gum style --border normal --margin "1 2" --padding "1 2" \
+            "📝 **Unstaged changes detected:**" \
+            "" \
+            "$(git status --short)"
+        
+        warning "Please stage changes first:"
+        gum format -- "• \`git add <files>\` - Add specific files"
+        gum format -- "• \`git add .\`       - Add all files"
         GIT_WORKFLOW_ACTION="TEST_ONLY"
         return 0  # Success, but only test available
         
     else
-        warning "Complex Git status detected:"
-        git status --short
-        echo ""
+        gum style --border normal --margin "1 2" --padding "1 2" \
+            "🔍 **Complex Git status detected:**" \
+            "" \
+            "$(git status --short)"
+        
         warning "Please resolve Git status manually."
         GIT_WORKFLOW_ACTION="NO_ACTION"
         return 1
     fi
 }
 
+# Perform full NixOS configuration switch
+nixos_switch_operation() {
+    gum style --border normal --margin "1 2" --padding "1 2" \
+        "🚀 **Ready for NixOS Configuration Switch**" \
+        "" \
+        "This will:" \
+        "• Test the configuration" \
+        "• Apply changes if test passes" \
+        "• Switch to new generation"
+    
+    if gum confirm "Proceed with safe-switch (test + switch)?"; then
+        info "Testing NixOS configuration..."
+        if gum spin --spinner dot --title "Testing configuration..." -- nh os test .; then
+            success "Configuration test passed"
+            info "Applying NixOS configuration..."
+            if gum spin --spinner line --title "Switching configuration..." -- nh os switch .; then
+                success "NixOS configuration applied successfully"
+                
+                # Show success banner
+                gum style \
+                    --foreground 46 \
+                    --border double \
+                    --border-foreground 46 \
+                    --align center \
+                    --width 60 \
+                    --margin "1 2" \
+                    --padding "1 4" \
+                    "🎉 Smart Switch Complete!" \
+                    "Configuration applied successfully"
+                
+                gum style --border normal --margin "1 2" --padding "1 2" \
+                    "📊 **System Information:**" \
+                    "" \
+                    "$(nh os info | head -n 5)"
+                return 0
+            else
+                error "Failed to apply NixOS configuration"
+                return 1
+            fi
+        else
+            error "Configuration test failed"
+            return 1
+        fi
+    else
+        info "NixOS switch cancelled by user"
+        return 1
+    fi
+}
+
+# Test NixOS configuration only
+nixos_test_operation() {
+    gum style --border normal --margin "1 2" --padding "1 2" \
+        "🧪 **Configuration Testing Available**" \
+        "" \
+        "Git status prevents switching, but you can:" \
+        "• Test configuration for syntax errors" \
+        "• Verify build succeeds" \
+        "• Check for conflicts"
+    
+    if gum confirm "Test NixOS configuration?"; then
+        info "Testing NixOS configuration..."
+        if gum spin --spinner dot --title "Testing configuration..." -- nh os test .; then
+            success "✅ Configuration test completed successfully"
+            gum style --border normal --padding "1 2" --margin "1 2" \
+                "✨ **Next steps:**" \
+                "• Commit or stage your changes" \
+                "• Run smart-switch again to apply"
+            return 0
+        else
+            error "Configuration test failed"
+            return 1
+        fi
+    else
+        info "Configuration test skipped"
+        return 1
+    fi
+}
+
+# Show no actions available message
+nixos_no_action() {
+    gum style --border normal --margin "1 2" --padding "1 2" \
+        "⚠️ **No Actions Available**" \
+        "" \
+        "Git status needs attention:" \
+        "• Fix untracked files" \
+        "• Stage or commit changes" \
+        "• Resolve any conflicts"
+    
+    info "Resolve Git status and run again when ready."
+    return 1
+}
+
 # Handle NixOS operations based on Git workflow action
 handle_nixos_operations() {
     local git_workflow_action="$1"
     
-    echo ""
-    info "Step 3: NixOS Operations"
+    gum style --foreground 39 "🏗️ Step 3: NixOS Operations"
     
     case $git_workflow_action in
-        "SWITCH")  # Ready to switch
-            info "About to test and apply NixOS configuration..."
-            printf "Proceed with safe-switch (test + switch)? (y/N): "
-            read -r confirm < /dev/tty
-            if [[ "$confirm" =~ ^[Yy]$ ]]; then
-                info "Testing NixOS configuration..."
-                if nh os test .; then
-                    success "Configuration test passed"
-                    info "Applying NixOS configuration..."
-                    if nh os switch .; then
-                        success "NixOS configuration applied successfully"
-                        echo ""
-                        success "🎉 Smart switch completed successfully!"
-                        echo ""
-                        info "Current system information:"
-                        nh os info | head -n 5
-                        return 0
-                    else
-                        error "Failed to apply NixOS configuration"
-                        return 1
-                    fi
-                else
-                    error "Configuration test failed"
-                    return 1
-                fi
-            else
-                info "NixOS switch cancelled by user"
-                return 1
-            fi
+        "SWITCH")
+            nixos_switch_operation
             ;;
-        "TEST_ONLY")  # Can test but shouldn't switch
-            printf "Test NixOS configuration? (y/N): "
-            read -r confirm < /dev/tty
-            if [[ "$confirm" =~ ^[Yy]$ ]]; then
-                info "Testing NixOS configuration..."
-                if nh os test .; then
-                    success "✓ Configuration test completed"
-                    return 0
-                else
-                    error "Configuration test failed"
-                    return 1
-                fi
-            else
-                info "Configuration test skipped"
-                return 1
-            fi
+        "TEST_ONLY")
+            nixos_test_operation
             ;;
-        *)  # NO_ACTION: Git issues prevent any NixOS operations
-            info "No further actions available."
-            info "Resolve Git status and run again when ready."
-            return 1
+        *)
+            nixos_no_action
             ;;
     esac
 }
@@ -451,15 +579,22 @@ handle_nixos_operations() {
 # Main function
 main() {
     debug "Starting smart-switch with DEBUG=$DEBUG"
-    echo "Smart Switch - Analyzing repository status..."
-    echo ""
+    
+    # Show header
+    show_header
+    
+    # Show repository status overview
+    gum style --border normal --margin "1 2" --padding "1 2" \
+        "📋 **Repository Analysis**" \
+        "" \
+        "Working directory: $(pwd)" \
+        "Current branch: $(git branch --show-current 2>/dev/null || echo 'No branch')"
     
     debug "Checking if we're in a git repository"
     check_git_repo
     
     debug "Starting format phase"
     format_nix_files
-    echo ""
     
     debug "Starting git workflow analysis"
     if handle_git_workflow; then
@@ -471,10 +606,8 @@ main() {
     
     # Always show what happens next
     if [[ "$GIT_WORKFLOW_ACTION" == "TEST_ONLY" ]]; then
-        echo ""
-        echo "Git workflow completed. Continuing to NixOS operations..."
+        gum style --foreground 226 "⚡ Git workflow completed. Continuing to NixOS operations..."
     fi
-    echo ""
     
     debug "About to start NixOS operations with action: $GIT_WORKFLOW_ACTION"
     handle_nixos_operations "$GIT_WORKFLOW_ACTION"
