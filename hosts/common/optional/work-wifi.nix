@@ -27,23 +27,23 @@ in
     ca_cert = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      #path = "/run/wifi/ca_cert.cer";
+      path = "/run/wifi/ca_cert.cer";
     };
     user_cert = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      #path = "/run/wifi/user_cert.pem";
+      path = "/run/wifi/user_cert.pem";
     };
     user_key = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      #path = "/run/wifi/user_key.key";
+      path = "/run/wifi/user_key.key";
     };
 
     key_password = {
       sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-wifi.yaml";
       owner = config.users.users.mads.name;
-      #path = "/run/wifi/key_password";
+      path = "/run/wifi/key_password";
     };
 
   };
@@ -66,13 +66,13 @@ in
           id = "Eficode Group";
           #permissions = "mads:mads";
           type = "wifi";
-          interface-name = "wlp9s0";
+          interface-name = "wlp192s0";
           autoconnect = true;
           autoconnect-priority = 0; # ← sets priority
         };
         wifi = {
           mode = "infrastructure";
-          ssid = "Eficode Group";
+          ssid = "Eficode Group OLD";
           security = "802-11-wireless-security";
         };
         wifi-security = {
