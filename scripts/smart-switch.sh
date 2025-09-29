@@ -24,8 +24,8 @@ while [[ $# -gt 0 ]]; do
             ;;
         -h|--help)
             gum style \
-                --foreground 212 \
-                --border-foreground 212 \
+                --foreground 109 \
+                --border-foreground 102 \
                 --border double \
                 --align center \
                 --width 50 \
@@ -48,29 +48,29 @@ while [[ $# -gt 0 ]]; do
             exit 0
             ;;
         *)
-            gum style --foreground 196 "❌ Unknown option: $1"
+            gum style --foreground 167 "❌ Unknown option: $1"
             gum format -- "Use -h or --help for usage information"
             exit 1
             ;;
     esac
 done
 
-# Logging functions - now using gum for better styling
-info() { gum style --foreground 39 "ℹ️ $*"; }
-success() { gum style --foreground 46 "✅ $*"; }
-warning() { gum style --foreground 226 "⚠️  $*"; }
-error() { gum style --foreground 196 "❌ $*"; }
+# Logging functions - now using gum with Kanagawa/OneDark inspired colors
+info() { gum style --foreground 109 "ℹ️ $*"; }      # Muted blue-gray
+success() { gum style --foreground 107 "✅ $*"; }   # Soft green  
+warning() { gum style --foreground 179 "⚠️  $*"; }  # Warm yellow
+error() { gum style --foreground 167 "❌ $*"; }     # Soft red
 debug() { 
     if [[ "$DEBUG" == "true" ]]; then
-        gum style --foreground 51 --faint "🐛 DEBUG: $*"
+        gum style --foreground 102 --faint "🐛 DEBUG: $*"  # Muted gray
     fi
 }
 
 # Pretty header function
 show_header() {
     gum style \
-        --foreground 212 \
-        --border-foreground 212 \
+        --foreground 109 \
+        --border-foreground 102 \
         --border double \
         --align center \
         --width 60 \
@@ -139,7 +139,7 @@ commit_helper() {
     debug "Selected commit type: $commit_type"
     
     # Scope input with gum
-    gum style --foreground 39 "🎯 Common scopes: specialisation, home-manager, kernel, audio, nvidia, desktop, services"
+    gum style --foreground 109 "🎯 Common scopes: specialisation, home-manager, kernel, audio, nvidia, desktop, services"
     scope=$(gum input \
         --placeholder "Enter scope (optional)" \
         --prompt "Scope: " \
@@ -210,7 +210,7 @@ commit_helper() {
 
 # Format Nix files
 format_nix_files() {
-    gum style --foreground 39 "📝 Step 1: Format Nix files"
+    gum style --foreground 109 "📝 Step 1: Format Nix files"
     
     if gum confirm "Format Nix configuration files?"; then
         # Check if there are any staged changes first
@@ -295,7 +295,7 @@ format_nix_files() {
 # Sets global GIT_WORKFLOW_ACTION: "SWITCH", "TEST_ONLY", "NO_ACTION"
 # Returns: 0=success, 1=error/user declined
 handle_git_workflow() {
-    gum style --foreground 39 "🔍 Step 2: Analyze Git status and handle commits"
+    gum style --foreground 109 "🔍 Step 2: Analyze Git status and handle commits"
     
     # Get git status information
     local status_output
@@ -477,17 +477,21 @@ nixos_switch_operation() {
     
     if gum confirm "Proceed with safe-switch (test + switch)?"; then
         info "Testing NixOS configuration..."
-        if gum spin --spinner dot --title "Testing configuration..." -- nh os test .; then
+        echo ""  # Add some spacing
+        if nh os test .; then
+            echo ""  # Add spacing after output
             success "Configuration test passed"
             info "Applying NixOS configuration..."
-            if gum spin --spinner line --title "Switching configuration..." -- nh os switch .; then
+            echo ""  # Add some spacing
+            if nh os switch .; then
+                echo ""  # Add spacing after output
                 success "NixOS configuration applied successfully"
                 
                 # Show success banner
                 gum style \
-                    --foreground 46 \
+                    --foreground 107 \
                     --border double \
-                    --border-foreground 46 \
+                    --border-foreground 107 \
                     --align center \
                     --width 60 \
                     --margin "1 2" \
@@ -526,7 +530,9 @@ nixos_test_operation() {
     
     if gum confirm "Test NixOS configuration?"; then
         info "Testing NixOS configuration..."
-        if gum spin --spinner dot --title "Testing configuration..." -- nh os test .; then
+        echo ""  # Add some spacing
+        if nh os test .; then
+            echo ""  # Add spacing after output
             success "✅ Configuration test completed successfully"
             gum style --border normal --padding "1 2" --margin "1 2" \
                 "✨ **Next steps:**" \
@@ -561,7 +567,7 @@ nixos_no_action() {
 handle_nixos_operations() {
     local git_workflow_action="$1"
     
-    gum style --foreground 39 "🏗️ Step 3: NixOS Operations"
+    gum style --foreground 109 "🏗️ Step 3: NixOS Operations"
     
     case $git_workflow_action in
         "SWITCH")
@@ -606,7 +612,7 @@ main() {
     
     # Always show what happens next
     if [[ "$GIT_WORKFLOW_ACTION" == "TEST_ONLY" ]]; then
-        gum style --foreground 226 "⚡ Git workflow completed. Continuing to NixOS operations..."
+        gum style --foreground 179 "⚡ Git workflow completed. Continuing to NixOS operations..."
     fi
     
     debug "About to start NixOS operations with action: $GIT_WORKFLOW_ACTION"
