@@ -53,7 +53,11 @@
   # Tmp enable ssh
   #services.openssh.enable = true;
 
+  # Firmware update manager
   services.fwupd.enable = true;
+
+  # Enable of Thunderbolt communication
+  services.hardware.bolt.enable = true;
 
   # Run unpatched dynamic binaries on NixOS
   programs.nix-ld.enable = true;
