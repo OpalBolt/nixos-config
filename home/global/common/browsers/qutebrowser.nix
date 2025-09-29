@@ -41,6 +41,7 @@
       content.blocking.enabled = true;
     };
     extraConfig = ''
+      c.qt.args = ['disable-features=PermissionElement']
       # Define color palette
       color0 = "#090618"
       color1 = "#C34043"
