@@ -1,9 +1,4 @@
-{
-  lib,
-  hostSpec,
-  ...
-}:
-{
+{ lib, hostSpec, ... }: {
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       # Browsers

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   # FIXME(xdg): That should use config options and just reference whatever is configured as the default
   browser = [ "firefox.desktop" ];
@@ -67,10 +67,14 @@ let
     "application/vnd.ms-excel" = spreadsheet;
     "application/vnd.ms-powerpoint" = slidedeck;
     "application/vnd.ms-word" = writer;
-    "application/vnd.oasis.opendocument.database" = [ "libreoffice-base.desktop" ];
-    "application/vnd.oasis.opendocument.formula" = [ "libreoffice-math.desktop" ];
-    "application/vnd.oasis.opendocument.graphics" = [ "libreoffice-draw.desktop" ];
-    "application/vnd.oasis.opendocument.graphics-template" = [ "libreoffice-draw.desktop" ];
+    "application/vnd.oasis.opendocument.database" =
+      [ "libreoffice-base.desktop" ];
+    "application/vnd.oasis.opendocument.formula" =
+      [ "libreoffice-math.desktop" ];
+    "application/vnd.oasis.opendocument.graphics" =
+      [ "libreoffice-draw.desktop" ];
+    "application/vnd.oasis.opendocument.graphics-template" =
+      [ "libreoffice-draw.desktop" ];
     "application/vnd.oasis.opendocument.presentation" = slidedeck;
     "application/vnd.oasis.opendocument.presentation-template" = slidedeck;
     "application/vnd.oasis.opendocument.spreadsheet" = spreadsheet;
@@ -79,12 +83,18 @@ let
     "application/vnd.oasis.opendocument.text-master" = writer;
     "application/vnd.oasis.opendocument.text-template" = writer;
     "application/vnd.oasis.opendocument.text-web" = writer;
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation" = slidedeck;
-    "application/vnd.openxmlformats-officedocument.presentationml.template" = slidedeck;
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = spreadsheet;
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" = spreadsheet;
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = writer;
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" = writer;
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
+      slidedeck;
+    "application/vnd.openxmlformats-officedocument.presentationml.template" =
+      slidedeck;
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
+      spreadsheet;
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" =
+      spreadsheet;
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
+      writer;
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" =
+      writer;
     "application/vnd.stardivision.calc" = spreadsheet;
     "application/vnd.stardivision.draw" = [ "libreoffice-draw.desktop" ];
     "application/vnd.stardivision.impress" = slidedeck;
@@ -112,8 +122,7 @@ let
       "calibre-gui.desktop"
     ];
   };
-in
-{
+in {
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = associations;
@@ -127,9 +136,30 @@ in
     type = "Application";
   };
 
+  xdg = {
+    enable = true;
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = "${config.home.homeDirectory}/.desktop";
+      documents = "${config.home.homeDirectory}/doc";
+      download = "${config.home.homeDirectory}/downloads";
+      music = "${config.home.homeDirectory}/media/audio";
+      pictures = "${config.home.homeDirectory}/media/images";
+      videos = "${config.home.homeDirectory}/media/video";
+      # publicshare = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
+      # templates = "/var/empty"; #using this option with null or "/var/empty" barfs so it is set properly in extraConfig below
+
+      extraConfig = {
+        # publicshare and templates defined as null here instead of as options because
+        XDG_PUBLICSHARE_DIR = "/var/empty";
+        XDG_TEMPLATES_DIR = "/var/empty";
+      };
+    };
+  };
+
   home.packages = builtins.attrValues {
-    inherit (pkgs)
-      handlr-regex # better xdg-open for desktop apps
-      ;
+    inherit (pkgs) handlr-regex # better xdg-open for desktop apps
+    ;
   };
 }
