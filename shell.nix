@@ -6,7 +6,7 @@ pkgs.mkShell {
 
   buildInputs = with pkgs; [
     # Basic Nix tools
-    nixfmt
+    nixfmt-rfc-style
     nix-prefetch-git
 
     # For secrets management
