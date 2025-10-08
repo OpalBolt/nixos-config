@@ -58,7 +58,7 @@
         open-vsx.davidanson.vscode-markdownlint
 
         # Terraform
-        open-vsx.hashicorp.terraform
+        #open-vsx.hashicorp.terraform
 
         # Kubernetes
         open-vsx.ms-kubernetes-tools.vscode-kubernetes-tools
