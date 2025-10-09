@@ -1,4 +1,5 @@
-{ lib, hostSpec, ... }: {
+{ lib, hostSpec, ... }:
+{
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
       # Browsers
@@ -24,6 +25,7 @@
       # Shell Apps
       "home/global/common/shell/common-tools.nix"
       "home/global/common/shell/kitty.nix"
+      "home/global/common/shell/wezterm.nix"
       "home/global/common/shell/starship.nix"
       "home/global/common/shell/tealdeer.nix"
       "home/global/common/shell/yazi.nix"
