@@ -6,7 +6,7 @@
 {
   programs.wezterm = {
     enable = true;
-    extraConfig = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/wezterm/config.lua"));
+    #extraConfig = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/wezterm/config.lua"));
     colorSchemes = {
       kanagawa = {
         ansi = [
