@@ -20,6 +20,7 @@
       coreutils # basic gnu utils
       findutils # find files
       util-linux # Essential Linux system utilities (mount, fdisk, etc.)
+      cowsay # Essential CLI tool to provide formated echos
 
       # File Management & Search
       dust # disk usage
