@@ -24,7 +24,7 @@
       "hosts/common/optional/bluetooth.nix" # bluetooth controls
       "hosts/common/optional/containers.nix" # podman and docker controls
       "hosts/common/optional/laptop.nix" # laptop controls
-      #"hosts/common/optional/libvirt.nix" # libvirt controls
+      "hosts/common/optional/libvirt.nix" # libvirt controls
       #"hosts/common/optional/neovim.nix" # neovim controls
       "hosts/common/optional/qmk.nix"
       "hosts/common/optional/networking.nix" # networking controls
@@ -39,7 +39,7 @@
       "hosts/common/optional/solaar.nix" # solaar controls
       "hosts/common/optional/chromiumPolicies.nix" # policies for chromium like browsers
 
-      "hosts/specialization/gaming.nix"
+      #"hosts/specialization/gaming.nix"
 
       ## Required Configs ##
       #"hosts/global/core"

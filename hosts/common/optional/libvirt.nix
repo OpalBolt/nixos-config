@@ -1,74 +1,35 @@
 {
   config,
   pkgs,
-  inputs,
-  lib,
   ...
 }:
 {
-  imports = [ inputs.nixvirt.nixosModules.default ];
+  programs.dconf.enable = true;
 
-  # configure for using virt-manager
+  users.users.${config.hostSpec.username}.extraGroups = [ "libvirtd" ];
+
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    virt-viewer
+    spice
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
+    #gnome.adwaita-icon-theme
+  ];
+
   virtualisation = {
-    libvirt.enable = true;
     libvirtd = {
       enable = true;
       qemu = {
-        package = pkgs.qemu_kvm;
         swtpm.enable = true;
         ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
-    kvmgt.enable = true;
-
-    # WARNING: defining this will wipe-out any existing libvirt connections (i.e. virt-manager VMs you manually created)
-    libvirt.connections = {
-      "qemu:///system" = {
-        domains = [
-          {
-            definition = lib.custom.relativeToRoot "dotfiles/virt/domains/generic.xml";
-            active = true;
-          }
-        ];
-        pools = [
-          {
-            definition = lib.custom.relativeToRoot "dotfiles/virt/pools/pools.xml";
-            active = true;
-          }
-
-        ];
-      };
-    };
-
+    spiceUSBRedirection.enable = true;
   };
+  services.spice-vdagentd.enable = true;
 
-  hardware.ksm.enable = true; # enable kernel same-page merging
-
-  programs.virt-manager.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    # QEMU/KVM(HostCpuOnly), provides:
-    #   qemu-storage-daemon qemu-edid qemu-ga
-    #   qemu-pr-helper qemu-nbd elf2dmp qemu-img qemu-io
-    #   qemu-kvm qemu-system-x86_64 qemu-system-aarch64 qemu-system-i386
-    qemu_kvm
-
-    # Install QEMU(other architectures), provides:
-    #   ......
-    #   qemu-loongarch64 qemu-system-loongarch64
-    #   qemu-riscv64 qemu-system-riscv64 qemu-riscv32  qemu-system-riscv32
-    #   qemu-system-arm qemu-arm qemu-armeb qemu-system-aarch64 qemu-aarch64 qemu-aarch64_be
-    #   qemu-system-xtensa qemu-xtensa qemu-system-xtensaeb qemu-xtensaeb
-    #   ......
-    qemu
-
-    swtpm # TMP Emulator
-    OVMF # UEFI firmware for virtual machines
-    virt-viewer # Virtual machine viewer for libvirt
-  ];
-
-  users.users.${config.hostSpec.username} = {
-    extraGroups = [ "libvirtd" ];
-  };
 }
