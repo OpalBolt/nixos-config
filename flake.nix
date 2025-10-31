@@ -56,6 +56,7 @@
       url = "github:pvsr/qbpm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
   };
 
@@ -66,7 +67,6 @@
       home-manager,
       nixpkgs-unstable,
       sops-nix,
-      solaar,
       neovim-config-nix,
       time-helper,
       ...
@@ -115,7 +115,8 @@
                     );
 
                 }
-                solaar.nixosModules.default
+                inputs.solaar.nixosModules.default
+                inputs.determinate.nixosModules.default
 
                 # Import configurations
                 (./hosts/nixos + "/${hostname}")
