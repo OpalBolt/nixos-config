@@ -105,5 +105,6 @@
   home.packages = with pkgs; [
     rsync # Fast incremental file transfer utility
     yq-go # Command-line YAML processor
+    gdu
   ];
 }
