@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    go-task
+    (pkgs.writeShellScriptBin "gotask" ''
+      exec ${pkgs."go-task"}/bin/task "$@"
+    '')
   ];
 }

@@ -20,7 +20,7 @@
     #codeql
     markdownlint-cli
     pre-commit
-    go-task
+    #go-task
 
     #opentofu
     #tflint
