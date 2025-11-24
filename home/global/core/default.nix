@@ -49,7 +49,8 @@
       yq-go # yaml processor
 
       # System Monitoring & Performance
-      bottom # preformance top monitor
+      #bottom # preformance top monitor
+      ttop # preformance top monitor
       fastfetch # fast fetching system information
 
       # System Information & Hardware
