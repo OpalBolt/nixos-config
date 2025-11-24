@@ -51,7 +51,9 @@
 
   # Use hostSpec.hostname to set the system hostname
   networking.hostName = config.hostSpec.hostname;
-
+  networking.hosts = {
+    "192.168.60.10" = [ "test.plikki.com" ];
+  };
   # Tmp enable ssh
   #services.openssh.enable = true;
 
