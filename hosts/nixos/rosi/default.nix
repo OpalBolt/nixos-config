@@ -39,7 +39,7 @@
       "hosts/common/optional/solaar.nix" # solaar controls
       "hosts/common/optional/chromiumPolicies.nix" # policies for chromium like browsers
 
-      #"hosts/specialization/gaming.nix"
+      "hosts/specialization/ai.nix"
 
       ## Required Configs ##
       #"hosts/global/core"
