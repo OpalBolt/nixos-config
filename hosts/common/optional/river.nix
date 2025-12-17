@@ -31,7 +31,7 @@
 
   programs = {
     # enable riverwm
-    river.enable = true;
+    river-classic.enable = true;
 
     # enable waybar
     waybar.enable = true;
