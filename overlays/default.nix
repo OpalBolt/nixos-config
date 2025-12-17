@@ -49,7 +49,7 @@ let
   # Stable packages accessible as pkgs.stable
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
-      inherit (final) system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
@@ -57,7 +57,7 @@ let
   # Unstable packages accessible as pkgs.unstable
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
-      inherit (final) system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
