@@ -5,7 +5,8 @@
   home.packages = with pkgs; [
     # Core font selection - minimal but functional
     noto-fonts
-    noto-fonts-emoji
+    #noto-fonts-emoji
+    noto-fonts-color-emoji
 
     # Programming fonts
     nerd-fonts.iosevka
