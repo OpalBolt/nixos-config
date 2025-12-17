@@ -38,13 +38,13 @@ in
 
   # Git program configuration
   programs.git = {
-    # Basic identity
-    userName = hostSpec.handle;
-    userEmail = publicGitEmail;
-
     # Core git settings
-    extraConfig = {
+    settings = {
+
       # General settings
+      user.name = hostSpec.handle; # use the username from hostSpec
+      user.email = inputs.nix-secrets.email.git; # use the email from nix-secrets
+
       #log.showSignature = "true";
       init.defaultBranch = "main";
       pull.rebase = true;
@@ -65,6 +65,28 @@ in
       #gpg.format = "ssh";
       #user.signingkey = "${publicKey}";
       #gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";
+      #
+
+      # Git aliases
+      aliases = {
+        # Meta
+        aliases = "!git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort";
+
+        # Basic operations
+        unstage = "reset HEAD --";
+        cm = "commit -m";
+        s = "status";
+        p = "push";
+        b = "branch -avv";
+        ci = "clean -i";
+        init = "commit -m \"Initial commit\"";
+
+        # Log views
+        g = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative --all";
+        l = "!git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative -n 10";
+        la = "!git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative -n 10 --all";
+        lag = "!git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative -n 10 --all --graph";
+      };
     };
 
     # Signing configuration
@@ -114,41 +136,22 @@ in
       ".cache/"
     ];
 
-    # Delta diff viewer configuration
-    delta = {
-      enable = true;
-      options = {
-        side-by-side = true;
-        navigate = true;
-        light = false;
-        line-numbers = true;
-        commit-decoration = true;
-        #syntax-theme = "Github";
-        zero-style = "syntax dim";
-        minus-style = "syntax bold auto";
-      };
+  };
+
+  # Delta diff viewer configuration
+  programs.delta = {
+    enable = true;
+    options = {
+      side-by-side = true;
+      navigate = true;
+      light = false;
+      line-numbers = true;
+      commit-decoration = true;
+      #syntax-theme = "Github";
+      zero-style = "syntax dim";
+      minus-style = "syntax bold auto";
     };
 
-    # Git aliases
-    aliases = {
-      # Meta
-      aliases = "!git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort";
-
-      # Basic operations
-      unstage = "reset HEAD --";
-      cm = "commit -m";
-      s = "status";
-      p = "push";
-      b = "branch -avv";
-      ci = "clean -i";
-      init = "commit -m \"Initial commit\"";
-
-      # Log views
-      g = "!git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative --all";
-      l = "!git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative -n 10";
-      la = "!git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative -n 10 --all";
-      lag = "!git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %s' --abbrev-commit --date=relative -n 10 --all --graph";
-    };
   };
 
   # SSH allowed signers file

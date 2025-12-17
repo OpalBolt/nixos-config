@@ -7,8 +7,10 @@
   programs.lazygit.enable = true;
   programs.git = {
     enable = true;
-    userName = hostSpec.handle; # use the username from hostSpec
-    userEmail = inputs.nix-secrets.email.git; # use the email from nix-secrets
+    settings = {
+      user.name = hostSpec.handle; # use the username from hostSpec
+      user.email = inputs.nix-secrets.email.git; # use the email from nix-secrets
+    };
 
     ignores = [
       # Nix
