@@ -6,7 +6,7 @@
       #Iosevka
       fantasque-sans-mono
       mononoki
-      ubuntu_font_family
+      ubuntu-classic
       nerd-fonts.iosevka
       nerd-fonts.fantasque-sans-mono
       nerd-fonts.mononoki

@@ -3,10 +3,10 @@
   home.packages = with pkgs; [
     # --- System and General Purpose Fonts ---
     noto-fonts # Google's font family for international text
-    ubuntu_font_family # Ubuntu's official font family
+    ubuntu-classic # Ubuntu's official font family
 
     # --- Special Character and Emoji Fonts ---
-    noto-fonts-emoji # Google's emoji font
+    noto-fonts-color-emoji
     material-symbols # Google's Material Design icons
     bemoji # A font for displaying Bitmoji-style emojis
 
