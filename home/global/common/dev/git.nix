@@ -28,7 +28,6 @@ in
     (builtins.attrValues {
       inherit (pkgs)
         direnv
-        delta
         act # GitHub workflow runner
         gh # GitHub CLI
         yq-go # YAML/TOML parser that mirrors jq
