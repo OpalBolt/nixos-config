@@ -3,12 +3,12 @@
 
   inputs = {
     # Core nixpkgs channels
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # User environment management
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -106,7 +106,7 @@
                     inputs.nix-vscode-extensions.overlays.default
                   ];
                   nixpkgs.config.allowUnfree = true;
-                  system.configurationRevision =
+                  system.nixos.revision =
                     self.rev or (
                       if self ? "dirtyRev" then
                         "${self.dirtyRev}-${self.lastModifiedDate}"
