@@ -15,8 +15,8 @@ in
       home-manager.users.${username} = {
         imports = lib.flatten [
           (map lib.custom.relativeToRoot [
-            #"home/global/common/ai/claude-cli.nix"
-            #"home/global/common/ai/gemini-cli.nix"
+            "home/global/common/ai/claude-cli.nix"
+            "home/global/common/ai/gemini-cli.nix"
           ])
         ];
       };
