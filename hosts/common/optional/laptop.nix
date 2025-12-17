@@ -3,7 +3,7 @@
   services = {
     logind = {
       settings = {
-        login = {
+        Login = {
           HandleLidSwitch = "suspend-then-hibernate";
           HandlePowerKeyLongPress = "poweroff";
           HandlePowerKey = "hibernate";
