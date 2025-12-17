@@ -1,7 +1,17 @@
 { pkgs, ... }:
 {
+  services = {
+    logind = {
+      settings = {
+        login = {
+          HandleLidSwitch = "suspend-then-hibernate";
+          HandlePowerKeyLongPress = "poweroff";
+          HandlePowerKey = "hibernate";
+        };
+      };
+    };
+  };
   services.power-profiles-daemon.enable = true;
-  services.logind.lidSwitch = "suspend-then-hibernate";
   #boot.kernelParams = [ "resume_offset=<offset>" ];
   boot.kernelParams = [
     #"mem_sleep_default=deep"
@@ -9,8 +19,6 @@
   ];
 
   boot.resumeDevice = "/dev/disk/by-uuid/1dfb6a12-e0b1-4910-8e61-6cb43d9838f7";
-  services.logind.powerKey = "hibernate";
-  services.logind.powerKeyLongPress = "poweroff";
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=30m
     SuspendState=mem
