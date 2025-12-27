@@ -18,6 +18,7 @@
       "home/global/common/shell/web-tools.nix"
       "home/global/common/editors/obsidian.nix"
       "home/global/common/productivity/taskmanager.nix"
+      "home/global/common/productivity/rpi-imager.nix"
 
     ])
 
