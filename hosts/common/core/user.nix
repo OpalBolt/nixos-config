@@ -72,9 +72,12 @@ in
   };
 
 }
-// lib.optionalAttrs (inputs ? "home-manager") {
+// lib.optionalAttrs (inputs ? "home-manager" && !isMinimal) {
   # Set up home-manager for the configured user
+  # Disabled for minimal installations (servers, etc.)
   home-manager = {
+    useGlobalPkgs = true;
+    backupFileExtension = "bak";
     extraSpecialArgs = {
       inherit pkgs inputs;
       hostSpec = config.hostSpec;
@@ -86,12 +89,7 @@ in
           (
             { config, ... }:
             import
-              (
-                if isMinimal then
-                  lib.custom.relativeToRoot "home/global/core"
-                else
-                  lib.custom.relativeToRoot "home/users/${username}/${hostSpec.hostname}.nix"
-              )
+              (lib.custom.relativeToRoot "home/users/${username}/${hostSpec.hostname}.nix")
               {
                 inherit
                   config

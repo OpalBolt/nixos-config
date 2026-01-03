@@ -1,8 +1,6 @@
 {
-  config,
   lib,
   pkgs,
-  hostSpec,
   ...
 }:
 
@@ -10,8 +8,6 @@
   imports = lib.flatten [
     (lib.custom.scanPaths ./.)
   ];
-
-  services.ssh-agent.enable = true;
 
   # Install core packages
   home.packages = builtins.attrValues {
@@ -71,25 +67,8 @@
     manpages.enable = false;
   };
 
-  # Configure Nix package manager for this user's home environment
-  nix = {
-    # Specify which Nix package to use (defaults to the one from pkgs)
-    package = lib.mkDefault pkgs.nix;
-    settings = {
-      # Enable experimental features for Nix
-      experimental-features = [
-        "nix-command" # Enables the new nix command-line interface
-        "flakes" # Enables the flakes feature for reproducible builds
-      ];
-      # Disable warnings about uncommitted changes in flake repositories
-      warn-dirty = false;
-    };
-  };
-
-  # Enable home-manager to manage itself
   programs.home-manager.enable = true;
 
-  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
 }
