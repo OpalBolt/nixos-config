@@ -1,5 +1,7 @@
 # shell.nix - Development shell for nix-dots
-{ pkgs ? import <nixpkgs> { }, }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
 pkgs.mkShell {
   name = "nix-dots-dev";

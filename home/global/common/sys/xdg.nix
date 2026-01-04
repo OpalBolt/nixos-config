@@ -67,14 +67,10 @@ let
     "application/vnd.ms-excel" = spreadsheet;
     "application/vnd.ms-powerpoint" = slidedeck;
     "application/vnd.ms-word" = writer;
-    "application/vnd.oasis.opendocument.database" =
-      [ "libreoffice-base.desktop" ];
-    "application/vnd.oasis.opendocument.formula" =
-      [ "libreoffice-math.desktop" ];
-    "application/vnd.oasis.opendocument.graphics" =
-      [ "libreoffice-draw.desktop" ];
-    "application/vnd.oasis.opendocument.graphics-template" =
-      [ "libreoffice-draw.desktop" ];
+    "application/vnd.oasis.opendocument.database" = [ "libreoffice-base.desktop" ];
+    "application/vnd.oasis.opendocument.formula" = [ "libreoffice-math.desktop" ];
+    "application/vnd.oasis.opendocument.graphics" = [ "libreoffice-draw.desktop" ];
+    "application/vnd.oasis.opendocument.graphics-template" = [ "libreoffice-draw.desktop" ];
     "application/vnd.oasis.opendocument.presentation" = slidedeck;
     "application/vnd.oasis.opendocument.presentation-template" = slidedeck;
     "application/vnd.oasis.opendocument.spreadsheet" = spreadsheet;
@@ -83,18 +79,12 @@ let
     "application/vnd.oasis.opendocument.text-master" = writer;
     "application/vnd.oasis.opendocument.text-template" = writer;
     "application/vnd.oasis.opendocument.text-web" = writer;
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
-      slidedeck;
-    "application/vnd.openxmlformats-officedocument.presentationml.template" =
-      slidedeck;
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
-      spreadsheet;
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" =
-      spreadsheet;
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
-      writer;
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" =
-      writer;
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation" = slidedeck;
+    "application/vnd.openxmlformats-officedocument.presentationml.template" = slidedeck;
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = spreadsheet;
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.template" = spreadsheet;
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = writer;
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.template" = writer;
     "application/vnd.stardivision.calc" = spreadsheet;
     "application/vnd.stardivision.draw" = [ "libreoffice-draw.desktop" ];
     "application/vnd.stardivision.impress" = slidedeck;
@@ -122,7 +112,8 @@ let
       "calibre-gui.desktop"
     ];
   };
-in {
+in
+{
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = associations;
@@ -159,7 +150,8 @@ in {
   };
 
   home.packages = builtins.attrValues {
-    inherit (pkgs) handlr-regex # better xdg-open for desktop apps
-    ;
+    inherit (pkgs)
+      handlr-regex # better xdg-open for desktop apps
+      ;
   };
 }

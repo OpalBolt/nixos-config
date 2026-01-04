@@ -1,5 +1,13 @@
 # Host-specific variable settings
-{ config, lib, pkgs, hostSpec, inputs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  hostSpec,
+  inputs,
+  ...
+}:
+{
   # Set all values according to the hostSpec structure from default.nix
   hostSpec = {
     # System variables

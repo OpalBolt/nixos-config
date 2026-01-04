@@ -1,12 +1,11 @@
 { config, lib, ... }:
 let
-  ifTheyExist = groups:
-    builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
-in {
+  ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
+in
+{
   users.users.nadia = {
     isNormalUser = true;
-    description =
-      config.hostSpec.userFullName or "${config.hostSpec.name} (nadia)";
+    description = config.hostSpec.userFullName or "${config.hostSpec.name} (nadia)";
     #hashedPasswordFile = config.sops.secrets.hashedPassword.path;
     uid = 1001;
 

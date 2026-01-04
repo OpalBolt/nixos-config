@@ -1,4 +1,11 @@
-{ lib, config, inputs, pkgs, ... }: {
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
+{
   imports = lib.flatten [
 
     ./config
