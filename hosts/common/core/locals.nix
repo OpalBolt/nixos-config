@@ -1,21 +1,22 @@
-{ pkgs, ... }:
+{ config, ... }:
 {
-  # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
+  # Timezone and localization settings
+  time.timeZone = config.hostSpec.timezone;
+  i18n.defaultLocale = config.hostSpec.locale;
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
-
+  # Additional locale settings for Danish regional formats
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "da_DK.UTF-8";
-    LC_IDENTIFICATION = "da_DK.UTF-8";
-    LC_MEASUREMENT = "da_DK.UTF-8";
-    LC_MONETARY = "da_DK.UTF-8";
-    LC_NAME = "da_DK.UTF-8";
-    LC_NUMERIC = "da_DK.UTF-8";
-    LC_PAPER = "da_DK.UTF-8";
-    LC_TELEPHONE = "da_DK.UTF-8";
-    LC_TIME = "da_DK.UTF-8";
+    LC_ADDRESS = config.hostSpec.extraLocale;
+    LC_IDENTIFICATION = config.hostSpec.extraLocale;
+    LC_MEASUREMENT = config.hostSpec.extraLocale;
+    LC_MONETARY = config.hostSpec.extraLocale;
+    LC_NAME = config.hostSpec.extraLocale;
+    LC_NUMERIC = config.hostSpec.extraLocale;
+    LC_PAPER = config.hostSpec.extraLocale;
+    LC_TELEPHONE = config.hostSpec.extraLocale;
+    LC_TIME = config.hostSpec.extraLocale;
   };
 
+  # NTP time synchronization servers
+  networking.timeServers = [ "dk.pool.ntp.org" ];
 }

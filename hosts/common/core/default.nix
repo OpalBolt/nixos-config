@@ -5,105 +5,81 @@
   pkgs,
   ...
 }:
-
 {
   imports = lib.flatten [
-    inputs.home-manager.nixosModules.home-manager # Home Manager module
     inputs.sops-nix.nixosModules.sops
-    (lib.custom.scanPaths ./.) # Scan for all modules in the current directory
-
-    (map lib.custom.relativeToRoot [
-      "new-modules/common"
-    ])
+    (lib.custom.scanPaths ./.)
+    (map lib.custom.relativeToRoot [ "new-modules/common" ])
   ];
 
+  # Pass networking and email from nix-secrets to hostSpec
   hostSpec = {
-    inherit (inputs.nix-secrets)
-      networking
-      email
-      ;
+    inherit (inputs.nix-secrets) networking email;
   };
 
-  ## Install critical packages ##
-  environment.systemPackages = with pkgs; [
-    curl
-    git
-    sops
-    nano
-    openssh
-    sshfs
-    wget
-    yazi
-    perl
-    bat
-    openssl
-    openvpn
-    python3
-  ];
+  # Essential system packages required for all hosts
+  environment = {
+    systemPackages = with pkgs; [
+      # Core utilities
+      curl
+      git
+      nano
+      openssh
+      wget
 
-  ## Localization and Timezone ##
-  i18n.defaultLocale = config.hostSpec.locale;
-  time.timeZone = config.hostSpec.timezone;
-  networking.timeServers = [ "dk.pool.ntp.org" ];
+      # Security and secrets management
+      sops
+      openssl
 
-  ## Nix Helper ##
+      # System utilities
+      perl
+      python3
+
+      # File management and viewing
+      bat
+      yazi
+    ];
+    enableAllTerminfo = true;
+    defaultPackages = lib.mkForce [ ];
+  };
+
+  # Nix helper for system management
   programs.nh = {
     enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 20d --keep 20";
+    clean = {
+      enable = true;
+      extraArgs = "--keep-since 20d --keep 20";
+    };
     flake = "${config.hostSpec.home}/git/Nix/dot.nix/";
   };
 
-  programs.ssh = {
-    startAgent = true;
-  };
+  # Hardware and firmware
+  hardware.enableRedistributableFirmware = true;
 
-  ## SUDO and Terminal ##
-  environment.enableAllTerminfo = true;
-  #hardware.enableAllFirmware = true;
-  hardware.enableRedistributableFirmware = true; # Enable redistributable firmware, alternative to enableAllFirmware
-
-  security.sudo = {
-    extraConfig = ''
-      Defaults lecture = never # rollback results in sudo lectures after each reboot, it's somewhat useless anyway
-      Defaults pwfeedback # password input feedback - makes typed password visible as asterisks
-      Defaults timestamp_timeout=120 # only ask for password every 2h1
-    '';
-  };
-
-  environment.shells = with pkgs; [
-    bash
-    zsh
-  ];
-
-  ## NIX related ##
+  # Nix daemon configuration
   documentation.nixos.enable = lib.mkForce false;
-  nix = {
-    settings = {
+  nix.settings = {
+    # Build settings
+    cores = 2;
+    max-jobs = 1;
 
-      cores = 2;
-      max-jobs = 1;
-      # See https://jackson.dev/post/nix-reasonable-defaults/
-      connect-timeout = 5;
-      log-lines = 25;
-      min-free = 128000000; # 128MB
-      max-free = 1000000000; # 1GB
+    # Connection and logging - https://jackson.dev/post/nix-reasonable-defaults/
+    connect-timeout = 5;
+    log-lines = 25;
 
-      trusted-users = [ "@wheel" ];
-      # Deduplicate and optimize nix store
-      auto-optimise-store = true;
-      warn-dirty = false;
+    # Disk space management
+    min-free = 128000000; # 128MB
+    max-free = 1000000000; # 1GB
 
-      allow-import-from-derivation = true;
+    # Security and optimization
+    trusted-users = [ "@wheel" ];
+    auto-optimise-store = true;
+    warn-dirty = false;
+    allow-import-from-derivation = true;
 
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
-
-  # Disable default packages
-  environment.defaultPackages = lib.mkForce [ ];
-
 }

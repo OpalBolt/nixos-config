@@ -42,7 +42,7 @@ in
     enableAskPassword = true;
     askPassword = pkgs.lib.mkForce "${pkgs.kdePackages.ksshaskpass.out}/bin/ksshaskpass";
 
-    knownHostsFiles = 
+    knownHostsFiles =
       let
         publicHosts = builtins.toFile "custom_known_hosts" ''
           codeberg.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVIC02vnjFyL+I4RHfvIGNtOgJMe769VTF1VR4EB3ZB
@@ -56,7 +56,10 @@ in
         privateHosts = builtins.toFile "custom_private_known_hosts" inputs.nix-secrets.networking.ssh.knownHostsFileContents;
         workHosts = builtins.toFile "custom_work_known_hosts" inputs.nix-secrets.work.ssh.knownHostsFileContents;
       in
-        [ publicHosts privateHosts ]
-        ++ lib.optional (config.hostSpec.isWork) workHosts;
+      [
+        publicHosts
+        privateHosts
+      ]
+      ++ lib.optional (config.hostSpec.isWork) workHosts;
   };
 }

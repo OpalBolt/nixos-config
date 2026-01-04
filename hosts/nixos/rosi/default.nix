@@ -20,6 +20,7 @@
 
       ## Required Configs ##
       "hosts/common/core"
+      "hosts/common/optional/home-manager.nix"
       "hosts/common/optional/audio.nix" # pipewire and cli controls
       "hosts/common/optional/bluetooth.nix" # bluetooth controls
       "hosts/common/optional/containers.nix" # podman and docker controls
