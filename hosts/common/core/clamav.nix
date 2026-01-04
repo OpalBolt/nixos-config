@@ -1,15 +1,6 @@
+{ _, ... }:
 {
-  lib,
-  pkgs,
-  ...
-}:
-
-{
-  environment.systemPackages = [
-    pkgs.clamav
-
-  ];
-
+  # ClamAV antivirus - baseline security for all systems
   services.clamav = {
     daemon.enable = true;
     updater.enable = true;
