@@ -44,6 +44,21 @@ let
     # myapp = prev.myapp.overrideAttrs (oldAttrs: {
     #   patches = oldAttrs.patches or [] ++ [ ./my-custom.patch ];
     # });
+
+    # Fix nvim-treesitter-textobjects require check failure
+    # The plugin depends on nvim-treesitter which isn't available during build-time checks
+    # Override to use master branch instead of the nixpkgs version
+    vimPlugins = prev.vimPlugins // {
+      nvim-treesitter-textobjects = prev.vimPlugins.nvim-treesitter-textobjects.overrideAttrs (old: {
+        src = final.fetchFromGitHub {
+          owner = "nvim-treesitter";
+          repo = "nvim-treesitter-textobjects";
+          rev = "master";
+          hash = "";  # Leave empty - Nix will tell you the correct hash
+        };
+        doCheck = false;
+      });
+    };
   };
 
   # Stable packages accessible as pkgs.stable
@@ -59,6 +74,10 @@ let
     unstable = import inputs.nixpkgs-unstable {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
+      overlays = [
+        # Apply the modifications overlay to unstable as well
+        modifications
+      ];
     };
   };
 in
