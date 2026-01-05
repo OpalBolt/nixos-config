@@ -24,7 +24,12 @@
 
     # Neovim configurations
     neovim-config-nix.url = "git+https://codeberg.org/OpalBolt/neovim-config-nix?ref=main";
-    neovim-config-nix.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    neovim-config-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    lazyvim = {
+      url = "github:pfassina/lazyvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Secrets management
     sops-nix = {
@@ -69,6 +74,7 @@
       sops-nix,
       neovim-config-nix,
       time-helper,
+      lazyvim,
       ...
     }@inputs:
     let
