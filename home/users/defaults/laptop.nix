@@ -1,4 +1,4 @@
-{ lib, hostSpec, ... }:
+{ lib, ... }:
 {
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
@@ -16,6 +16,7 @@
 
       # Editors
       "home/global/common/editors/neovim.nix"
+      #"home/global/common/editors/neovim-test.nix"
 
       # Office
       "home/global/common/productivity/libreoffice.nix"
