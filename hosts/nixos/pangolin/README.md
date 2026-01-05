@@ -1,5 +1,5 @@
 STDIN
-# Pangolin - DMZ Reverse Proxy
+# Tynan - DMZ Reverse Proxy
 
 Dedicated reverse proxy server running Pangolin (Traefik-based) in DMZ VLAN 30.
 
@@ -13,19 +13,19 @@ Dedicated reverse proxy server running Pangolin (Traefik-based) in DMZ VLAN 30.
 
 1. **Edit configuration**:
    - `config/vars.nix` - Update user details if needed
-   - `config/pangolin.nix` - **Edit domains and backend IPs!**
+   - `config/tynan.nix` - **Edit domains and backend IPs!**
    - `config/network.nix` - Adjust interface name if not `ens18`
 
 2. **Create SOPS secrets** (in nix-secrets repo):
    ```yaml
-   # secrets/pangolin.yaml
+   # secrets/tynan.yaml
    hashedPassword: <your-hashed-password>
    rootHashedPassword: <your-root-hashed-password>
    ```
 
 3. **Deploy**:
    ```bash
-   nixos-rebuild switch --flake .#pangolin --target-host 192.168.106.10
+   nixos-rebuild switch --flake .#tynan --target-host 192.168.106.10
    ```
 
 4. **Create DNS provider credentials**:
@@ -39,7 +39,7 @@ Dedicated reverse proxy server running Pangolin (Traefik-based) in DMZ VLAN 30.
 
 ## Services Proxied
 
-Edit `config/pangolin.nix` to customize:
+Edit `config/tynan.nix` to customize:
 - Nextcloud: cloud.yourdomain.com → 192.168.105.10:443
 - Immich: photos.yourdomain.com → 192.168.105.11:2283
 - Jellyfin: media.yourdomain.com → 192.168.105.12:8096

@@ -13,7 +13,7 @@
 
   # Home-manager configuration for non-minimal systems
   # This module should be imported by hosts that need home-manager (rosi, ceris, scopuli)
-  # and NOT imported by minimal hosts (pangolin)
+  # and NOT imported by minimal hosts (tynan)
   home-manager = {
     useGlobalPkgs = true;
     backupFileExtension = "bak";

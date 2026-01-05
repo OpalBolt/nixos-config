@@ -1,5 +1,5 @@
-# Pangolin reverse proxy configuration
-# Pangolin uses Traefik under the hood for reverse proxying
+# Tynan reverse proxy configuration
+# Tynan uses Pangolin (Traefik) under the hood for reverse proxying
 {
   config,
   lib,

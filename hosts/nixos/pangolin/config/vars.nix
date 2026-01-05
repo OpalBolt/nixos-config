@@ -1,4 +1,4 @@
-# Host-specific variable settings for Pangolin reverse proxy server
+# Host-specific variable settings for Tynan reverse proxy server
 {
   config,
   lib,
@@ -10,7 +10,7 @@
   # Only valid hostSpec fields from lib/vars/default.nix
   hostSpec = {
     # System variables
-    hostname = "pangolin";
+    hostname = "tynan";
     system = "x86_64-linux";
     timezone = "Europe/Copenhagen";
     locale = "en_DK.UTF-8";
