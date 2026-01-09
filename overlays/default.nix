@@ -50,14 +50,6 @@ let
     # Override to use master branch instead of the nixpkgs version
   };
 
-  # Stable packages accessible as pkgs.stable
-  stable-packages = final: _prev: {
-    stable = import inputs.nixpkgs-stable {
-      system = final.stdenv.hostPlatform.system;
-      config.allowUnfree = true;
-    };
-  };
-
   # Unstable packages accessible as pkgs.unstable
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
@@ -67,13 +59,13 @@ let
   };
 in
 {
-  default =
-    final: prev:
-
-    (additions final prev)
-    // (unfree-config final prev)
-    // (modifications final prev)
-    // (linuxModifications final prev)
-    // (stable-packages final prev)
-    // (unstable-packages final prev);
+  # Using composeManyExtensions for cleaner overlay composition
+  # This is more maintainable and less error-prone than manual merging with //
+  default = inputs.nixpkgs.lib.composeManyExtensions [
+    additions
+    unfree-config
+    modifications
+    linuxModifications
+    unstable-packages
+  ];
 }
