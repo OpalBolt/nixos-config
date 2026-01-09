@@ -38,6 +38,7 @@
       # File management and viewing
       bat
       yazi
+      tree
     ];
     enableAllTerminfo = true;
     defaultPackages = lib.mkForce [ ];
