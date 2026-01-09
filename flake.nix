@@ -23,8 +23,10 @@
     };
 
     # Neovim configurations
-    neovim-config-nix.url = "git+https://codeberg.org/OpalBolt/neovim-config-nix?ref=main";
-    neovim-config-nix.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-config-nix = {
+      url = "git+https://codeberg.org/OpalBolt/neovim-config-nix?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lazyvim = {
       url = "github:pfassina/lazyvim-nix";
@@ -102,7 +104,6 @@
             value = nixpkgs.lib.nixosSystem {
               specialArgs = {
                 inherit inputs hostname lib;
-                # Access unstable packages through pkgs.unstable
               };
               modules = [
                 # Global overlay and config
