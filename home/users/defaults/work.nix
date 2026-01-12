@@ -1,4 +1,4 @@
-{ lib, hostSpec, ... }:
+{ lib, ... }:
 {
   imports = lib.flatten [
     (map lib.custom.relativeToRoot [
@@ -10,8 +10,8 @@
       # Editors
       "home/global/common/editors/neovim.nix"
       "home/global/common/editors/vscode.nix"
-      "home/global/common/editors/zed.nix"
-      "home/global/common/productivity/ollama.nix"
+      #"home/global/common/editors/zed.nix"
+      #"home/global/common/productivity/ollama.nix"
 
     ])
   ];
