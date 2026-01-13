@@ -19,27 +19,32 @@
 
   # Essential system packages required for all hosts
   environment = {
-    systemPackages = with pkgs; [
-      # Core utilities
-      curl
-      git
-      nano
-      openssh
-      wget
+    systemPackages =
+      with pkgs;
+      [
+        # Core utilities
+        curl
+        git
+        nano
+        openssh
+        wget
 
-      # Security and secrets management
-      sops
-      openssl
+        # Security and secrets management
+        sops
+        openssl
 
-      # System utilities
-      perl
-      python3
+        # System utilities
+        perl
+        python3
 
-      # File management and viewing
-      bat
-      yazi
-      tree
-    ];
+        # File management and viewing
+        bat
+        yazi
+        tree
+      ]
+      ++ lib.optionals (!config.hostSpec.isMinimal) [
+        fuse
+      ];
     enableAllTerminfo = true;
     defaultPackages = lib.mkForce [ ];
   };

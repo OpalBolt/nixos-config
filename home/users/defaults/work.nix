@@ -13,6 +13,8 @@
       #"home/global/common/editors/zed.nix"
       #"home/global/common/productivity/ollama.nix"
 
+      # Security
+      "home/global/common/work/backup-customers.nix"
     ])
   ];
 
