@@ -1,20 +1,15 @@
-{
-  inputs,
-  config,
-  ...
-}:
+{ inputs, hostSpec, config, lib, ... }:
 let
   secretspath = builtins.toString inputs.nix-secrets.outPath;
 in
 {
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
-  # Base SOPS configuration
   sops = {
     defaultSopsFile = "${secretspath}/secrets/shared.yaml";
-    age.keyFile = "${config.hostSpec.home}/.config/sops/age/keys.txt";
+    age.keyFile = "${hostSpec.home}/.config/sops/age/keys.txt";
     age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519" ];
   };
 }
