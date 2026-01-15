@@ -1,3 +1,4 @@
+# Look into this next: https://francis.begyn.be/blog/nixos-restic-backups
 {
   inputs,
   config,
