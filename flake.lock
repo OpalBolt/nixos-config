@@ -242,11 +242,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1764937281,
-        "narHash": "sha256-lhqgPcPZ+UqhJOXM/V4I+m8vMPHQ4i6dstTbRzHYsKA=",
+        "lastModified": 1768467551,
+        "narHash": "sha256-5Jf/IZPf/5z5DuPbKDhQdeQZvZFCRk23LtMMyhGCqhY=",
         "ref": "main",
-        "rev": "b4cd3aeab2f17c7efa936662ced5e168508926d7",
-        "revCount": 33,
+        "rev": "3381e7632b43368efe9e51aa67b0303e2af85202",
+        "revCount": 42,
         "type": "git",
         "url": "https://codeberg.org/OpalBolt/neovim-config-nix"
       },
@@ -316,11 +316,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1764009888,
-        "narHash": "sha256-hJekfTiW1792txgRSM4LcHnz1lDSY87LYbsJEn2V378=",
+        "lastModified": 1767604651,
+        "narHash": "sha256-itAnxzTpWpY1s3LA/oNngOuZDXT5U5JUZP5fApwx9gs=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "16ac3281f322ea15d39843829e42a44d22da3715",
+        "rev": "3c9bc4d7123e1b48d92f25ba505b889af541e897",
         "type": "github"
       },
       "original": {
