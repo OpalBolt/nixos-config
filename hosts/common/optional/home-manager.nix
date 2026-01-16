@@ -16,6 +16,7 @@
   # and NOT imported by minimal hosts (tynan)
   home-manager = {
     useGlobalPkgs = true;
+    useUserPackages = true;
     backupFileExtension = "bak";
     extraSpecialArgs = {
       inherit pkgs inputs;
