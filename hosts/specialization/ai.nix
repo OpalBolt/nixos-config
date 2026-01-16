@@ -17,6 +17,8 @@ in
           (map lib.custom.relativeToRoot [
             "home/global/common/ai/claude-cli.nix"
             "home/global/common/ai/gemini-cli.nix"
+            "home/global/common/ai/mistral.nix"
+            "home/global/common/ai/opencode.nix"
           ])
         ];
       };
