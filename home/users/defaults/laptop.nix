@@ -5,7 +5,7 @@
       # Browsers
       "home/global/common/browsers/firefox.nix"
       # "home/global/common/browsers/chromium.nix"
-      "home/global/common/browsers/qutebrowser.nix"
+      #"home/global/common/browsers/qutebrowser.nix"
 
       # Entertainment
       "home/global/common/entertainment/music.nix"
