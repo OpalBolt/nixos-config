@@ -6,5 +6,4 @@
     package = pkgs.unstable.claude-code;
   };
 
-  home.packages = with pkgs.unstable; [ claude-code-router ];
 }
