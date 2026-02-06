@@ -26,7 +26,7 @@ in
       EDITOR = lib.mkDefault "nvim";
       VISUAL = lib.mkDefault "nvim";
       FLAKE = lib.mkDefault "${homeDir}/git/Nix/dot.nix/";
-      SHELL = "zsh";
+      SHELL = "${pkgs.zsh}/bin/zsh";
       TERM = "kitty";
       TERMINAL = "kitty";
     };
