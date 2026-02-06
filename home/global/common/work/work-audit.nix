@@ -41,7 +41,7 @@ let
         pkgs.iptables
         pkgs.nftables
         pkgs.systemd
-        #pkgs.fail2ban
+        pkgs.fail2ban
         pkgs.clamav
       ]
     }

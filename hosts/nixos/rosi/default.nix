@@ -67,5 +67,8 @@
 
   # Run unpatched dynamic binaries on NixOS
   programs.nix-ld.enable = true;
+  
+  services.fail2ban.enable = false;
+  
   system.stateVersion = "25.05"; # No touchy touchy
 }
