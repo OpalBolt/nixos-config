@@ -14,9 +14,6 @@
   # in a secure way, essential for desktop environments and user-friendly admin tasks
   security.polkit.enable = lib.mkIf (!config.hostSpec.isMinimal) true;
 
-  # Enforce stronger password hashing
-  security.pam.services.passwd.passwordAuth = true;
-
   security.loginDefs.settings = {
     # Increase rounds significantly from default (5000), but keep it
     # fast enough (approx 200-300ms) to avoid timeouts in apps.
@@ -27,6 +24,11 @@
     # lets them default to "forever" or system defaults which are usually safe).
     # We explicitly do NOT set PASS_MAX_DAYS here to avoid forced expiry.
   };
+
+  # System warning banner for security notification.
+  # Concise single line to minimize impact on TTY-based display managers like 'ly'.
+  environment.etc."issue".text =
+    "Authorized access only. All activities are monitored and recorded.\n";
 
   # ---------------------------------------------------------------------------------------
   # AUDIT & ACCOUNTING
@@ -65,10 +67,4 @@
     # "-a exit,always -F arch=b64 -S execve -k exec_log"
     # -----------------------------------------------------------------------------------
   ];
-
-  # Enable process accounting
-  # Starts the 'acct' service. This logs a summary of every process that closes.
-  # It is generally lightweight, but writes to disk constantly.
-  # Set to 'false' if disk I/O is a bottleneck.
-  security.acct.enable = true;
 }
