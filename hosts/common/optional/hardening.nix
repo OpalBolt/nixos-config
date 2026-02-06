@@ -28,9 +28,10 @@
 
     ## Network Security - Anti-Spoofing Protection ##
     # Prevents IP spoofing attacks by validating that packets came from the expected interface
-
-    "net.ipv4.conf.all.rp_filter" = 1; # default: 0 (disabled) - Enable strict reverse path filtering
-    "net.ipv4.conf.default.rp_filter" = 1; # default: 0 (disabled) - Apply to new interfaces
+    # NOTE: "1" (Strict) can break VPNs and VM bridging. "2" (Loose) is safer for desktop use.
+    # To revert to strictest: set to 1. To disable: set to 0.
+    "net.ipv4.conf.all.rp_filter" = 2; # default: 0, strict: 1, loose: 2
+    "net.ipv4.conf.default.rp_filter" = 2;
 
     ## Network Security - Disable Dangerous ICMP Features ##
     # Prevents attackers from manipulating routing tables or learning network topology
@@ -85,8 +86,12 @@
 
     "fs.protected_hardlinks" = 1; # default: 1 (enabled) - Already secure, explicitly set
     "fs.protected_symlinks" = 1; # default: 1 (enabled) - Already secure, explicitly set
-    "fs.protected_regular" = 2; # default: 0 (disabled) - Protect regular files in sticky directories
-    "fs.protected_fifos" = 2; # default: 0 (disabled) - Protect FIFOs in sticky directories
+    
+    # NOTE: The following can break some apps (e.g. flatpaks, some IPC). 
+    # Enable if you don't experience issues with apps failing to start.
+    # "fs.protected_regular" = 2; # default: 0 (disabled)
+    # "fs.protected_fifos" = 2;   # default: 0 (disabled)
+    
     "fs.suid_dumpable" = 0; # default: 0 (disabled) - Prevent core dumps of setuid programs
   };
 
@@ -110,7 +115,9 @@
   # Complements traditional Unix discretionary access control (DAC)
   security.apparmor = {
     enable = true;
-    killUnconfinedConfinables = true; # Kill processes that should be confined but aren't
+    # NOTE: If true, kills processes that should be confined but aren't.
+    # This can cause apps to "vanish" if profiles are slightly off.
+    killUnconfinedConfinables = false; 
   };
 
   # Disable Core Dumps
