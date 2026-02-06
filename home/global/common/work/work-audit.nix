@@ -61,7 +61,11 @@ let
     # pkexec is picky about the SHELL variable and usually cleans the environment.
     # We wrap the command in '/bin/sh -c' to ensure the PATH we exported above 
     # is preserved and available to the Lynis process running as root.
-    SHELL=/bin/sh /run/wrappers/bin/pkexec /bin/sh -c "PATH=$PATH ${pkgs.lynis}/bin/lynis audit system --quick --profile ${lynisProfile}" > "$FILEPATH" 2>&1
+    if ! SHELL=/bin/sh /run/wrappers/bin/pkexec /bin/sh -c "PATH=$PATH ${pkgs.lynis}/bin/lynis audit system --quick --profile ${lynisProfile}" > "$FILEPATH" 2>&1; then
+        echo "Audit failed or was cancelled. Cleaning up..."
+        rm -f "$FILEPATH"
+        exit 1
+    fi
 
     # 4. Upload
     if [ "$UPLOAD" = true ]; then
