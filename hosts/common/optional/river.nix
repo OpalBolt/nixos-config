@@ -65,6 +65,7 @@
     playerctl
 
     # Misc
+    polkit_gnome # Graphical authentication agent
     brightnessctl # Brightness control
     wl-clipboard # Wayland clipboard
     swaybg # Wayland background handler
