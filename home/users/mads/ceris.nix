@@ -15,6 +15,7 @@
       "home/global/common/editors/vscode.nix"
       "home/global/common/editors/zed.nix"
       "home/global/common/work/work-apps.nix"
+      "home/global/common/work/work-audit.nix"
       "home/global/common/work/time-helper.nix"
       "home/global/common/dev/devops.nix"
       "home/global/common/common.nix"
