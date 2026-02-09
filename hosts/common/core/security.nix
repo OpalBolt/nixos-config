@@ -46,19 +46,19 @@
   security.audit.enable = true;
   security.audit.rules = [
     # Log changes to critical system time (prevents tampering with log timestamps)
-    "-a exit,always -F arch=b64 -S adjtimex -S settimeofday -k time-change"
-    "-a exit,always -F arch=b64 -S clock_settime -k time-change"
-    "-w /etc/localtime -p wa -k time-change"
+    # "-a exit,always -F arch=b64 -S adjtimex -S settimeofday -k time-change"
+    # "-a exit,always -F arch=b64 -S clock_settime -k time-change"
+    # "-w /etc/localtime -p wa -k time-change"
 
     # Log changes to user/group information (critical security events)
-    "-w /etc/group -p wa -k identity"
-    "-w /etc/passwd -p wa -k identity"
-    "-w /etc/gshadow -p wa -k identity"
-    "-w /etc/shadow -p wa -k identity"
+    # "-w /etc/group -p wa -k identity"
+    # "-w /etc/passwd -p wa -k identity"
+    # "-w /etc/gshadow -p wa -k identity"
+    # "-w /etc/shadow -p wa -k identity"
 
     # Log changes to network environment (optional, low noise)
-    "-w /etc/hosts -p wa -k system-locale"
-    "-w /etc/network -p wa -k system-locale"
+    # "-w /etc/hosts -p wa -k system-locale"
+    # "-w /etc/network -p wa -k system-locale"
 
     # -----------------------------------------------------------------------------------
     # HEAVY RULES - DISABLED FOR PERFORMANCE
