@@ -23,7 +23,7 @@ in
   };
   networking.wg-quick.interfaces = {
     wireguard-work = {
-      autostart = true;
+      autostart = false;
       address = [
         "192.168.8.8/32"
       ];
