@@ -279,10 +279,10 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1770356993,
-        "narHash": "sha256-/6OhMsndKyR1gbzJ8630nKUg16cIjnqNVs7/hZgoyqM=",
+        "lastModified": 1770723723,
+        "narHash": "sha256-t1jHAHbaAydEta5vlKmO29hri9A5AwURVnBPK6vnQOo=",
         "ref": "main",
-        "rev": "c6f097d53451d47d772354b2d9486e37a75c7f64",
+        "rev": "ed537526fb4a35e5bccbe35481e821dbe82a6153",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/OpalBolt/nix-secrets.git"
@@ -599,18 +599,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1757306855,
-        "narHash": "sha256-CoUxA9NRO+yPMeFFn5d2qrp5iR4vaxcU7VRTGAHkOzc=",
-        "ref": "main",
-        "rev": "dbda8b308b1a4b7b1614c9f21aedfd431c6e290e",
-        "revCount": 15,
-        "type": "git",
-        "url": "https://codeberg.org/OpalBolt/time-helper"
+        "lastModified": 1770712956,
+        "narHash": "sha256-vQKCzUC/06ZS/uEp4aRIb0gO94nD2wIur+1QKztA6pw=",
+        "owner": "OpalBolt",
+        "repo": "Time-Helper",
+        "rev": "57f0b59e7d4293af1feeb2684846d06b76d558a7",
+        "type": "github"
       },
       "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://codeberg.org/OpalBolt/time-helper"
+        "owner": "OpalBolt",
+        "repo": "Time-Helper",
+        "type": "github"
       }
     },
     "utils": {

@@ -2,6 +2,7 @@
   inputs,
   config,
   hostSpec,
+  pkgs,
   ...
 }:
 let
@@ -15,9 +16,10 @@ in
   ];
 
   sops.secrets = {
-    zai.claudetoken = {
+    "zai/claudetoken" = {
       sopsFile = "${secretspath}/secrets/per-mads.yaml";
     };
+  };
 
   programs.claude-code = {
     enable = true;
@@ -28,9 +30,11 @@ in
     API_TIMEOUT_MS = "3000000";
   };
   
-  programs.zsh.initExtra = ''
-     if [ -f "${config.sops.secrets.zai.claudetoken}" ]; then
-       export ANTHROPIC_AUTH_TOKEN=$(cat ${config.sops.secrets.zai.claudetoken})
+  programs.zsh.initContent = ''
+     if [ -f "${config.sops.secrets."zai/claudetoken".path}" ]; then
+       export ANTHROPIC_BASE_URL="https://api.z.ai/api/anthropic"
+       export ANTHROPIC_AUTH_TOKEN=$(cat ${config.sops.secrets."zai/claudetoken".path})
+       export API_TIMEOUT_MS="3000000"
      fi
    '';
 
