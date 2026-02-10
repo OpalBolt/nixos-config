@@ -55,7 +55,8 @@
     };
 
     time-helper = {
-      url = "git+https://codeberg.org/OpalBolt/time-helper?ref=main";
+      #url = "git+https://codeberg.org/OpalBolt/time-helper?ref=main";
+      url = "github:OpalBolt/Time-Helper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
