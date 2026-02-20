@@ -24,6 +24,7 @@
           "markdown" = true;
           "scminput" = false;
         };
+        "chat.mcp.gallery.enabled" = true;
       };
       extensions = with pkgs; [
 
