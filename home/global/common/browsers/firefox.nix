@@ -126,6 +126,12 @@
           ];
         };
         search.engines = {
+          ddg = {
+            name = "DDG";
+            urls = [
+              { template = "https://duckduckgo.com/?q={searchTerms}"; }
+            ];
+          };
           searcnxg = {
             name = "Local Search";
             urls = [
@@ -138,7 +144,7 @@
           bing.metaData.hidden = true;
           google.metaData.hidden = true;
         };
-        search.default = "searcnxg";
+        search.default = "ddg";
         search.force = true;
 
         userChrome = (builtins.readFile (lib.custom.relativeToRoot "dotfiles/firefox/userChrome.css"));
