@@ -20,6 +20,7 @@ in
             "home/global/common/ai/mistral.nix"
             "home/global/common/ai/opencode.nix"
             "home/global/common/ai/antigravity.nix"
+            "home/global/common/ai/copilot-cli.nix"
           ])
         ];
       };
