@@ -279,10 +279,10 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1772171571,
-        "narHash": "sha256-3YglqmdkZYSD/78XPnkcA8VSld4nJLTYauYlKvWz0Fc=",
+        "lastModified": 1774204565,
+        "narHash": "sha256-vcLcCi9texmD6PTqvxL1PP583+8HutP1ZWunswu5NyU=",
         "ref": "main",
-        "rev": "c90fa4dfafffa657d09b4a3bb8ae8c3e7d871517",
+        "rev": "ecb36aab7526769699c0401aeba3fd0a329cd922",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/OpalBolt/nix-secrets.git"
