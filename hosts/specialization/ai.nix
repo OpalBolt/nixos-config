@@ -21,6 +21,8 @@ in
             "home/global/common/ai/opencode.nix"
             "home/global/common/ai/antigravity.nix"
             "home/global/common/ai/copilot-cli.nix"
+            "home/global/common/ai/nono.nix"
+
           ])
         ];
       };
