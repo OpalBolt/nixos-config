@@ -15,7 +15,6 @@ in
     (lib.custom.scanPaths ./.)
     (lib.custom.relativeToRoot "home/global/core")
   ];
-  services.ssh-agent.enable = true;
   home = {
     username = lib.mkDefault username;
     homeDirectory = lib.mkDefault homeDir;

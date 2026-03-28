@@ -1,12 +1,16 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   # Security configuration for the system
+
+  # Install seahorse (GNOME Keyring GUI) for desktop systems only
+  environment.systemPackages = lib.mkIf (!config.hostSpec.isMinimal) [ pkgs.seahorse ];
 
   # Enable GNOME Keyring for desktop systems only
   # This provides a secure storage for passwords, SSH keys, and other secrets
   # integrated with PAM (Pluggable Authentication Modules)
   services.gnome.gnome-keyring.enable = lib.mkIf (!config.hostSpec.isMinimal) true;
-  services.gnome.gcr-ssh-agent.enable = lib.mkIf (!config.hostSpec.isMinimal) (lib.mkForce false);
+  # Disable gnome-keyring's SSH agent — we use programs.ssh.startAgent instead
+  services.gnome.gcr-ssh-agent.enable = lib.mkForce false;
   security.pam.services.${config.hostSpec.username}.enableGnomeKeyring = lib.mkIf (
     !config.hostSpec.isMinimal
   ) true;

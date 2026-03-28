@@ -197,6 +197,7 @@
       spawn = [
         "\"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1\""
         "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
+        "\"${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets\""
         "\"swayidle -w timeout 600 'swaylock' before-sleep 'swaylock'\"" # lock screen
         "nm-applet"
         "mako"
