@@ -5,6 +5,8 @@
   # Enable GNOME Keyring for desktop systems only
   # This provides a secure storage for passwords, SSH keys, and other secrets
   # integrated with PAM (Pluggable Authentication Modules)
+  services.gnome.gnome-keyring.enable = lib.mkIf (!config.hostSpec.isMinimal) true;
+  services.gnome.gcr-ssh-agent.enable = lib.mkIf (!config.hostSpec.isMinimal) (lib.mkForce false);
   security.pam.services.${config.hostSpec.username}.enableGnomeKeyring = lib.mkIf (
     !config.hostSpec.isMinimal
   ) true;
