@@ -93,6 +93,15 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    stdlib = ''
+      use_renv() {
+        local file="''${1:-.env}"
+        watch_file "$file"
+        # Unset any variables from a previous renv load so direnv can track them cleanly.
+        eval "$(renv unload 2>/dev/null || true)"
+        eval "$(renv resolve "$file")"
+      }
+    '';
   };
 
   # Smart cd command that learns your habits
