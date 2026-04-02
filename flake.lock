@@ -217,11 +217,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774875830,
-        "narHash": "sha256-WPYlTmZvVa9dWlAziFkVjBdv1Z6giNIq40O1DxsBmiI=",
+        "lastModified": 1775077333,
+        "narHash": "sha256-OXcxobt7lBkh1B8AjwreU+24myhtKpqeLfAeIyNLFY8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7afd8cebb99e25a64a745765920e663478eb8830",
+        "rev": "49ca96b2714c5931e17401eff87f3edd42d2b0f2",
         "type": "github"
       },
       "original": {
@@ -239,39 +239,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1773709048,
-        "narHash": "sha256-NahhJ5RxV7cOA6ISf56FUmw3ELpxtSPpiF8zPTIhzTk=",
+        "lastModified": 1775150825,
+        "narHash": "sha256-tXclIRx0F0KEVTVG1ZnCE8pl8Xkou+9ahw+5hHMBTps=",
         "owner": "pfassina",
         "repo": "lazyvim-nix",
-        "rev": "1d4fe049ef1ccfc2b0ad2ce2b01fb8f92c3e51ef",
+        "rev": "5c65e0ec2b6cc42178c936c72aefefe198715dfc",
         "type": "github"
       },
       "original": {
         "owner": "pfassina",
         "repo": "lazyvim-nix",
         "type": "github"
-      }
-    },
-    "neovim-config-nix": {
-      "inputs": {
-        "nixCats": "nixCats",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1771087610,
-        "narHash": "sha256-1KDMDbIcmszWr1L2QjI9yn9VTWSga6cXYUzrP82vO2s=",
-        "ref": "main",
-        "rev": "1e1868522de90db8cd57767ab112a16668acecc8",
-        "revCount": 43,
-        "type": "git",
-        "url": "https://codeberg.org/OpalBolt/neovim-config-nix"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://codeberg.org/OpalBolt/neovim-config-nix"
       }
     },
     "nix": {
@@ -319,31 +297,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1774925891,
-        "narHash": "sha256-8QGLGZJGnjPXFkWncYI9IXfUJEaPshX81W9LCJyQbGE=",
+        "lastModified": 1775098553,
+        "narHash": "sha256-OFWIVY1vzAbPE73ksKAMsFh11AXZ3MjIymRQ90Butnc=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "01dbb479b5f70a18feaa6398077c3babba0d4ba9",
+        "rev": "361b17a5b2f4536a119c794a367a29b07691f941",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "type": "github"
-      }
-    },
-    "nixCats": {
-      "locked": {
-        "lastModified": 1770584904,
-        "narHash": "sha256-9Zaz8lbKF2W9pwXZEnbiGsicHdBoU+dHt3Wv3mCJoZ8=",
-        "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
-        "rev": "538fdde784d2909700d97a8ef307783b33a86fb1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
         "type": "github"
       }
     },
@@ -395,11 +358,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1774709303,
-        "narHash": "sha256-D3Q07BbIA2KnTcSXIqqu9P586uWxN74zNoCH3h2ESHg=",
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8110df5ad7abf5d4c0f6fb0f8f978390e77f9685",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
         "type": "github"
       },
       "original": {
@@ -425,11 +388,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1774799055,
-        "narHash": "sha256-Tsq9BCz0q47ej1uFF39m4tuhcwru/ls6vCCJzutEpaw=",
+        "lastModified": 1775002709,
+        "narHash": "sha256-d3Yx83vSrN+2z/loBh4mJpyRqr9aAJqlke4TkpFmRJA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "107cba9eb4a8d8c9f8e9e61266d78d340867913a",
+        "rev": "bcd464ccd2a1a7cd09aa2f8d4ffba83b761b1d0e",
         "type": "github"
       },
       "original": {
@@ -466,11 +429,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774936042,
-        "narHash": "sha256-+43/gDJ4+rFg0snQowMoU/6Oq+Qd4ohy9YSeGWSL4fA=",
+        "lastModified": 1775151341,
+        "narHash": "sha256-gsqFdlKx1Ep/JuqWBZ2lSVTVfh+VKiG9GS+rrmVJP7c=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "57f8ec2e62f4ae7c4a56cc862313c1e17165ad30",
+        "rev": "14330f2fceb2a698e2a49c1559bc99d105ab0ac0",
         "type": "github"
       },
       "original": {
@@ -527,7 +490,6 @@
         "hardware": "hardware",
         "home-manager": "home-manager",
         "lazyvim": "lazyvim",
-        "neovim-config-nix": "neovim-config-nix",
         "nix-secrets": "nix-secrets",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_3",
@@ -549,16 +511,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1775041736,
-        "narHash": "sha256-ghPPKS9EtRnfMNdiM8CAKBj+uaPSz8/rCciiUI/gocQ=",
-        "ref": "rewrite",
-        "rev": "7bd9f1631eebf42e118d42042cdcfe4a25a80ed0",
-        "revCount": 45,
+        "lastModified": 1775151358,
+        "narHash": "sha256-0HaebRh7sf+Qi+nZtu7+prvmbrVvDYjQYSiXgSms72Y=",
+        "ref": "refs/heads/main",
+        "rev": "45705c8d8091631d348ee9c923b6862517aa20c2",
+        "revCount": 25,
         "type": "git",
         "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
       },
       "original": {
-        "ref": "rewrite",
         "type": "git",
         "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
       }

@@ -22,14 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    # Neovim configurations
-    neovim-config-nix = {
-      url = "git+https://codeberg.org/OpalBolt/neovim-config-nix?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     secure-handling-of-secrets = {
-      url = "git+ssh://git@github.com/eficode/secure-handling-of-secrets?ref=rewrite";
+      url = "git+ssh://git@github.com/eficode/secure-handling-of-secrets";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -80,7 +74,7 @@
       home-manager,
       nixpkgs-unstable,
       sops-nix,
-      neovim-config-nix,
+      #neovim-config-nix,
       time-helper,
       lazyvim,
       ...
