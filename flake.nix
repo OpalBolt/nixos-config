@@ -1,5 +1,5 @@
 {
-  description = "Nix, Nixos and flake configuration";
+  description = "Nix, NixOS and flake configuration — den aspect-oriented format";
 
   inputs = {
     # Core nixpkgs channels
@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Den — aspect-oriented NixOS framework (matches local den-rewrite/den/ at HEAD)
+    # Den — aspect-oriented NixOS framework
     den.url = "github:vic/den";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
@@ -26,12 +26,10 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
     secure-handling-of-secrets = {
       url = "git+ssh://git@github.com/eficode/secure-handling-of-secrets?ref=feat/sleep-lock-cleanup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     lazyvim = {
       url = "github:pfassina/lazyvim-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,24 +43,19 @@
     nix-secrets = {
       url = "git+ssh://git@github.com/OpalBolt/nix-secrets.git?ref=main&shallow=1";
     };
+
+    # Hardware modules
     hardware.url = "github:nixos/nixos-hardware";
 
-    # Declarative vms using libvirt
-    nixvirt = {
-      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    # Extra tooling
     solaar = {
       url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     time-helper = {
       url = "github:OpalBolt/Time-Helper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     qbpm = {
       url = "github:pvsr/qbpm";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,6 +64,5 @@
   };
 
   # All configuration lives in modules/ — loaded via import-tree.
-  # See modules/ for den, hosts, defaults, legacy, and misc modules.
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

@@ -1,38 +1,31 @@
-# Global defaults applied to all hosts.
-# Sets up: state versions, lib.custom specialArg, overlays, and common NixOS modules.
-{ inputs, lib, ... }:
+{ lib, den, inputs, ... }:
 {
-  # Default NixOS state version — individual hosts override via their legacy vars.nix
-  den.default.nixos.system.stateVersion = lib.mkDefault "25.05";
+  # All users get homeManager class by default
+  den.schema.user.classes = lib.mkDefault [ "homeManager" ];
 
-  # Override host instantiation to inject lib.custom (relativeToRoot, scanPaths)
-  # that legacy modules depend on, plus the standard inputs specialArg.
-  den.schema.host = {
-    config.instantiate =
-      { modules, ... }:
-      inputs.nixpkgs.lib.nixosSystem {
-        inherit modules;
-        specialArgs = {
-          inherit inputs;
-          lib = inputs.nixpkgs.lib.extend (
-            _: _: {
-              custom = import ../lib { lib = inputs.nixpkgs.lib; };
-            }
-          );
-        };
-      };
+  # Enable bidirectional host↔user config via .provides.*
+  den.ctx.user.includes = [ den._.mutual-provider ];
+
+  # Apply define-user (users.users.* + HM home.username/homeDirectory) and hostname globally
+  den.default.includes = [
+    den._.define-user
+    den._.hostname
+  ];
+
+  # NixOS state version and pkgs.unstable overlay for all hosts
+  den.default.nixos = { ... }: {
+    system.stateVersion = "25.05";
+    nixpkgs.overlays = [
+      (final: prev: {
+        unstable = inputs.nixpkgs-unstable.legacyPackages.${prev.system};
+      })
+    ];
   };
 
-  # Apply overlays and unfree config to all NixOS hosts
-  den.default.nixos.nixpkgs.overlays = [
-    (import ../overlays { inherit inputs; }).default
-    inputs.nix-vscode-extensions.overlays.default
-  ];
-  den.default.nixos.nixpkgs.config.allowUnfree = true;
+  # HM state version for all users
+  den.default.homeManager.home.stateVersion = "24.05";
 
-  # Common NixOS modules applied to every host
-  den.default.nixos.imports = [
-    inputs.solaar.nixosModules.default
-    inputs.determinate.nixosModules.default
-  ];
+  # Make flake inputs available to HM modules as extraSpecialArgs,
+  # enabling `{ inputs, ... }:` and `imports = [ inputs.*.homeManagerModules.* ]`.
+  den.ctx.hm-host.nixos.home-manager.extraSpecialArgs = { inherit inputs; };
 }
