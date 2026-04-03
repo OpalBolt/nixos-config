@@ -1,4 +1,4 @@
-{ den, inputs, ... }:
+{ self, den, inputs, ... }:
 {
   # Host aspect for rosi (Framework AMD AI 300, work laptop).
   # Declares which feature aspects to include and adds rosi-specific NixOS config.
@@ -36,7 +36,7 @@
       { config, lib, pkgs, ... }:
       {
         imports = [
-          ../../../hardware/rosi.nix
+          (self + "/hardware/rosi.nix")
         ];
 
         # ClamAV antivirus

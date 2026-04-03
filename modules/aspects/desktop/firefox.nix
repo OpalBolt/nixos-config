@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   den.aspects.firefox.homeManager = { inputs, pkgs, ... }: {
     programs.firefox = {
@@ -110,8 +110,8 @@
         search.default = "ddg";
         search.force = true;
 
-        userChrome = builtins.readFile ../../../dotfiles/firefox/userChrome.css;
-        userContent = builtins.readFile ../../../dotfiles/firefox/userContent.css;
+        userChrome = builtins.readFile (self + "/dotfiles/firefox/userChrome.css");
+        userContent = builtins.readFile (self + "/dotfiles/firefox/userContent.css");
       };
     };
   };

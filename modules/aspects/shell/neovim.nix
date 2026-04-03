@@ -1,10 +1,10 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   den.aspects.neovim.homeManager = { inputs, pkgs, ... }: {
     imports = [ inputs.lazyvim.homeManagerModules.default ];
     programs.lazyvim = {
       enable = true;
-      configFiles = ../../../dotfiles/lazyvim;
+      configFiles = self + "/dotfiles/lazyvim";
       extras = {
         lang = {
           markdown.enable = true;

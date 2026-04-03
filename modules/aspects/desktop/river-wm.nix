@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 {
   den.aspects.river-wm = {
     nixos = { pkgs, ... }: {
@@ -129,7 +129,7 @@
             "\"${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets\""
             "nm-applet"
             "mako"
-            "\"swaybg -i ${../../../dotfiles/bg.png} -m fill\""
+            "\"swaybg -i ${self + "/dotfiles/bg.png"} -m fill\""
           ];
         };
 
@@ -177,7 +177,7 @@
         enable = true;
         systemd.enable = true;
         systemd.target = "river-session.target";
-        style = builtins.readFile ../../../dotfiles/waybar/style.css;
+        style = builtins.readFile (self + "/dotfiles/waybar/style.css");
         settings.mainBar = {
           layer = "top";
           position = "top";
@@ -262,7 +262,7 @@
           indicator-caps-lock = true;
           indicator-radius = 50;
           indicator-thickness = 10;
-          image = toString ../../../dotfiles/bg.png;
+          image = toString (self + "/dotfiles/bg.png");
           scaling = "fill";
         };
       };

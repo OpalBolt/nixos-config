@@ -1,4 +1,4 @@
-{ den, inputs, ... }:
+{ self, den, inputs, ... }:
 {
   den.aspects.mads = {
     includes = [
@@ -62,7 +62,7 @@
             TERMINAL = "kitty";
           };
           file."scripts" = {
-            source = ../../../dotfiles/scripts;
+            source = self + "/dotfiles/scripts";
             recursive = true;
           };
           preferXdgDirectories = true;

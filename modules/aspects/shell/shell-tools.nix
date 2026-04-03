@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 {
   den.aspects.shell-tools.homeManager = { pkgs, ... }: {
     programs.ripgrep.enable = true;
@@ -54,7 +54,7 @@
       enableBashIntegration = true;
       settings.theme = "kanagawa";
     };
-    xdg.configFile."zellij/config.kdl".source = ../../../dotfiles/zellij/config.kdl;
+    xdg.configFile."zellij/config.kdl".source = self + "/dotfiles/zellij/config.kdl";
     programs.starship = {
       enable = true;
       enableZshIntegration = true;
