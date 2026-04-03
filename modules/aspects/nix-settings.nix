@@ -45,11 +45,12 @@
         auto-optimise-store = true;
         warn-dirty = false;
         allow-import-from-derivation = true;
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
+        experimental-features = [ "nix-command" "flakes" ];
       };
+    };
+
+    homeManager = { pkgs, ... }: {
+      home.packages = with pkgs; [ nix-tree nixfmt-rfc-style ];
     };
   };
 }

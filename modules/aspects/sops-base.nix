@@ -9,5 +9,13 @@
         age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519" ];
       };
     };
+    homeManager = { inputs, config, ... }: {
+      imports = [ inputs.sops-nix.homeManagerModules.sops ];
+      sops = {
+        defaultSopsFile = "${toString inputs.nix-secrets.outPath}/secrets/shared.yaml";
+        age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+        age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519" ];
+      };
+    };
   };
 }
