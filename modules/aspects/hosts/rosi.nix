@@ -36,7 +36,7 @@
       { config, lib, pkgs, ... }:
       {
         imports = [
-          ../../hardware/rosi.nix
+          ../../../hardware/rosi.nix
         ];
 
         # ClamAV antivirus

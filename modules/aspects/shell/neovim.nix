@@ -4,7 +4,7 @@
     imports = [ inputs.lazyvim.homeManagerModules.default ];
     programs.lazyvim = {
       enable = true;
-      configFiles = ../../dotfiles/lazyvim;
+      configFiles = ../../../dotfiles/lazyvim;
       extras = {
         lang = {
           markdown.enable = true;

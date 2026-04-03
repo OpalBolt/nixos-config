@@ -110,8 +110,8 @@
         search.default = "ddg";
         search.force = true;
 
-        userChrome = builtins.readFile ../../dotfiles/firefox/userChrome.css;
-        userContent = builtins.readFile ../../dotfiles/firefox/userContent.css;
+        userChrome = builtins.readFile ../../../dotfiles/firefox/userChrome.css;
+        userContent = builtins.readFile ../../../dotfiles/firefox/userContent.css;
       };
     };
   };

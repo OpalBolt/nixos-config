@@ -11,60 +11,63 @@ NixOS configuration for all personal/work machines, built on the
 
 ```
 nixos-config/
-  flake.nix                  # flake-parts + den + import-tree
+  flake.nix                   # flake-parts + den + import-tree
   hardware/
-    rosi.nix                 # Framework AMD AI 300 hardware config
+    rosi.nix                  # Framework AMD AI 300 hardware config
   modules/
-    den.nix                  # imports inputs.den.flakeModule
-    schema.nix               # den.schema.host typed options (timezone, locale, etc.)
-    hosts.nix                # den.hosts declarations
-    defaults.nix             # global defaults: stateVersions, overlays, HM extraSpecialArgs
+    den.nix                   # imports inputs.den.flakeModule
+    schema.nix                # den.schema.host typed options (timezone, locale, etc.)
+    hosts.nix                 # den.hosts declarations
+    defaults.nix              # global defaults: stateVersions, overlays, HM extraSpecialArgs
     aspects/
-      # Feature aspects (reusable across hosts)
-      boot.nix               # systemd-boot, latest kernel
-      nix-settings.nix       # nix config, nh, core packages
-      security.nix           # polkit, keyring, audit
-      localization.nix       # timezone, locale, keyboard (parametric)
-      networking.nix         # NetworkManager, firewall
-      ssh.nix                # openssh, known hosts (parametric)
-      sops-base.nix          # sops-nix base config
-      audio.nix              # pipewire
-      bluetooth.nix
-      chromium-policies.nix  # Brave + Chromium policies
-      containers.nix         # podman + docker
-      fonts.nix
-      hardening.nix          # kernel hardening, apparmor, fail2ban (servers)
-      laptop.nix             # power mgmt, hibernate
-      libvirt.nix
-      printing.nix
-      qmk.nix
-      river-wm.nix           # ly, XDG portals, wayland env
-      solaar.nix             # Logitech wireless
-      thunar.nix
-      vpn.nix                # personal WireGuard
-      work-vpn.nix           # work WireGuard (parametric)
-      work-wifi.nix          # EAP-TLS wifi (parametric)
-      # User aspects
-      mads.nix               # user + full HM config
-      # Host aspects
-      rosi.nix               # Framework AMD AI 300, all includes
-  home/
-    # Home Manager modules imported by mads.nix
-    core/      git, locals, sops, zsh, fonts
-    desktop/   river, waybar, swaylock, swayidle, fuzzel, mako, gtk
-    shell/     kitty, starship, tealdeer, yazi, zellij, common-tools, web-tools
-    editors/   neovim, obsidian
-    dev/       git, devops
-    work/      work-apps, time-helper, work-audit, backup-customers
-    comms/     discord, weechat
-    productivity/ libreoffice, nextcloud, thunderbird, taskmanager
-    tools/     bitwarden, csv, go-task, nix-related
-    sys/       xdg, complex-fonts
-    ai/        fabric
-    browsers/  firefox
-    common.nix
-  dotfiles/    # Static dotfiles (sourced by home/ modules)
+      system/
+        boot.nix              # systemd-boot, latest kernel
+        nix-settings.nix      # nix config, nh, core packages + HM nix tools
+        networking.nix        # NetworkManager, firewall
+        localization.nix      # timezone, locale, keyboard (parametric) + HM keyboard
+        containers.nix        # podman + docker
+      security/
+        security.nix          # polkit, keyring + HM gnome-keyring service
+        hardening.nix         # kernel hardening, apparmor, fail2ban (servers)
+        sops-base.nix         # sops-nix NixOS + HM base config
+      hardware/
+        bluetooth.nix
+        laptop.nix            # power mgmt, hibernate
+        libvirt.nix
+        printing.nix
+        qmk.nix
+        solaar.nix            # Logitech wireless
+      desktop/
+        river-wm.nix          # ly, portals, wayland + HM: river, waybar, swaylock, fuzzel, mako, GTK
+        fonts.nix             # system fonts + HM fontconfig
+        audio.nix             # pipewire
+        thunar.nix
+        xdg.nix               # HM: mimetypes, userDirs, handlr-regex
+        chromium-policies.nix # Brave + Chromium policies
+        firefox.nix           # HM: full Firefox config, NUR extensions, userChrome
+      shell/
+        zsh.nix               # HM: oh-my-zsh, zplug, aliases
+        shell-tools.nix       # HM: bat, eza, fzf, fd, ripgrep, direnv, zoxide, yazi, zellij, starship
+        kitty.nix             # HM: kitty terminal, Kanagawa theme
+        git.nix               # HM: git identity, delta, lazygit, includeIf work/personal
+        neovim.nix            # HM: lazyvim with all extras
+        devops.nix            # HM: kubectl, k9s, kubecolor, yamllint, pre-commit
+      network/
+        vpn.nix               # personal WireGuard
+        work-vpn.nix          # work WireGuard (parametric)
+        work-wifi.nix         # EAP-TLS wifi (parametric)
+        ssh.nix               # openssh, known hosts (parametric)
+      work/
+        work.nix              # HM: slack, timewarrior, awscli2, lynis audit timer, rclone mount
+      users/
+        mads.nix              # user account + personal HM config (env, comms, productivity, fabric)
+      hosts/
+        rosi.nix              # Framework AMD AI 300 — all includes + host-specific NixOS
+  dotfiles/                   # Static dotfiles referenced by aspects
 ```
+
+Each aspect file is self-contained: NixOS config and Home Manager config live together in
+one file via `den.aspects.<name>.nixos` and `den.aspects.<name>.homeManager` keys.
 
 ---
 
@@ -96,7 +99,7 @@ nixos-rebuild switch --flake .#rosi
 ## Adding a Host
 
 1. **Hardware config**: Add `hardware/<hostname>.nix` (generate with `nixos-generate-config` on the machine)
-2. **Host aspect**: Create `modules/aspects/<hostname>.nix`:
+2. **Host aspect**: Create `modules/aspects/hosts/<hostname>.nix`:
    ```nix
    { den, inputs, ... }:
    {
@@ -109,7 +112,7 @@ nixos-rebuild switch --flake .#rosi
          { nixos = inputs.hardware.nixosModules.<hardware-module>; }
        ];
        nixos = { config, lib, pkgs, ... }: {
-         imports = [ ../../hardware/<hostname>.nix ];
+         imports = [ ../../../hardware/<hostname>.nix ];
          # host-specific config
        };
      };

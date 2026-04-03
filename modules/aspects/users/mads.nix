@@ -62,7 +62,7 @@
             TERMINAL = "kitty";
           };
           file."scripts" = {
-            source = ../../dotfiles/scripts;
+            source = ../../../dotfiles/scripts;
             recursive = true;
           };
           preferXdgDirectories = true;
