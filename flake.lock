@@ -511,15 +511,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1775151358,
-        "narHash": "sha256-0HaebRh7sf+Qi+nZtu7+prvmbrVvDYjQYSiXgSms72Y=",
-        "ref": "refs/heads/main",
-        "rev": "45705c8d8091631d348ee9c923b6862517aa20c2",
-        "revCount": 25,
+        "lastModified": 1775163523,
+        "narHash": "sha256-IE3jn0H/KnsHG9DoX3FGdP+R7l/NQ8HyFr9baLODlw8=",
+        "ref": "feat/sleep-lock-cleanup",
+        "rev": "b4278c62e11c22423fec85c5c9ffd88d54dbb8de",
+        "revCount": 30,
         "type": "git",
         "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
       },
       "original": {
+        "ref": "feat/sleep-lock-cleanup",
         "type": "git",
         "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
       }

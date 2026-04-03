@@ -23,7 +23,7 @@
     };
 
     secure-handling-of-secrets = {
-      url = "git+ssh://git@github.com/eficode/secure-handling-of-secrets";
+      url = "git+ssh://git@github.com/eficode/secure-handling-of-secrets?ref=feat/sleep-lock-cleanup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
