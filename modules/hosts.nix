@@ -6,16 +6,16 @@
 # Host flags (isWork, isServer, etc.) correspond to den.schema.host options defined
 # in modules/schema.nix. These will be read by den aspects in Phase 3+.
 {
-  # Laptop: ThinkPad T14s — work laptop, has HM (via legacy)
+  # Laptop: ThinkPad T14s — work laptop, has HM
   den.hosts.x86_64-linux.ceris = {
-    users.mads = { classes = [ ]; };
+    users.mads = { classes = [ "homeManager" ]; };
     isWork = true;
     useWindowManager = true; # River WM
   };
 
-  # Laptop: Framework AMD AI 300 — work + personal, has HM (via legacy)
+  # Laptop: Framework AMD AI 300 — work + personal, has HM
   den.hosts.x86_64-linux.rosi = {
-    users.mads = { classes = [ ]; };
+    users.mads = { classes = [ "homeManager" ]; };
     isWork = true;
     useWindowManager = true; # River WM + ai specialization
   };

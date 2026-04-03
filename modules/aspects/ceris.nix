@@ -9,6 +9,7 @@
       den.aspects.containers
       den.aspects.chromium-policies
       den.aspects.fonts
+      den.aspects.hm-base
       den.aspects.laptop
       den.aspects.networking
       den.aspects.printing
@@ -30,8 +31,6 @@
           inputs.hardware.nixosModules.common-cpu-intel
           (lib.custom.relativeToRoot "hosts/nixos/ceris/hardware-configuration.nix")
           (lib.custom.relativeToRoot "hosts/nixos/ceris/config")
-          # HM managed by legacy for now — migrated to den in Phase 4
-          (lib.custom.relativeToRoot "hosts/common/optional/home-manager.nix")
         ];
         programs.nix-ld.enable = true;
         system.stateVersion = "24.11";
