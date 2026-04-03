@@ -11,6 +11,7 @@
     ./fuzzel.nix
     ./mako.nix
     ./swaylock.nix
+    ./swayidle.nix
   ];
 
   wayland.windowManager.river = {
@@ -147,7 +148,7 @@
 
             F = "spawn \"bemoji -t\"";
 
-            L = "spawn \"swaylock -F -e -i /home/mads/nix-dots/dotfiles/bg.png -l -s fill\"";
+            L = "spawn \"loginctl lock-session\"";
 
             B = "spawn ${lib.getExe pkgs.firefox}";
 
@@ -198,7 +199,6 @@
         "\"${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1\""
         "\"dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river\""
         "\"${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets\""
-        "\"swayidle -w timeout 600 'swaylock' before-sleep 'swaylock'\"" # lock screen
         "nm-applet"
         "mako"
         #"waybar"
