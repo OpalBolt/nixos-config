@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Den — aspect-oriented NixOS framework (matches local den-rewrite/den/ at HEAD)
+    den.url = "github:vic/den";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
     # Extension and package sources
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
@@ -49,12 +54,11 @@
     };
 
     solaar = {
-      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     time-helper = {
-      #url = "git+https://codeberg.org/OpalBolt/time-helper?ref=main";
       url = "github:OpalBolt/Time-Helper";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -64,88 +68,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      nixpkgs-unstable,
-      sops-nix,
-      #neovim-config-nix,
-      time-helper,
-      lazyvim,
-      ...
-    }@inputs:
-    let
-      # --- Library Setup ---
-      # Import custom lib and extend nixpkgs lib
-      lib = nixpkgs.lib.extend (
-        final: prev: {
-          custom = import ./lib { inherit (nixpkgs) lib; };
-        }
-      );
-
-      # Helper function for systems
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
-    in
-    {
-      # --- Overlays ---
-      overlays = import ./overlays { inherit inputs; };
-
-      # --- Host Configurations ---
-      # Simple host discovery by reading directories in hosts/
-      nixosConfigurations = builtins.listToAttrs (
-        map
-          (hostname: {
-            name = hostname;
-            value = nixpkgs.lib.nixosSystem {
-              specialArgs = {
-                inherit inputs hostname lib;
-              };
-              modules = [
-                # Global overlay and config
-                {
-                  nixpkgs.overlays = [
-                    self.overlays.default
-                    inputs.nix-vscode-extensions.overlays.default
-                  ];
-                  nixpkgs.config.allowUnfree = true;
-                  system.configurationRevision =
-                    self.rev or (
-                      if self ? "dirtyRev" then
-                        "${self.dirtyRev}-${self.lastModifiedDate}"
-                      else
-                        "dirty-${self.lastModifiedDate}"
-                    );
-                }
-                inputs.solaar.nixosModules.default
-                inputs.determinate.nixosModules.default
-
-                # Import configurations
-                (./hosts/nixos + "/${hostname}")
-              ];
-            };
-          })
-          (
-            # Get all host directories with a default.nix file
-            builtins.filter (name: builtins.pathExists (./hosts/nixos + "/${name}/default.nix")) (
-              builtins.attrNames (builtins.readDir ./hosts/nixos)
-            )
-          )
-      );
-
-      # --- Formatter ---
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-
-      # --- DevShell ---
-      # Useful for development, accessible via `nix develop`
-      devShells = forAllSystems (system: {
-        default = import ./shell.nix {
-          pkgs = nixpkgs.legacyPackages.${system};
-        };
-      });
-    };
+  # All configuration lives in modules/ — loaded via import-tree.
+  # See modules/ for den, hosts, defaults, legacy, and misc modules.
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

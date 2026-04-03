@@ -28,7 +28,7 @@
 
     # Configuration flags
     isWork = false;
-    isMinimail = true;
+    isMinimal = true;
     useYubikey = false;
     useWindowManager = true;
     scaling = "1";
