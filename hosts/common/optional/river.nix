@@ -37,6 +37,9 @@
     waybar.enable = true;
   };
 
+  # Required for swaylock to authenticate via PAM
+  security.pam.services.swaylock = {};
+
   environment.systemPackages = with pkgs; [
 
     # Screenshot related apps
