@@ -1,4 +1,5 @@
 {
+  lib,
   ...
 }:
 
@@ -13,7 +14,7 @@
       indicator-caps-lock = true;
       indicator-radius = 50;
       indicator-thickness = 10;
-      image = "/home/mads/nix-dots/dotfiles/bg.png";
+      image = toString (lib.custom.relativeToRoot "dotfiles/bg.png");
       scaling = "fill";
     };
   };

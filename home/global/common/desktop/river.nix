@@ -204,7 +204,7 @@
         #"waybar"
         #"systemctl --user restart waybar.service"
         #"nextcloud"
-        "\"swaybg -i /home/mads/nix-dots/dotfiles/bg.png -m fill\""
+        "\"swaybg -i ${lib.custom.relativeToRoot "dotfiles/bg.png"} -m fill\""
       ];
     };
 
