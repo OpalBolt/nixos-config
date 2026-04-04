@@ -12,13 +12,13 @@ in
   sops.secrets = {
     # SSH keys
     ssh-per-pri = {
-      sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      sopsFile = "${secretspath}/secrets/personal.yaml";
       owner = config.users.users.${config.hostSpec.username}.name;
       path = "/home/${config.hostSpec.username}/.ssh/id_ed25519"; # Private key
       key = "ssh/privateKey";
     };
     ssh-per-pub = {
-      sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      sopsFile = "${secretspath}/secrets/personal.yaml";
       owner = config.users.users.${config.hostSpec.username}.name;
       path = "/home/${config.hostSpec.username}/.ssh/id_ed25519.pub"; # Public key
       key = "ssh/publicKey";

@@ -15,7 +15,7 @@ in
 
   sops.secrets = {
     "zai/claudetoken" = {
-      sopsFile = "${secretspath}/secrets/per-mads.yaml";
+      sopsFile = "${secretspath}/secrets/personal.yaml";
     };
   };
 
@@ -37,4 +37,3 @@ in
   '';
 
 }
-

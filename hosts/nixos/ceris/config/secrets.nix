@@ -30,7 +30,7 @@ in
 
     # VPN configuration
     openvpn-efi = {
-      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-vpn.yaml";
+      sopsFile = "${secretspath}/secrets/${config.hostSpec.hostname}-openvpn.yaml";
       key = "openvpn";
     };
 
