@@ -275,10 +275,10 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1774204565,
-        "narHash": "sha256-vcLcCi9texmD6PTqvxL1PP583+8HutP1ZWunswu5NyU=",
+        "lastModified": 1775314692,
+        "narHash": "sha256-iQ5lPP6fF1YN7d+jIF3ajvgoG3ZBWIemo4IB7YEy2uQ=",
         "ref": "main",
-        "rev": "ecb36aab7526769699c0401aeba3fd0a329cd922",
+        "rev": "1fecf1d1d9f7e293f9a351c72e2f2f9a5d316f38",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/OpalBolt/nix-secrets.git"
@@ -511,11 +511,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775163523,
-        "narHash": "sha256-IE3jn0H/KnsHG9DoX3FGdP+R7l/NQ8HyFr9baLODlw8=",
+        "lastModified": 1775252596,
+        "narHash": "sha256-vi7SLa8e7XPniNpQssQ1k89PeSEh2VM0PulznhJ/uzI=",
         "ref": "feat/sleep-lock-cleanup",
-        "rev": "b4278c62e11c22423fec85c5c9ffd88d54dbb8de",
-        "revCount": 30,
+        "rev": "e5042dd928b61248df89da51da9f3800406224f2",
+        "revCount": 39,
         "type": "git",
         "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
       },

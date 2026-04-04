@@ -1,6 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
+  # River's systemd integration (systemd.enable = true) propagates WAYLAND_DISPLAY
+  # via dbus-update-activation-environment in its spawn list, which runs AFTER
+  # graphical-session.target is reached. Home-manager's swayidle module adds
+  # ConditionEnvironment=WAYLAND_DISPLAY, causing swayidle to be skipped on startup.
+  # Remove the condition since River guarantees a Wayland session.
+  systemd.user.services.swayidle.Unit.ConditionEnvironment = lib.mkForce "";
+
   services.swayidle = {
     enable = true;
     # -w makes swayidle wait for the lock command to finish before sleeping,
