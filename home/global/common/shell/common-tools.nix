@@ -94,12 +94,11 @@
     enable = true;
     nix-direnv.enable = true;
     stdlib = ''
-      use_renv() {
+      use_envoke() {
         local file="''${1:-.env}"
         watch_file "$file"
-        # Unset any variables from a previous renv load so direnv can track them cleanly.
-        eval "$(renv unload 2>/dev/null || true)"
-        eval "$(renv resolve "$file")"
+        eval "$(envoke unload 2>/dev/null || true)"
+        eval "$(envoke resolve "$file")"
       }
     '';
   };

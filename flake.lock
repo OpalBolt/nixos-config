@@ -511,18 +511,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1775252596,
-        "narHash": "sha256-vi7SLa8e7XPniNpQssQ1k89PeSEh2VM0PulznhJ/uzI=",
-        "ref": "feat/sleep-lock-cleanup",
-        "rev": "e5042dd928b61248df89da51da9f3800406224f2",
-        "revCount": 39,
+        "lastModified": 1775544275,
+        "narHash": "sha256-tcZPl6DoNXqg6murr8/YvutRH5VSbw0rizdeUEzhnWI=",
+        "ref": "refs/heads/main",
+        "rev": "4d276cd0c08e09bd923223a133c1ee63702802d3",
+        "revCount": 40,
         "type": "git",
-        "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
+        "url": "ssh://git@github.com/eficode/envoke"
       },
       "original": {
-        "ref": "feat/sleep-lock-cleanup",
         "type": "git",
-        "url": "ssh://git@github.com/eficode/secure-handling-of-secrets"
+        "url": "ssh://git@github.com/eficode/envoke"
       }
     },
     "solaar": {

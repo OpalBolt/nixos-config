@@ -6,8 +6,7 @@
 }:
 {
   home.packages = lib.flatten [
-    inputs.secure-handling-of-secrets.packages.${pkgs.system}.renv
-    inputs.secure-handling-of-secrets.packages.${pkgs.system}.kctx
+    inputs.secure-handling-of-secrets.packages.${pkgs.system}.envoke
     (builtins.attrValues {
       inherit (pkgs)
         slack
@@ -18,7 +17,6 @@
     })
   ];
   programs.zsh.initContent = ''
-    eval "$(renv shell-init)"
-    eval "$(kctx shell-init)"
+    eval "$(envoke shell-init)"
   '';
 }
