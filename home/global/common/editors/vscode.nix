@@ -25,6 +25,15 @@
           "scminput" = false;
         };
         "chat.mcp.gallery.enabled" = true;
+        "chat.viewSessions.orientation" = "stacked";
+        "mcp" = {
+          "servers" = {
+            "context7" = {
+              "type" = "stdio";
+              "command" = "${pkgs.unstable.context7-mcp}/bin/context7-mcp";
+            };
+          };
+        };
       };
       extensions = with pkgs; [
 
@@ -32,6 +41,7 @@
         open-vsx.mikestead.dotenv
         open-vsx.pflannery.vscode-versionlens
         vscode-marketplace.ms-vscode-remote.remote-containers
+        vscode-marketplace.golang.go
 
         # Nix related
         # vscode-marketplace.github.copilot

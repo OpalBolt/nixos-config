@@ -15,6 +15,10 @@
 
       # Security
       "home/global/common/work/backup-customers.nix"
+
+      # Dev Environment
+      "home/global/common/dev/go.nix"
+
     ])
   ];
 
