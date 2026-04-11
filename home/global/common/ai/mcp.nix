@@ -1,5 +1,13 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
+  secretspath = builtins.toString inputs.nix-secrets.outPath;
+
   # Central MCP server definitions in programs.mcp format.
   # Add new servers here and they'll be picked up by all supported tools.
   mcpServers = {
@@ -13,12 +21,10 @@ let
     mcp-nixos = {
       command = lib.getExe pkgs.mcp-nixos;
     };
-    # Requires GITHUB_PERSONAL_ACCESS_TOKEN in the environment (set via sops/shell init).
-    # OAuth alternative: replace this stdio entry with the remote HTTP server instead —
+    # GITHUB_PERSONAL_ACCESS_TOKEN is exported from sops below.
+    # OAuth alternative (no token needed for VS Code 1.101+, but requires
+    # Authorization header for claude-code/opencode — not yet wired):
     #   { url = "https://api.githubcopilot.com/mcp/"; }
-    # The remote server supports OAuth in VS Code 1.101+ (no token needed) but requires
-    # an Authorization: Bearer header for claude-code and opencode. Use the local binary
-    # until sops wiring for the PAT header is in place.
     github-mcp-server = {
       command = lib.getExe pkgs.github-mcp-server;
     };
@@ -53,6 +59,19 @@ let
   );
 in
 {
+  imports = [ inputs.sops-nix.homeManagerModules.sops ];
+
+  sops.secrets."github/pat" = {
+    sopsFile = "${secretspath}/secrets/personal.yaml";
+  };
+
+  # Export the PAT so github-mcp-server (and gh CLI) can pick it up.
+  programs.zsh.initContent = ''
+    if [ -f "${config.sops.secrets."github/pat".path}" ]; then
+      export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat ${config.sops.secrets."github/pat".path})
+    fi
+  '';
+
   # Writes ~/.config/mcp/mcp.json — the shared MCP config consumed by opencode
   # (via enableMcpIntegration) and any other tool that follows the MCP standard.
   programs.mcp = {
