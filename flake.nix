@@ -59,10 +59,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    qbpm = {
-      url = "github:pvsr/qbpm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
   };
