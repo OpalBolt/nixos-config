@@ -13,7 +13,12 @@ let
     mcp-nixos = {
       command = lib.getExe pkgs.mcp-nixos;
     };
-    # Requires GITHUB_PERSONAL_ACCESS_TOKEN in the environment.
+    # Requires GITHUB_PERSONAL_ACCESS_TOKEN in the environment (set via sops/shell init).
+    # OAuth alternative: replace this stdio entry with the remote HTTP server instead —
+    #   { url = "https://api.githubcopilot.com/mcp/"; }
+    # The remote server supports OAuth in VS Code 1.101+ (no token needed) but requires
+    # an Authorization: Bearer header for claude-code and opencode. Use the local binary
+    # until sops wiring for the PAT header is in place.
     github-mcp-server = {
       command = lib.getExe pkgs.github-mcp-server;
     };
