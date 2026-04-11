@@ -15,7 +15,7 @@ in
         imports = lib.flatten [
           (map lib.custom.relativeToRoot [
             "home/global/common/ai/mcp.nix"
-            #"home/global/common/ai/claude-cli.nix"
+            "home/global/common/ai/claude-cli.nix"
             "home/global/common/ai/fabric.nix"
             #"home/global/common/ai/gemini-cli.nix"
             #"home/global/common/ai/mistral.nix"
