@@ -13,6 +13,20 @@ let
     mcp-nixos = {
       command = lib.getExe pkgs.mcp-nixos;
     };
+    # Requires GITHUB_PERSONAL_ACCESS_TOKEN in the environment.
+    github-mcp-server = {
+      command = lib.getExe pkgs.github-mcp-server;
+    };
+    mcp-server-git = {
+      command = lib.getExe pkgs.mcp-server-git;
+    };
+    mcp-server-memory = {
+      command = lib.getExe pkgs.mcp-server-memory;
+    };
+    # meta.mainProgram is wrong in nixpkgs for this package, use getExe' explicitly.
+    mcp-server-sequential-thinking = {
+      command = lib.getExe' pkgs.mcp-server-sequential-thinking "mcp-server-sequential-thinking";
+    };
   };
 
   # programs.claude-code.mcpServers requires an explicit type field.
