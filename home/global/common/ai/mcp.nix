@@ -84,4 +84,7 @@ in
 
   # opencode reads from programs.mcp.servers when this is true.
   programs.opencode.enableMcpIntegration = true;
+
+  # GitHub Copilot CLI reads from ~/.copilot/mcp-config.json.
+  home.file.".copilot/mcp-config.json".text = builtins.toJSON { mcpServers = mcpServers; };
 }
