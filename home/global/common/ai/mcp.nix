@@ -19,24 +19,24 @@ let
       ];
     };
     mcp-nixos = {
-      command = lib.getExe pkgs.mcp-nixos;
+      command = lib.getExe pkgs.unstable.mcp-nixos;
     };
     # GITHUB_PERSONAL_ACCESS_TOKEN is exported from sops below.
     # OAuth alternative (no token needed for VS Code 1.101+, but requires
     # Authorization header for claude-code/opencode — not yet wired):
     #   { url = "https://api.githubcopilot.com/mcp/"; }
     github-mcp-server = {
-      command = lib.getExe pkgs.github-mcp-server;
+      command = lib.getExe pkgs.unstable.github-mcp-server;
     };
     mcp-server-git = {
-      command = lib.getExe pkgs.mcp-server-git;
+      command = lib.getExe pkgs.unstable.mcp-server-git;
     };
     mcp-server-memory = {
-      command = lib.getExe pkgs.mcp-server-memory;
+      command = lib.getExe pkgs.unstable.mcp-server-memory;
     };
     # meta.mainProgram is wrong in nixpkgs for this package, use getExe' explicitly.
     mcp-server-sequential-thinking = {
-      command = lib.getExe' pkgs.mcp-server-sequential-thinking "mcp-server-sequential-thinking";
+      command = lib.getExe' pkgs.unstable.mcp-server-sequential-thinking "mcp-server-sequential-thinking";
     };
   };
 
