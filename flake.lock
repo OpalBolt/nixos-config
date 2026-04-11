@@ -297,11 +297,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775703285,
-        "narHash": "sha256-Dck/lX920n3ClC6U2m3fWaXgoGrtJpnqfGCdiOb8Gf4=",
+        "lastModified": 1775875897,
+        "narHash": "sha256-/6yiKV+yW1b1bvM5QxfAovW5nu7JHMfW+1HTCBchrlk=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "c2281bf25d05ecb8155319456340afd34bea28ec",
+        "rev": "517e9639fc0830315bb88af02d5dcacfb96aa342",
         "type": "github"
       },
       "original": {
@@ -358,11 +358,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1775423009,
-        "narHash": "sha256-vPKLpjhIVWdDrfiUM8atW6YkIggCEKdSAlJPzzhkQlw=",
+        "lastModified": 1775710090,
+        "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "68d8aa3d661f0e6bd5862291b5bb263b2a6595c9",
+        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
         "type": "github"
       },
       "original": {
@@ -388,11 +388,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1775595990,
-        "narHash": "sha256-OEf7YqhF9IjJFYZJyuhAypgU+VsRB5lD4DuiMws5Ltc=",
+        "lastModified": 1775811116,
+        "narHash": "sha256-t+HZK42pB6N+i5RGbuy7Xluez/VvWbembBdvzsc23Ss=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4e92bbcdb030f3b4782be4751dc08e6b6cb6ccf2",
+        "rev": "54170c54449ea4d6725efd30d719c5e505f1c10e",
         "type": "github"
       },
       "original": {
@@ -429,58 +429,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1775755435,
-        "narHash": "sha256-6VakqPnnfV+VRR9hVZB6JHCde+Fi9w2J25xqpnpZPsA=",
+        "lastModified": 1775932890,
+        "narHash": "sha256-no35g4vWLQKzEHn/s4Qemj72PCXS/+ZwSbSJOV8TEL0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "df635db0362f9a50a17a64edbeb2411f8e162dc0",
+        "rev": "c6a44037c7446d2385579e2ac27af03caa1207e0",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
         "repo": "NUR",
-        "type": "github"
-      }
-    },
-    "pyproject-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "qbpm",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1753063596,
-        "narHash": "sha256-el1vFxDk6DR2hKGYnMfQHR7+K4aMiJDKQRMP3gdh+ZI=",
-        "owner": "nix-community",
-        "repo": "pyproject.nix",
-        "rev": "cac90713492f23be5f1072bae88406890b9c68f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "pyproject.nix",
-        "type": "github"
-      }
-    },
-    "qbpm": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pyproject-nix": "pyproject-nix"
-      },
-      "locked": {
-        "lastModified": 1771109061,
-        "narHash": "sha256-aSbwJxICwXAp/TVNt+B7SNpVHKz4luRQ3nkkMuH4p0s=",
-        "owner": "pvsr",
-        "repo": "qbpm",
-        "rev": "359686b678caaf295646c54ce6035193a593cdc4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pvsr",
-        "repo": "qbpm",
         "type": "github"
       }
     },
@@ -496,7 +454,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvirt": "nixvirt",
         "nur": "nur",
-        "qbpm": "qbpm",
         "secure-handling-of-secrets": "secure-handling-of-secrets",
         "solaar": "solaar",
         "sops-nix": "sops-nix",
@@ -511,11 +468,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1775544275,
-        "narHash": "sha256-tcZPl6DoNXqg6murr8/YvutRH5VSbw0rizdeUEzhnWI=",
+        "lastModified": 1775824581,
+        "narHash": "sha256-ai+12aOFmJBOBW7+8lfKyD3j2zZm5IptFH3pAhBlSXI=",
         "ref": "refs/heads/main",
-        "rev": "4d276cd0c08e09bd923223a133c1ee63702802d3",
-        "revCount": 40,
+        "rev": "d4846b5e1c1b74b7a9c5e1e47a10ced460ecc9b1",
+        "revCount": 44,
         "type": "git",
         "url": "ssh://git@github.com/eficode/envoke"
       },
