@@ -14,7 +14,7 @@
       indicator-caps-lock = true;
       indicator-radius = 50;
       indicator-thickness = 10;
-      image = toString (lib.custom.relativeToRoot "dotfiles/bg.png");
+      image = lib.custom.relativeToRoot "dotfiles/bg.png";
       scaling = "fill";
     };
   };

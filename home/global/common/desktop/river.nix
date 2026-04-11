@@ -96,7 +96,6 @@
             print = "notify-send \"test\"";
 
             # Spawn Browser
-            # B = "spawn \"qbpm choose --menu \'fuzzel --dmenu\'\"";
             B = "spawn ${lib.getExe pkgs.firefox}";
             V = "spawn \"rofi-rbw --no-folder\"";
 

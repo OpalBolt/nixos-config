@@ -6,7 +6,7 @@
 }:
 {
   home.packages = lib.flatten [
-    inputs.secure-handling-of-secrets.packages.${pkgs.system}.envoke
+    inputs.secure-handling-of-secrets.packages.${pkgs.stdenv.hostPlatform.system}.envoke
     (builtins.attrValues {
       inherit (pkgs)
         slack

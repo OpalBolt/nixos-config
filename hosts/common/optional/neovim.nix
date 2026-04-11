@@ -5,7 +5,7 @@
 }:
 {
   environment.systemPackages = [
-    inputs.neovim-config-nix.packages.${pkgs.system}.default
+    inputs.neovim-config-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   environment.variables = {

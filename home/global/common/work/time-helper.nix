@@ -6,7 +6,7 @@
 
 {
   home.packages = [
-    inputs.time-helper.packages.${pkgs.system}.default
+    inputs.time-helper.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   home.shellAliases = {
