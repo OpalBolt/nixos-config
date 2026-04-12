@@ -29,6 +29,7 @@
       "hosts/common/optional/qmk.nix" # qmk keyboard firmware flashing
       "hosts/common/optional/solaar.nix" # logitech peripheral management
       "hosts/common/optional/chromiumPolicies.nix" # policies for chromium-based browsers
+      "hosts/common/optional/gaming.nix" # steam, gamemode, mangohud
     ])
   ];
 
@@ -44,32 +45,12 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # 32-bit graphics support (required for Steam/Proton)
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  # Steam and gaming tools
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
-  programs.gamemode.enable = true;
+  hardware.graphics.enable = true;
 
   environment.systemPackages = with pkgs; [
-    mangohud # In-game performance overlay
-    protonup # Manage Proton-GE versions
     nvtopPackages.nvidia # GPU monitoring
     lm_sensors # CPU/motherboard temperature monitoring
   ];
-
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-  };
-
-  # Favour performance on a dedicated gaming rig
-  powerManagement.cpuFreqGovernor = "performance";
 
   # Firmware updates
   services.fwupd.enable = true;
