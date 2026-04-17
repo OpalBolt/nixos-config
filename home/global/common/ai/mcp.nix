@@ -86,5 +86,14 @@ in
   programs.opencode.enableMcpIntegration = true;
 
   # GitHub Copilot CLI reads from ~/.copilot/mcp-config.json.
-  home.file.".copilot/mcp-config.json".text = builtins.toJSON { mcpServers = mcpServers; };
+  # It requires `args` to be present (even if empty) for stdio servers.
+  home.file.".copilot/mcp-config.json".text = builtins.toJSON {
+    mcpServers = lib.mapAttrs (
+      _: server:
+      if server ? url then
+        server
+      else
+        { args = [ ]; } // server
+    ) mcpServers;
+  };
 }
