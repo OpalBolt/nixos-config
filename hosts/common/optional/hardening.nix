@@ -138,6 +138,8 @@
   # Does NOT auto-reboot by default (you must manually reboot for kernel updates)
   system.autoUpgrade = {
     enable = lib.mkDefault true;
+    flake = "git+https://codeberg.org/OpalBolt/nixos-config#${config.networking.hostName}";
+    flags = [ "--update-input" "nixpkgs" ];
     allowReboot = lib.mkDefault false; # Set to true in host config if you want auto-reboot
     dates = "daily";
     randomizedDelaySec = "45min"; # Random delay to prevent thundering herd
