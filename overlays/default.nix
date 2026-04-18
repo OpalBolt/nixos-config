@@ -56,6 +56,10 @@ let
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
+    unstable-small = import inputs.nixpkgs-unstable-small {
+      system = final.stdenv.hostPlatform.system;
+      config.allowUnfree = true;
+    };
   };
 in
 {
