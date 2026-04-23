@@ -24,7 +24,7 @@
     };
 
     secure-handling-of-secrets = {
-      url = "git+ssh://git@github.com/eficode/envoke";
+      url = "git+ssh://git@github.com/OpalBolt/envoke";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
